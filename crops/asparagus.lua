@@ -3,7 +3,7 @@ local S = farming.intllib
 
 -- asparagus
 minetest.register_craftitem("farming:asparagus", {
-	description = S("asparagus"),
+	description = S("Asparagus"),
 	inventory_image = "farming_asparagus.png",
 	groups = {seed = 2, food_asparagus = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)

@@ -3,7 +3,7 @@ local S = farming.intllib
 
 -- spinach
 minetest.register_craftitem("farming:spinach", {
-	description = S("spinach"),
+	description = S("Spinach"),
 	inventory_image = "farming_spinach.png",
 	groups = {seed = 2, food_spinach = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
