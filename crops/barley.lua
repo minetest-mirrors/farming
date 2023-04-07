@@ -8,15 +8,16 @@ minetest.register_node("farming:seed_barley", {
 	inventory_image = "farming_barley_seed.png",
 	wield_image = "farming_barley_seed.png",
 	drawtype = "signlike",
-	groups = {seed = 1, snappy = 3, attached_node = 1},
+	groups = {seed = 1, snappy = 3, attached_node = 1, growing = 1},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,
 	sunlight_propagates = true,
+	next_plant = "farming:barley_1",
 	selection_box = farming.select,
-	on_place = function(itemstack, placer, pointed_thing)
-		return farming.place_seed(itemstack, placer, pointed_thing, "farming:barley_1")
-	end
+--	on_place = function(itemstack, placer, pointed_thing)
+--		return farming.place_seed(itemstack, placer, pointed_thing, "farming:barley_1")
+--	end
 })
 
 -- harvested barley

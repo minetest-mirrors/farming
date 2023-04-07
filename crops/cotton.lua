@@ -34,15 +34,16 @@ minetest.register_node("farming:seed_cotton", {
 	inventory_image = "farming_cotton_seed.png",
 	wield_image = "farming_cotton_seed.png",
 	drawtype = "signlike",
-	groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 4},
+	groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 4, growing = 1},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,
 	sunlight_propagates = true,
 	selection_box = farming.select,
-	on_place = function(itemstack, placer, pointed_thing)
-		return farming.place_seed(itemstack, placer, pointed_thing, "farming:cotton_1")
-	end
+	next_plant = "farming:cotton_1",
+--	on_place = function(itemstack, placer, pointed_thing)
+--		return farming.place_seed(itemstack, placer, pointed_thing, "farming:cotton_1")
+--	end
 })
 
 -- cotton

@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230122",
+	version = "20230407",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -198,30 +198,30 @@ local function reg_plant_stages(plant_name, stage, force_last)
 			local old_constr = node_def.on_construct
 			local old_destr  = node_def.on_destruct
 
-			minetest.override_item(node_name,
-				{
-					on_construct = function(pos)
+			minetest.override_item(node_name, {
 
-						if old_constr then
-							old_constr(pos)
-						end
+				on_construct = function(pos)
 
-						farming.handle_growth(pos)
-					end,
+					if old_constr then
+						old_constr(pos)
+					end
 
-					on_destruct = function(pos)
+					farming.handle_growth(pos)
+				end,
 
-						minetest.get_node_timer(pos):stop()
+				on_destruct = function(pos)
 
-						if old_destr then
-							old_destr(pos)
-						end
-					end,
+					minetest.get_node_timer(pos):stop()
 
-					on_timer = function(pos, elapsed)
-						return farming.plant_growth_timer(pos, elapsed, node_name)
-					end,
-				})
+					if old_destr then
+						old_destr(pos)
+					end
+				end,
+
+				on_timer = function(pos, elapsed)
+					return farming.plant_growth_timer(pos, elapsed, node_name)
+				end,
+			})
 		end
 
 	elseif force_last then
@@ -313,7 +313,22 @@ minetest.register_abm({
 	chance = 1,
 	catch_up = false,
 	action = function(pos, node)
-		farming.handle_growth(pos, node)
+
+		-- check if group:growing node is a seed
+		local def = minetest.registered_nodes[node.name]
+
+		if def.groups and def.groups.seed then
+
+			local next_stage = def.next_plant
+			local p2 = def.place_param2
+
+			-- change seed to stage_1 or crop
+			if next_stage then
+				minetest.set_node(pos, {name = next_stage, param2 = p2})
+			end
+		else
+			farming.handle_growth(pos, node)
+		end
 	end
 })
 
@@ -542,7 +557,7 @@ farming.register_plant = function(name, def)
 		inventory_image = def.inventory_image,
 		wield_image = def.inventory_image,
 		drawtype = "signlike",
-		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2},
+		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2, growing = 1},
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		walkable = false,
@@ -552,8 +567,8 @@ farming.register_plant = function(name, def)
 		next_plant = mname .. ":" .. pname .. "_1",
 
 		on_place = function(itemstack, placer, pointed_thing)
-			return farming.place_seed(itemstack, placer,
-				pointed_thing, mname .. ":" .. pname .. "_1")
+			return farming.place_seed(itemstack, placer, pointed_thing,
+					mname .. ":" .. pname .. "_1")
 		end
 	})
 
