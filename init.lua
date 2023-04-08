@@ -317,13 +317,17 @@ minetest.register_abm({
 		-- check if group:growing node is a seed
 		local def = minetest.registered_nodes[node.name]
 
-		if def.groups and def.groups.seed then
+		if def and def.groups and def.groups.seed then
 
 			local next_stage = def.next_plant
-			local p2 = def.place_param2
+
+			def = minetest.registered_nodes[next_stage]
 
 			-- change seed to stage_1 or crop
-			if next_stage then
+			if def then
+
+				local p2 = def.place_param2 or 1
+
 				minetest.set_node(pos, {name = next_stage, param2 = p2})
 			end
 		else
@@ -563,12 +567,12 @@ farming.register_plant = function(name, def)
 		walkable = false,
 		sunlight_propagates = true,
 		selection_box = farming.select,
-		place_param2 = def.place_param2 or nil,
+		place_param2 = 1, -- place seed flat
 		next_plant = mname .. ":" .. pname .. "_1",
 
 		on_place = function(itemstack, placer, pointed_thing)
 			return farming.place_seed(itemstack, placer, pointed_thing,
-					mname .. ":" .. pname .. "_1")
+					mname .. ":seed_" .. pname)
 		end
 	})
 
