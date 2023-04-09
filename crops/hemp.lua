@@ -15,9 +15,9 @@ minetest.register_node("farming:seed_hemp", {
 	sunlight_propagates = true,
 	selection_box = farming.select,
 	next_plant = "farming:hemp_1",
---	on_place = function(itemstack, placer, pointed_thing)
---		return farming.place_seed(itemstack, placer, pointed_thing, "farming:hemp_1")
---	end
+	on_place = function(itemstack, placer, pointed_thing)
+		return farming.place_seed(itemstack, placer, pointed_thing, "farming:seed_hemp")
+	end
 })
 
 -- harvested hemp

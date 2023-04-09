@@ -41,9 +41,9 @@ minetest.register_node("farming:seed_cotton", {
 	sunlight_propagates = true,
 	selection_box = farming.select,
 	next_plant = "farming:cotton_1",
---	on_place = function(itemstack, placer, pointed_thing)
---		return farming.place_seed(itemstack, placer, pointed_thing, "farming:cotton_1")
---	end
+	on_place = function(itemstack, placer, pointed_thing)
+		return farming.place_seed(itemstack, placer, pointed_thing, "farming:seed_cotton")
+	end
 })
 
 -- cotton

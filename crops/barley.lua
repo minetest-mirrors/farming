@@ -15,9 +15,9 @@ minetest.register_node("farming:seed_barley", {
 	sunlight_propagates = true,
 	next_plant = "farming:barley_1",
 	selection_box = farming.select,
---	on_place = function(itemstack, placer, pointed_thing)
---		return farming.place_seed(itemstack, placer, pointed_thing, "farming:barley_1")
---	end
+	on_place = function(itemstack, placer, pointed_thing)
+		return farming.place_seed(itemstack, placer, pointed_thing, "farming:seed_barley")
+	end
 })
 
 -- harvested barley
