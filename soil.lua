@@ -165,8 +165,11 @@ minetest.register_abm({
 		-- what's on top of soil, if solid/not plant change soil to dirt
 		if minetest.registered_nodes[nn]
 		and minetest.registered_nodes[nn].walkable
-		and minetest.get_item_group(nn, "plant") == 0 then
+		and minetest.get_item_group(nn, "plant") == 0
+		and minetest.get_item_group(nn, "growing") == 0 then
+
 			minetest.set_node(pos, {name = ndef.soil.base})
+
 			return
 		end
 
@@ -175,19 +178,21 @@ minetest.register_abm({
 			return
 		end
 
-		-- check if water is within 3 nodes horizontally and 1 below
-		if #minetest.find_nodes_in_area(
-				{x = pos.x + 3, y = pos.y - 1, z = pos.z + 3},
-				{x = pos.x - 3, y = pos.y    , z = pos.z - 3},
-				{"group:water"}) > 0 then
+		-- check if water is within 3 nodes
+		if minetest.find_node_near(pos, 3, {"group:water"}) then
 
-			minetest.set_node(pos, {name = ndef.soil.wet})
+			-- only change if it's not already wet soil
+			if node.name ~= ndef.soil.wet then
+				minetest.set_node(pos, {name = ndef.soil.wet})
+			end
 
 		elseif node.name == ndef.soil.wet then
 			minetest.set_node(pos, {name = ndef.soil.dry})
 
+		-- if crop or seed found don't turn to dry soil
 		elseif node.name == ndef.soil.dry
-		and minetest.get_item_group(nn, "plant") == 0 then
+		and minetest.get_item_group(nn, "plant") == 0
+		and minetest.get_item_group(nn, "growing") == 0 then
 			minetest.set_node(pos, {name = ndef.soil.base})
 		end
 	end
