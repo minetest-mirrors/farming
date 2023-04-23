@@ -23,6 +23,10 @@ THE SOFTWARE.
 
 License of media (textures):
 ----------------------------
+
+Created by Shadall (CC0):
+  farming_burger.png
+
 Created by PilzAdam (License: CC BY 3.0):
   farming_bread.png
   farming_soil.png
@@ -161,7 +165,6 @@ Created by OgelGames (CC BY-SA 4.0)
 Created by Felfa (CC0)
   farming_blackberry*.png
   farming_lettuce*.png
-  farming_burger.png
   farming_soy*.png
   farming_vanilla*.png
   farming_artichoke*.png
