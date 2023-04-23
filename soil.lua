@@ -173,11 +173,6 @@ minetest.register_abm({
 			return
 		end
 
-		-- if map around soil not loaded then skip until loaded
-		if minetest.find_node_near(pos, 3, {"ignore"}) then
-			return
-		end
-
 		-- check if water is within 3 nodes
 		if minetest.find_node_near(pos, 3, {"group:water"}) then
 
@@ -186,14 +181,18 @@ minetest.register_abm({
 				minetest.set_node(pos, {name = ndef.soil.wet})
 			end
 
-		elseif node.name == ndef.soil.wet then
-			minetest.set_node(pos, {name = ndef.soil.dry})
+		-- only dry out soil if no unloaded blocks nearby, just incase
+		elseif not minetest.find_node_near(pos, 3, {"ignore"}) then
 
-		-- if crop or seed found don't turn to dry soil
-		elseif node.name == ndef.soil.dry
-		and minetest.get_item_group(nn, "plant") == 0
-		and minetest.get_item_group(nn, "growing") == 0 then
-			minetest.set_node(pos, {name = ndef.soil.base})
+			if node.name == ndef.soil.wet then
+				minetest.set_node(pos, {name = ndef.soil.dry})
+
+			-- if crop or seed found don't turn to dry soil
+			elseif node.name == ndef.soil.dry
+			and minetest.get_item_group(nn, "plant") == 0
+			and minetest.get_item_group(nn, "growing") == 0 then
+				minetest.set_node(pos, {name = ndef.soil.base})
+			end
 		end
 	end
 })
