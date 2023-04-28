@@ -1,19 +1,41 @@
 
 local S = farming.intllib
 
+-- rice seed
+minetest.register_node("farming:seed_rice", {
+	description = S("Rice Seed"),
+	tiles = {"farming_rice_seed.png"},
+	inventory_image = "farming_rice_seed.png",
+	wield_image = "farming_rice_seed.png",
+	drawtype = "signlike",
+	groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 4, growing = 1},
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	walkable = false,
+	sunlight_propagates = true,
+	selection_box = farming.select,
+	next_plant = "farming:rice_1",
+	on_place = function(itemstack, placer, pointed_thing)
+		return farming.place_seed(itemstack, placer, pointed_thing, "farming:seed_rice")
+	end
+})
+
 -- rice
 minetest.register_craftitem("farming:rice", {
 	description = S("Rice"),
 	inventory_image = "farming_rice.png",
 	groups = {seed = 2, food_rice = 1, flammable = 2},
-	on_place = function(itemstack, placer, pointed_thing)
-		return farming.place_seed(itemstack, placer, pointed_thing, "farming:rice_1")
-	end
 })
 
--- replacement for rice seeds that was removed
-minetest.register_alias("farming:seed_rice", "farming:rice")
+-- dry rice seed to give edible rice
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 1,
+	output = "farming:rice",
+	recipe = "farming:seed_rice"
+})
 
+-- rice flour and bread
 minetest.register_craftitem("farming:rice_bread", {
 	description = S("Rice Bread"),
 	inventory_image = "farming_rice_bread.png",
@@ -100,8 +122,8 @@ minetest.register_node("farming:rice_6", table.copy(def))
 def.tiles = {"farming_rice_7.png"}
 def.drop = {
 	items = {
-		{items = {"farming:rice"}, rarity = 1},
-		{items = {"farming:rice"}, rarity = 3}
+		{items = {"farming:seed_rice"}, rarity = 1},
+		{items = {"farming:seed_rice"}, rarity = 3}
 	}
 }
 minetest.register_node("farming:rice_7", table.copy(def))
@@ -112,8 +134,8 @@ def.groups.growing = nil
 def.selection_box = farming.select_final
 def.drop = {
 	items = {
-		{items = {"farming:rice 2"}, rarity = 1},
-		{items = {"farming:rice"}, rarity = 2}
+		{items = {"farming:seed_rice 2"}, rarity = 1},
+		{items = {"farming:seed_rice"}, rarity = 2}
 	}
 }
 minetest.register_node("farming:rice_8", table.copy(def))
@@ -121,7 +143,7 @@ minetest.register_node("farming:rice_8", table.copy(def))
 -- add to registered_plants
 farming.registered_plants["farming:rice"] = {
 	crop = "farming:rice",
-	seed = "farming:rice",
+	seed = "farming:seed_rice",
 	minlight = farming.min_light,
 	maxlight = farming.max_light,
 	steps = 8
