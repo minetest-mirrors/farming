@@ -7,7 +7,7 @@
 
 local S = farming.intllib
 
--- potato
+-- garlic clove
 minetest.register_craftitem("farming:garlic_clove", {
 	description = S("Garlic clove"),
 	inventory_image = "crops_garlic_clove.png",

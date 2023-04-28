@@ -8,12 +8,22 @@ minetest.register_craftitem("farming:sunflower", {
 })
 
 -- sunflower seeds
-minetest.register_craftitem("farming:seed_sunflower", {
+minetest.register_node("farming:seed_sunflower", {
 	description = S("Sunflower Seeds"),
+	tiles = {"farming_sunflower_seeds.png"},
 	inventory_image = "farming_sunflower_seeds.png",
-	groups = {seed = 2, food_sunflower_seeds = 1, flammable = 2},
+	wield_image = "farming_sunflower_seeds.png",
+	drawtype = "signlike",
+	groups = {seed = 1, snappy = 3, attached_node = 1, growing = 1,
+			food_sunflower_seeds = 1, flammable = 2},
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	walkable = false,
+	sunlight_propagates = true,
+	selection_box = farming.select,
+	next_plant = "farming:sunflower_1",
 	on_place = function(itemstack, placer, pointed_thing)
-		return farming.place_seed(itemstack, placer, pointed_thing, "farming:sunflower_1")
+		return farming.place_seed(itemstack, placer, pointed_thing, "farming:seed_sunflower")
 	end
 })
 
@@ -98,6 +108,7 @@ local def = {
 	walkable = false,
 	buildable_to = true,
 	drop = "",
+	waving = 1,
 	selection_box = farming.select,
 	groups = {
 		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
