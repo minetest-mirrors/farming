@@ -258,6 +258,7 @@ minetest.register_craft({
 	},
 	replacements = {
 		{"group:food_cornstarch", "farming:bowl"},
+		{"group:food_cornstarch", "farming:bowl"},
 		{"group:food_rose_water", "vessels:glass_bottle"}
 	}
 })
