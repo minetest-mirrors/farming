@@ -102,7 +102,7 @@ minetest.register_node("farming:hemp_block", {
 	description = S("Hemp Block"),
 	tiles = {"farming_hemp_block.png"},
 	paramtype = "light",
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {snappy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds =  default.node_sound_leaves_defaults()
 })
 
@@ -121,14 +121,14 @@ if minetest.global_exists("stairs") then
 	if stairs.mod and stairs.mod == "redo" then
 
 		stairs.register_all("hemp_block", "farming:hemp_block",
-			{snappy = 1, flammable = 2},
+			{snappy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 			{"farming_hemp_block.png"},
 			"Hemp Block",
 			default.node_sound_leaves_defaults())
 	else
 
 		stairs.register_stair_and_slab("hemp_block", "farming:hemp_block",
-			{snappy = 1, flammable = 2},
+			{snappy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 			{"farming_hemp_block.png"},
 			"Hemp Block Stair",
 			"Hemp Block Slab",
