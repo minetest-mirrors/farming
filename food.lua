@@ -782,3 +782,20 @@ minetest.register_craft({
 		{"farming:glass_water", "vessels:drinking_glass"}
 	}
 })
+
+-- Gingerbread Man
+
+minetest.register_craftitem("farming:gingerbread_man", {
+	description = S("Gingerbread Man"),
+	inventory_image = "farming_gingerbread_man.png",
+	on_use = minetest.item_eat(2)
+})
+
+minetest.register_craft({
+	output = "farming:gingerbread_man 3",
+	recipe = {
+		{"", "group:food_egg", ""},
+		{"group:food_wheat", "group:food_ginger", "group:food_wheat"},
+		{"group:food_sugar", "", "group:food_sugar"}
+	}
+})

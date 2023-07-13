@@ -142,6 +142,7 @@ Created by TenPlus1 (CC BY 3.0)
   farming_rhubarb.png
   farming_hemp*.png
   farming_tofu*.png
+  farming_gingerbread_man.png
 
 Created by ademant (CC-BY-3.0)
   farming_rye*.png
