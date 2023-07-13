@@ -78,11 +78,13 @@ minetest.register_craftitem("farming:flour", {
 	groups = {food_flour = 1, flammable = 1}
 })
 
+local tmp = farming.use_utensils and "farming:mortar_pestle" or ""
+
 minetest.register_craft({
 	output = "farming:flour",
 	recipe = {
 		{"farming:wheat", "farming:wheat", "farming:wheat"},
-		{"farming:wheat", "farming:mortar_pestle", ""}
+		{"farming:wheat", tmp, ""}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
@@ -110,9 +112,11 @@ minetest.register_craftitem("farming:bread_slice", {
 	groups = {food_bread_slice = 1, flammable = 2}
 })
 
+tmp = farming.use_utensils and "farming:cutting_board" or ""
+
 minetest.register_craft({
 	output = "farming:bread_slice 5",
-	recipe = {{"group:food_cutting_board", "farming:bread"}},
+	recipe = {{"farming:bread", tmp}},
 	replacements = {{"group:food_cutting_board", "farming:cutting_board"}}
 })
 

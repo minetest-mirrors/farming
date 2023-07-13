@@ -33,13 +33,14 @@ minetest.register_node("farming:soy_sauce", {
 	sounds = default.node_sound_glass_defaults()
 })
 
+local tmp = farming.use_utensils and "farming:juicer" or ""
+
 -- soy sauce recipe
 minetest.register_craft( {
 	output = "farming:soy_sauce",
 	recipe = {
 		{"group:food_soy", "group:food_salt", "group:food_soy"},
-		{"", "group:food_juicer", ""},
-		{"", "bucket:bucket_water", "vessels:glass_bottle"}
+		{tmp, "bucket:bucket_water", "vessels:glass_bottle"}
 	},
 	replacements = {
 		{"bucket:bucket_water", "bucket:bucket_empty"},
@@ -88,11 +89,13 @@ minetest.register_craftitem("farming:tofu", {
 	on_use = minetest.item_eat(3)
 })
 
+tmp = farming.use_utensils and "farming:baking_tray" or ""
+
 minetest.register_craft({
 	output = "farming:tofu",
 	recipe = {
-		{"farming:baking_tray", "group:food_soy", "group:food_soy"},
-		{"group:food_soy", "group:food_soy", "group:food_soy"}
+		{"group:food_soy", "group:food_soy", "group:food_soy"},
+		{"group:food_soy", "group:food_soy", tmp}
 	},
 	replacements = {{"farming:baking_tray", "farming:baking_tray"}}
 })

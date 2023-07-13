@@ -20,9 +20,11 @@ minetest.register_craft({
 	}
 })
 
+local tmp = farming.use_utensils and "farming:cutting_board" or ""
+
 minetest.register_craft({
 	output = "farming:pumpkin_slice 4",
-	recipe = {{"farming:cutting_board", "farming:pumpkin"}},
+	recipe = {{"farming:pumpkin", tmp}},
 	replacements = {{"farming:cutting_board", "farming:cutting_board"}}
 })
 

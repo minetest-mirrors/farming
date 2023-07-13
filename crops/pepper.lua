@@ -66,12 +66,14 @@ minetest.register_node("farming:pepper_ground", {
 	}
 })
 
+local tmp = farming.use_utensils and "farming:mortar_pestle" or ""
+
 minetest.register_craft( {
 	output = "farming:pepper_ground",
 	recipe = {
 		{"group:food_peppercorn"},
-		{"farming:mortar_pestle"},
-		{"vessels:glass_bottle"}
+		{"vessels:glass_bottle"},
+		{tmp}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })

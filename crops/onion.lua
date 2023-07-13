@@ -26,12 +26,14 @@ minetest.register_craftitem("farming:onion_soup", {
 	on_use = minetest.item_eat(6, "farming:bowl")
 })
 
+local tmp = farming.use_utensils and "farming:pot" or ""
+
 minetest.register_craft({
 	output = "farming:onion_soup",
 	recipe = {
 		{"group:food_onion", "group:food_onion", "group:food_onion"},
-		{"group:food_onion", "group:food_pot", "group:food_onion"},
-		{"", "group:food_bowl", ""}
+		{"group:food_onion", "group:food_bowl", "group:food_onion"},
+		{"", tmp, ""}
 	},
 	replacements = {{"farming:pot", "farming:pot"}}
 })

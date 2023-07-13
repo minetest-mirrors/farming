@@ -34,11 +34,13 @@ minetest.register_craftitem("farming:blueberry_pie", {
 	on_use = minetest.item_eat(6)
 })
 
+local tmp = farming.use_utensils and "farming:baking_tray" or ""
+
 minetest.register_craft({
 	output = "farming:blueberry_pie",
 	recipe = {
 		{"group:food_flour", "group:food_sugar", "group:food_blueberries"},
-		{"group:food_baking_tray", "", ""}
+		{"", tmp, ""}
 	},
 	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
 })

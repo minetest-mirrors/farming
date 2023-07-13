@@ -25,11 +25,13 @@ minetest.register_craftitem("farming:carrot_juice", {
 	groups = {vessel = 1, drink = 1}
 })
 
+local tmp = farming.use_utensils and "farming:juicer" or ""
+
 minetest.register_craft({
 	output = "farming:carrot_juice",
 	recipe = {
+		{tmp},
 		{"group:food_carrot"},
-		{"farming:juicer"},
 		{"vessels:drinking_glass"}
 	},
 	replacements = {

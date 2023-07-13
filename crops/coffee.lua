@@ -32,10 +32,12 @@ minetest.register_node("farming:coffee_cup", {
 minetest.register_alias("farming:coffee_cup_hot", "farming:coffee_cup")
 minetest.register_alias("farming:drinking_cup", "vessels:drinking_glass")
 
+local tmp = farming.use_utensils and "farming:saucepan" or ""
+
 minetest.register_craft( {
 	output = "farming:coffee_cup",
 	recipe = {
-		{"group:food_saucepan", "group:food_coffee", "group:food_water_glass"}
+		{"group:food_coffee", "group:food_water_glass", tmp}
 	},
 	replacements = {
 		{"group:food_saucepan", "farming:saucepan"}

@@ -22,11 +22,13 @@ minetest.override_item("farming:rye_1", {drop = {}})
 minetest.override_item("farming:rye_2", {drop = {}})
 minetest.override_item("farming:rye_3", {drop = {}})
 
+local tmp = farming.use_utensils and "farming:mortar_pestle" or ""
+
 minetest.register_craft({
 	output = "farming:flour",
 	recipe = {
 		{"farming:rye", "farming:rye", "farming:rye"},
-		{"farming:rye", "farming:mortar_pestle", ""}
+		{"farming:rye", tmp, ""}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
@@ -54,7 +56,7 @@ minetest.register_craft({
 	output = "farming:flour",
 	recipe = {
 		{"farming:oat", "farming:oat", "farming:oat"},
-		{"farming:oat", "farming:mortar_pestle", ""}
+		{"farming:oat", tmp, ""}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
@@ -72,7 +74,7 @@ minetest.register_craft({
 	output = "farming:flour_multigrain",
 	recipe = {
 		"farming:wheat", "farming:barley", "farming:oat",
-		"farming:rye", "farming:mortar_pestle"
+		"farming:rye", tmp
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })

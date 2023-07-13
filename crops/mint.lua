@@ -35,11 +35,13 @@ minetest.register_craftitem("farming:mint_tea", {
 	groups = {flammable = 4}
 })
 
+local tmp = farming.use_utensils and "farming:juicer" or ""
+
 minetest.register_craft({
 	output = "farming:mint_tea",
 	recipe = {
 		{"group:food_mint", "group:food_mint", "group:food_mint"},
-		{"group:food_water_glass", "farming:juicer", ""}
+		{"group:food_water_glass", tmp, ""}
 	},
 	replacements = {
 		{"group:food_juicer", "farming:juicer"}

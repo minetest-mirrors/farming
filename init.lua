@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230407",
+	version = "20230713",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -20,7 +20,8 @@ farming = {
 	registered_plants = {},
 	min_light = 12,
 	max_light = 15,
-	mapgen = minetest.get_mapgen_setting("mg_name")
+	mapgen = minetest.get_mapgen_setting("mg_name"),
+	use_utensils = minetest.settings:get_bool("farming_use_utensils") ~= false
 }
 
 

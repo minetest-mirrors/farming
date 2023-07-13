@@ -27,12 +27,14 @@ minetest.register_craftitem("farming:barley", {
 	groups = {food_barley = 1, flammable = 2}
 })
 
+local tmp = farming.use_utensils and "farming:mortar_pestle" or ""
+
 -- flour
 minetest.register_craft({
 	output = "farming:flour",
 	recipe = {
 		{"farming:barley", "farming:barley", "farming:barley"},
-		{"farming:barley", "farming:mortar_pestle", ""}
+		{"farming:barley", tmp, ""}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })

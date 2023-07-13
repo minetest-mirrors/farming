@@ -40,10 +40,12 @@ minetest.register_craftitem("farming:chili_powder", {
 	inventory_image = "farming_chili_powder.png"
 })
 
+local tmp = farming.use_utensils and "farming:mortar_pestle" or ""
+
 minetest.register_craft({
 	output = "farming:chili_powder",
 	recipe = {
-		{"farming:chili_pepper", "farming:mortar_pestle"}
+		{"farming:chili_pepper", tmp}
 	},
 	replacements = {{"farming:mortar_pestle", "farming:mortar_pestle"}}
 })

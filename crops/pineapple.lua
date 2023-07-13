@@ -50,13 +50,15 @@ minetest.register_craftitem("farming:pineapple_juice", {
 	groups = {vessel = 1, drink = 1}
 })
 
+local tmp = farming.use_utensils and "farming:juicer" or ""
+
 minetest.register_craft({
 	output = "farming:pineapple_juice",
 	recipe = {
 		{"group:food_pineapple_ring", "group:food_pineapple_ring",
 				"group:food_pineapple_ring"},
-		{"", "farming:juicer", ""},
-		{"", "vessels:drinking_glass", ""}
+		{"", "vessels:drinking_glass", ""},
+		{"", tmp, ""}
 	},
 	replacements = {
 		{"group:food_juicer", "farming:juicer"}
@@ -67,8 +69,8 @@ minetest.register_craft({
 	output = "farming:pineapple_juice 2",
 	recipe = {
 		{"group:food_pineapple", ""},
-		{"farming:juicer", ""},
-		{"vessels:drinking_glass", "vessels:drinking_glass"}
+		{"vessels:drinking_glass", "vessels:drinking_glass"},
+		{tmp, ""}
 	},
 	replacements = {
 		{"group:food_juicer", "farming:juicer"}

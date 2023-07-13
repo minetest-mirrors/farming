@@ -19,10 +19,12 @@ minetest.register_craftitem("farming:rhubarb_pie", {
 	on_use = minetest.item_eat(6)
 })
 
+local tmp = farming.use_utensils and "farming:baking_tray" or ""
+
 minetest.register_craft({
 	output = "farming:rhubarb_pie",
 	recipe = {
-		{"farming:baking_tray", "group:food_sugar", ""},
+		{tmp, "group:food_sugar", ""},
 		{"group:food_rhubarb", "group:food_rhubarb", "group:food_rhubarb"},
 		{"group:food_wheat", "group:food_wheat", "group:food_wheat"}
 	},

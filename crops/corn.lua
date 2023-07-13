@@ -40,10 +40,12 @@ minetest.register_craftitem("farming:popcorn", {
 	on_use = minetest.item_eat(4)
 })
 
+local tmp = farming.use_utensils and "farming:pot" or ""
+
 minetest.register_craft({
 	output = "farming:popcorn",
 	recipe = {
-		{"group:food_pot", "group:food_oil", "group:food_corn"}
+		{"group:food_oil", "group:food_corn", tmp}
 	},
 	replacements = {
 		{"group:food_pot", "farming:pot"},
@@ -58,10 +60,13 @@ minetest.register_craftitem("farming:cornstarch", {
 	groups = {food_cornstarch = 1, food_gelatin = 1, flammable = 2}
 })
 
+tmp = farming.use_utensils and "farming:mortar_pestle" or ""
+local tmp2 = farming.use_utensils and "farming:baking_tray" or ""
+
 minetest.register_craft({
 	output = "farming:cornstarch",
 	recipe = {
-		{"group:food_mortar_pestle", "group:food_corn_cooked", "group:food_baking_tray"},
+		{tmp, "group:food_corn_cooked", tmp2},
 		{"", "group:food_bowl", ""},
 	},
 	replacements = {
