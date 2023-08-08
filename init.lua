@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230713",
+	version = "20230808",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -36,24 +36,14 @@ local statistics = dofile(farming.path .. "/statistics.lua")
 
 -- Intllib
 local S
-if minetest.get_translator ~= nil then
+if minetest.get_translator then
 	S = minetest.get_translator("farming") -- 5.x translation function
-else
-	if minetest.get_modpath("intllib") then
-		dofile(minetest.get_modpath("intllib") .. "/init.lua")
-		if intllib.make_gettext_pair then
-			gettext, ngettext = intllib.make_gettext_pair() -- new gettext method
-		else
-			gettext = intllib.Getter() -- old text file method
-		end
-		S = gettext
-	else -- boilerplate function
-		S = function(str, ...)
-			local args = {...}
-			return str:gsub("@%d+", function(match)
-				return args[tonumber(match:sub(2))]
-			end)
-		end
+else -- boilerplate function
+	S = function(str, ...)
+		local args = {...}
+		return str:gsub("@%d+", function(match)
+			return args[tonumber(match:sub(2))]
+		end)
 	end
 end
 
