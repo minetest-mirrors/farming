@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 --= A nice addition from Ademant's grain mod :)
 

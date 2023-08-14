@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- chili pepper
 minetest.register_craftitem("farming:chili_pepper", {

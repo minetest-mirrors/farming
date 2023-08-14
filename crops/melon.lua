@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- melon
 minetest.register_craftitem("farming:melon_slice", {

@@ -4,7 +4,7 @@
 	http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/wip-mods/1440575-1-2-5-generation-minecraft-beta-1-2-farming-and
 ]]
 
-local S = farming.intllib
+local S = farming.translate
 
 -- corn
 minetest.register_craftitem("farming:corn", {

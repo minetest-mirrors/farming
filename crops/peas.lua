@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- Textures for Pea crop and Peas were done by Andrey01
 

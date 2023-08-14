@@ -1,4 +1,5 @@
-local S = farming.intllib
+
+local S = farming.translate
 
 -- item definition
 minetest.register_craftitem("farming:parsley", {

@@ -4,7 +4,7 @@
 	https://forum.minetest.net/viewtopic.php?id=4990
 ]]
 
-local S = farming.intllib
+local S = farming.translate
 
 -- carrot
 minetest.register_craftitem("farming:carrot", {

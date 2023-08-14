@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- pineapple top
 minetest.register_craftitem("farming:pineapple_top", {

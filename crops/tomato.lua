@@ -4,7 +4,7 @@
 	http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1288375-food-plus-mod-more-food-than-you-can-imagine-v2-9)
 ]]
 
-local S = farming.intllib
+local S = farming.translate
 
 -- tomato
 minetest.register_craftitem("farming:tomato", {

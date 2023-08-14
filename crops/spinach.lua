@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- spinach
 minetest.register_craftitem("farming:spinach", {

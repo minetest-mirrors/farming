@@ -1,4 +1,5 @@
-local S = farming.intllib
+
+local S = farming.translate
 
 -- vanilla
 minetest.register_craftitem("farming:vanilla", {

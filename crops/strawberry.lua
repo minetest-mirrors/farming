@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- Strawberry (can also be planted as seed)
 minetest.register_craftitem(":ethereal:strawberry", {

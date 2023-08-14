@@ -5,7 +5,7 @@
 	https://forum.minetest.net/viewtopic.php?f=9&t=19488
 ]]
 
-local S = farming.intllib
+local S = farming.translate
 
 -- garlic clove
 minetest.register_craftitem("farming:garlic_clove", {

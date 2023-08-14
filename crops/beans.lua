@@ -4,7 +4,7 @@
 	CC-BY-SA-3.0
 ]]
 
-local S = farming.intllib
+local S = farming.translate
 
 -- place beans
 local function place_beans(itemstack, placer, pointed_thing, plantname)

@@ -32,7 +32,6 @@ be found at https://notabug.org/TenPlus1/bonemeal
 Optional dependences:
 
 * stairs
-* intllib (only for older engines)
 * lucky_block (adds 47 lucky blocks)
 * toolranks
 

@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- place cocoa
 local function place_cocoa(itemstack, placer, pointed_thing, plantname)

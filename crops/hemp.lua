@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- hemp seeds
 minetest.register_node("farming:seed_hemp", {

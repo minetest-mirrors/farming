@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230808",
+	version = "20230814",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -34,20 +34,10 @@ end
 
 local statistics = dofile(farming.path .. "/statistics.lua")
 
--- Intllib
-local S
-if minetest.get_translator then
-	S = minetest.get_translator("farming") -- 5.x translation function
-else -- boilerplate function
-	S = function(str, ...)
-		local args = {...}
-		return str:gsub("@%d+", function(match)
-			return args[tonumber(match:sub(2))]
-		end)
-	end
-end
+-- Translation support
+local S = minetest.get_translator("farming")
 
-farming.intllib = S
+farming.translate = S
 
 
 -- Utility Function

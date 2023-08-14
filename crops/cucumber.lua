@@ -4,7 +4,7 @@
 	https://forum.minetest.net/viewtopic.php?id=3948
 ]]
 
-local S = farming.intllib
+local S = farming.translate
 
 -- cucumber
 minetest.register_craftitem("farming:cucumber", {

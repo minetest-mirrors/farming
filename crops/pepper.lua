@@ -5,7 +5,7 @@
 	https://forum.minetest.net/viewtopic.php?f=9&t=19488
 ]]
 
-local S = farming.intllib
+local S = farming.translate
 
 -- peppercorn (seed)
 minetest.register_craftitem("farming:peppercorn", {

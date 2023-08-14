@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- soy pod
 minetest.register_craftitem("farming:soy_pod", {

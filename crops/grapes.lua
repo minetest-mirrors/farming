@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- place trellis
 local function place_grapes(itemstack, placer, pointed_thing, plantname)

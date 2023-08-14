@@ -1,5 +1,5 @@
 
-local S = farming.intllib
+local S = farming.translate
 
 -- wild cotton as a source of cotton seed and a chance of cotton itself
 minetest.register_node("farming:cotton_wild", {
