@@ -2,14 +2,80 @@
 local S = farming.translate
 local tmp
 
+-- add group function
+local function add_groups(item, groups)
+
+	local def = minetest.registered_items[item]
+
+	if not def then return end
+
+	local grp = def.groups
+
+	for k, v in pairs(groups) do
+		grp[k] = v
+	end
+
+	minetest.override_item(item, {groups = grp})
+end
+
+-- item compatibility list
+local a = {
+	water_source = "default:water_source",
+	river_water_source = "default:river_water_source",
+	bucket_empty = "bucket:bucket_empty",
+	bucket_water = "bucket:bucket_water",
+	bucket_river_water = "bucket:bucket_river_water",
+	drinking_glass = "vessels:drinking_glass",
+	glass_bottle = "vessels:glass_bottle",
+	sugar = "farming:sugar",
+	rose = "flowers:rose",
+	dye_pink = "dye:pink",
+	dye_orange = "dye:orange",
+	bowl = "farming:bowl",
+	flour = "group:food_flour",
+	bread = "farming:bread",
+	cactus = "default:cactus",
+}
+
+if farming.mcl then
+	a.water_source = "mcl_core:water_source"
+	a.river_water_source = "mclx_core:river_water_source"
+	a.bucket_empty = "mcl_buckets:bucket_empty"
+	a.bucket_water = "mcl_buckets:bucket_water"
+	a.bucket_river_water = "mcl_buckets:bucket_river_water"
+	a.drinking_glass = "mcl_potions:glass_bottle"
+	a.glass_bottle = "mcl_potions:glass_bottle"
+	a.sugar = "mcl_core:sugar"
+	a.rose = "mcl_flowers:rose_bush"
+	a.dye_pink = "mcl_dye:pink"
+	a.dye_orange = "mcl_dye:orange"
+	a.bowl = "mcl_core:bowl"
+	a.flour = "mcl_farming:bread"
+	a.bread = "mcl_farming:bread"
+	a.cactus = "mcl_core:cactus"
+
+	add_groups("mcl_throwing:egg", {food_egg = 1})
+	add_groups("mcl_farming:wheat", {food_wheat = 1})
+	add_groups("mcl_cocoas:cocoa_beans", {food_cocoa = 1})
+	add_groups("mcl_core:apple", {food_apple = 1})
+	add_groups("mcl_core:bowl", {food_bowl = 1})
+	add_groups("mcl_mobitems:chicken", {food_chicken_raw = 1})
+	add_groups("mcl_mobitems:cooked_chicken", {food_chicken = 1})
+	add_groups("mcl_mushrooms:mushroom_brown", {food_mushroom = 1})
+	add_groups("mcl_farming:carrot_item", {food_carrot = 1})
+	add_groups("mcl_mobitems:cooked_beef", {food_meat = 1})
+	add_groups("mcl_mobitems:beef", {food_meat_raw = 1})
+	add_groups("mcl_farming:potato_item", {food_potato = 1})
+end
+
 -- filter sea water into river water
 
 minetest.register_craft({
-	output = "bucket:bucket_river_water",
+	output = a.bucket_river_water,
 	recipe = {
 		{"farming:hemp_fibre"},
 		{"farming:hemp_fibre"},
-		{"bucket:bucket_water"}
+		{a.bucket_water}
 	}
 })
 
@@ -24,21 +90,21 @@ minetest.register_craftitem("farming:glass_water", {
 minetest.register_craft({
 	output = "farming:glass_water 4",
 	recipe = {
-		{"vessels:drinking_glass", "vessels:drinking_glass"},
-		{"vessels:drinking_glass", "vessels:drinking_glass"},
-		{"bucket:bucket_river_water", ""}
+		{a.drinking_glass, a.drinking_glass},
+		{a.drinking_glass, a.drinking_glass},
+		{a.bucket_river_water, ""}
 	},
-	replacements = {{"bucket:bucket_river_water", "bucket:bucket_empty"}}
+	replacements = {{a.bucket_river_water, a.bucket_empty}}
 })
 
 minetest.register_craft({
 	output = "farming:glass_water 4",
 	recipe = {
-		{"vessels:drinking_glass", "vessels:drinking_glass"},
-		{"vessels:drinking_glass", "vessels:drinking_glass"},
-		{"bucket:bucket_water", "farming:hemp_fibre"}
+		{a.drinking_glass, a.drinking_glass},
+		{a.drinking_glass, a.drinking_glass},
+		{a.bucket_water, "farming:hemp_fibre"}
 	},
-	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}}
+	replacements = {{a.bucket_water, a.bucket_empty}}
 })
 
 if minetest.get_modpath("bucket_wooden") then
@@ -46,8 +112,8 @@ if minetest.get_modpath("bucket_wooden") then
 	minetest.register_craft({
 		output = "farming:glass_water 4",
 		recipe = {
-			{"vessels:drinking_glass", "vessels:drinking_glass"},
-			{"vessels:drinking_glass", "vessels:drinking_glass"},
+			{a.drinking_glass, a.drinking_glass},
+			{a.drinking_glass, a.drinking_glass},
 			{"group:water_bucket_wooden", "farming:hemp_fibre"}
 		},
 		replacements = {{"group:water_bucket_wooden", "bucket_wooden:bucket_empty"}}
@@ -56,18 +122,25 @@ end
 
 -- Sugar
 
-minetest.register_craftitem("farming:sugar", {
-	description = S("Sugar"),
-	inventory_image = "farming_sugar.png",
-	groups = {food_sugar = 1, flammable = 3}
-})
+if farming.mtg then
 
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 3,
-	output = "farming:sugar 2",
-	recipe = "default:papyrus"
-})
+	minetest.register_craftitem("farming:sugar", {
+		description = S("Sugar"),
+		inventory_image = "farming_sugar.png",
+		groups = {food_sugar = 1, flammable = 3}
+	})
+
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 3,
+		output = "farming:sugar 2",
+		recipe = "default:papyrus"
+	})
+end
+
+if farming.mcl then
+	add_groups(a.sugar, {food_sugar = 1})
+end
 
 minetest.register_node("farming:sugar_cube", {
 	description = S("Sugar Cube"),
@@ -80,14 +153,14 @@ minetest.register_node("farming:sugar_cube", {
 minetest.register_craft({
 	output = "farming:sugar_cube",
 	recipe = {
-		{"farming:sugar", "farming:sugar", "farming:sugar"},
-		{"farming:sugar", "farming:sugar", "farming:sugar"},
-		{"farming:sugar", "farming:sugar", "farming:sugar"}
+		{a.sugar, a.sugar, a.sugar},
+		{a.sugar, a.sugar, a.sugar},
+		{a.sugar, a.sugar, a.sugar}
 	}
 })
 
 minetest.register_craft({
-	output = "farming:sugar 9",
+	output = a.sugar .. " 9",
 	recipe = {{"farming:sugar_cube"}}
 })
 
@@ -132,11 +205,11 @@ minetest.register_node("farming:salt", {
 		local needed
 
 		if self.node_inside
-		and self.node_inside.name == "default:water_source" then
+		and self.node_inside.name == a.water_source then
 			needed = 8
 
 		elseif self.node_inside
-		and self.node_inside.name == "default:river_water_source" then
+		and self.node_inside.name == a.river_water_source then
 			needed = 9
 		end
 
@@ -169,8 +242,8 @@ minetest.register_craft({
 	type = "cooking",
 	cooktime = 15,
 	output = "farming:salt",
-	recipe = "bucket:bucket_water",
-	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}}
+	recipe = a.bucket_water,
+	replacements = {{a.bucket_water, a.bucket_empty}}
 })
 
 -- Salt Crystal
@@ -237,7 +310,7 @@ minetest.register_craft({
 		{"group:food_olive_oil", "group:food_lemon"},
 		{"group:food_egg", "farming:salt"}
 	},
-	replacements = {{"farming:olive_oil", "vessels:glass_bottle"}}
+	replacements = {{"farming:olive_oil", a.glass_bottle}}
 })
 
 -- Rose Water
@@ -250,8 +323,9 @@ minetest.register_node("farming:rose_water", {
 	visual_scale = 0.8,
 	paramtype = "light",
 	tiles = {"farming_rose_water.png"},
-	groups = {food_rose_water = 1, vessel = 1, dig_immediate = 3,
-			attached_node = 1},
+	groups = {
+		food_rose_water = 1, vessel = 1, dig_immediate = 3, attached_node = 1
+	},
 	sounds = farming.sounds.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -264,12 +338,12 @@ tmp = farming.use_utensils and "farming:pot" or ""
 minetest.register_craft({
 	output = "farming:rose_water",
 	recipe = {
-		{"flowers:rose", "flowers:rose", "flowers:rose"},
-		{"flowers:rose", "flowers:rose", "flowers:rose"},
-		{"group:food_water_glass", tmp, "vessels:glass_bottle"}
+		{a.rose, a.rose, a.rose},
+		{a.rose, a.rose, a.rose},
+		{"group:food_water_glass", tmp, a.glass_bottle}
 	},
 	replacements = {
-		{"group:food_water_glass", "vessels:drinking_glass"},
+		{"group:food_water_glass", a.drinking_glass},
 		{"group:food_pot", "farming:pot"}
 	}
 })
@@ -288,12 +362,12 @@ minetest.register_craft({
 	recipe = {
 		{"group:food_gelatin", "group:food_sugar", "group:food_gelatin"},
 		{"group:food_sugar", "group:food_rose_water", "group:food_sugar"},
-		{"group:food_sugar", "dye:pink", "group:food_sugar"}
+		{"group:food_sugar", a.dye_pink, "group:food_sugar"}
 	},
 	replacements = {
-		{"group:food_cornstarch", "farming:bowl"},
-		{"group:food_cornstarch", "farming:bowl"},
-		{"group:food_rose_water", "vessels:glass_bottle"}
+		{"group:food_cornstarch", a.bowl},
+		{"group:food_cornstarch", a.bowl},
+		{"group:food_rose_water", a.glass_bottle}
 	}
 })
 
@@ -353,7 +427,7 @@ minetest.register_craftitem("farming:donut_apple", {
 minetest.register_craft({
 	output = "farming:donut_apple",
 	recipe = {
-		{"default:apple"},
+		{"group:food_apple"},
 		{"farming:donut"}
 	}
 })
@@ -363,7 +437,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:porridge", {
 	description = S("Porridge"),
 	inventory_image = "farming_porridge.png",
-	on_use = minetest.item_eat(6, "farming:bowl")
+	on_use = minetest.item_eat(6, a.bowl)
 })
 
 minetest.register_craft({
@@ -373,8 +447,8 @@ minetest.register_craft({
 		{"group:food_oats", "group:food_bowl", "group:food_milk_glass"}
 	},
 	replacements = {
-		{"mobs:glass_milk", "vessels:drinking_glass"},
-		{"farming:soy_milk", "vessels:drinking_glass"}
+		{"mobs:glass_milk", a.drinking_glass},
+		{"farming:soy_milk", a.drinking_glass}
 	}
 })
 
@@ -392,14 +466,14 @@ minetest.register_craft({
 	output = "farming:jaffa_cake 3",
 	recipe = {
 		{tmp, "group:food_egg", "group:food_sugar"},
-		{"group:food_flour", "group:food_cocoa", "group:food_orange"},
+		{a.flour, "group:food_cocoa", "group:food_orange"},
 		{"group:food_milk", "", ""}
 	},
 	replacements = {
 		{"farming:baking_tray", "farming:baking_tray"},
-		{"mobs:bucket_milk", "bucket:bucket_empty"},
+		{"mobs:bucket_milk", a.bucket_empty},
 		{"mobs:wooden_bucket_milk", "wooden_bucket:bucket_wood_empty"},
-		{"farming:soy_milk", "vessels:drinking_glass"}
+		{"farming:soy_milk", a.drinking_glass}
 	}
 })
 
@@ -416,7 +490,7 @@ tmp = farming.use_utensils and "farming:baking_tray" or ""
 minetest.register_craft({
 	output = "farming:apple_pie",
 	recipe = {
-		{"group:food_flour", "group:food_sugar", "group:food_apple"},
+		{a.flour, "group:food_sugar", "group:food_apple"},
 		{"", tmp, ""}
 	},
 	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
@@ -429,8 +503,11 @@ minetest.register_craftitem("farming:cactus_juice", {
 	inventory_image = "farming_cactus_juice.png",
 	groups = {vessel = 1, drink = 1},
 	on_use = function(itemstack, user, pointed_thing)
+
 		if user then
+
 			local num = math.random(5) == 1 and -1 or 2
+
 			return minetest.do_item_eat(num, "vessels:drinking_glass",
 					itemstack, user, pointed_thing)
 		end
@@ -443,8 +520,8 @@ minetest.register_craft({
 	output = "farming:cactus_juice",
 	recipe = {
 		{tmp},
-		{"default:cactus"},
-		{"vessels:drinking_glass"}
+		{a.cactus},
+		{a.drinking_glass}
 	},
 	replacements = {
 		{"group:food_juicer", "farming:juicer"}
@@ -464,7 +541,7 @@ tmp = farming.use_utensils and "farming:mixing_bowl" or ""
 minetest.register_craft({
 	output = "farming:pasta",
 	recipe = {
-		{"group:food_flour", "group:food_butter", tmp}
+		{a.flour, "group:food_butter", tmp}
 	},
 	replacements = {{"group:food_mixing_bowl", "farming:mixing_bowl"}}
 })
@@ -472,11 +549,11 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "farming:pasta",
 	recipe = {
-		{"group:food_flour", "group:food_oil", "group:food_mixing_bowl"}
+		{a.flour, "group:food_oil", tmp}
 	},
 	replacements = {
 		{"group:food_mixing_bowl", "farming:mixing_bowl"},
-		{"group:food_oil", "vessels:glass_bottle"}
+		{"group:food_oil", a.glass_bottle}
 	}
 })
 
@@ -485,7 +562,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:mac_and_cheese", {
 	description = S("Mac & Cheese"),
 	inventory_image = "farming_mac_and_cheese.png",
-	on_use = minetest.item_eat(6, "farming:bowl")
+	on_use = minetest.item_eat(6, a.bowl)
 })
 
 minetest.register_craft({
@@ -519,7 +596,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:bibimbap", {
 	description = S("Bibimbap"),
 	inventory_image = "farming_bibimbap.png",
-	on_use = minetest.item_eat(8, "farming:bowl")
+	on_use = minetest.item_eat(8, a.bowl)
 })
 
 tmp = farming.use_utensils and "farming:skillet" or ""
@@ -556,7 +633,7 @@ minetest.register_craftitem("farming:burger", {
 minetest.register_craft({
 	output = "farming:burger",
 	recipe = {
-		{"farming:bread", "group:food_meat", "group:food_cheese"},
+		{a.bread, "group:food_meat", "group:food_cheese"},
 		{"group:food_tomato", "group:food_cucumber", "group:food_onion"},
 		{"group:food_lettuce", "", ""}
 	}
@@ -567,7 +644,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:salad", {
 	description = S("Salad"),
 	inventory_image = "farming_salad.png",
-	on_use = minetest.item_eat(8, "farming:bowl")
+	on_use = minetest.item_eat(8, a.bowl)
 })
 
 minetest.register_craft({
@@ -594,7 +671,7 @@ minetest.register_craft({
 	recipe = {
 		"group:food_raspberries", "group:food_blackberries",
 		"group:food_strawberry", "group:food_banana",
-		"vessels:drinking_glass"
+		a.drinking_glass
 	}
 })
 
@@ -603,7 +680,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:spanish_potatoes", {
 	description = S("Spanish Potatoes"),
 	inventory_image = "farming_spanish_potatoes.png",
-	on_use = minetest.item_eat(8, "farming:bowl"),
+	on_use = minetest.item_eat(8, a.bowl),
 })
 
 tmp = farming.use_utensils and "farming:skillet" or ""
@@ -612,8 +689,8 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "farming:spanish_potatoes",
 	recipe = {
-		"farming:potato", "group:food_parsley", "farming:potato",
-		"group:food_egg", "group:food_flour", "farming:onion",
+		"group:food_potato", "group:food_parsley", "group:food_potato",
+		"group:food_egg", a.flour, "group:food_onion",
 		"farming:garlic_clove", "group:food_bowl", tmp
 	},
 	replacements = {{"group:food_skillet", "farming:skillet"}}
@@ -624,7 +701,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:potato_omelet", {
 	description = S("Potato omelet"),
 	inventory_image = "farming_potato_omelet.png",
-	on_use = minetest.item_eat(6, "farming:bowl")
+	on_use = minetest.item_eat(6, a.bowl)
 })
 
 tmp = farming.use_utensils and "farming:skillet" or ""
@@ -632,7 +709,7 @@ tmp = farming.use_utensils and "farming:skillet" or ""
 minetest.register_craft({
 	output = "farming:potato_omelet",
 	recipe = {
-		{"group:food_egg", "farming:potato", "group:food_onion"},
+		{"group:food_egg", "group:food_potato", "group:food_onion"},
 		{tmp, "group:food_bowl", ""}
 	},
 	replacements = {{"group:food_skillet", "farming:skillet"}}
@@ -643,7 +720,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:paella", {
 	description = S("Paella"),
 	inventory_image = "farming_paella.png",
-	on_use = minetest.item_eat(8, "farming:bowl")
+	on_use = minetest.item_eat(8, a.bowl)
 })
 
 tmp = farming.use_utensils and "farming:skillet" or ""
@@ -651,7 +728,7 @@ tmp = farming.use_utensils and "farming:skillet" or ""
 minetest.register_craft({
 	output = "farming:paella",
 	recipe = {
-		{"group:food_rice", "dye:orange", "farming:pepper_red"},
+		{"group:food_rice", a.dye_orange, "farming:pepper_red"},
 		{"group:food_peas", "group:food_chicken", "group:food_bowl"},
 		{"", tmp, ""}
 	},
@@ -673,10 +750,10 @@ minetest.register_craft({
 		{"group:food_egg", "group:food_egg", "farming:vanilla_extract"}
 	},
 	replacements = {
-		{"cucina_vegana:soy_milk", "vessels:drinking_glass"},
+		{"cucina_vegana:soy_milk", a.drinking_glass},
 		{"mobs:bucket_milk", "bucket:bucket_empty"},
 		{"mobs:wooden_bucket_milk", "wooden_bucket:bucket_wood_empty"},
-		{"farming:vanilla_extract", "vessels:glass_bottle"}
+		{"farming:vanilla_extract", a.glass_bottle}
 	}
 })
 
@@ -699,9 +776,9 @@ minetest.register_craft({
 		{"group:food_gelatin", tmp, ""}
 	},
 	replacements = {
-		{"farming:soy_milk", "vessels:drinking_glass 3"},
+		{"farming:soy_milk", a.drinking_glass .. " 3"},
 		{"farming:pot", "farming:pot"},
-		{"farming:bottle_ethanol", "vessels:glass_bottle"}
+		{"farming:bottle_ethanol", a.glass_bottle}
 	}
 })
 
@@ -713,7 +790,7 @@ minetest.register_craft({
 		{"group:food_gelatin", tmp, ""}
 	},
 	replacements = {
-		{"farming:soy_milk", "vessels:drinking_glass 3"},
+		{"farming:soy_milk", a.drinking_glass .. " 3"},
 		{"farming:pot", "farming:pot"}
 	}
 })
@@ -750,7 +827,7 @@ minetest.register_craft({
 	output = "farming:gyoza 4",
 	recipe = {
 		{"group:food_cabbage", "group:food_garlic_clove", "group:food_onion"},
-		{"group:food_meat_raw", "group:food_salt", "group:food_flour"},
+		{"group:food_meat_raw", "group:food_salt", a.flour},
 		{"", tmp, ""}
 
 	},
@@ -779,7 +856,7 @@ minetest.register_craft({
 	},
 	replacements = {
 		{"group:food_mortar_pestle", "farming:mortar_pestle"},
-		{"farming:glass_water", "vessels:drinking_glass"}
+		{"farming:glass_water", a.drinking_glass}
 	}
 })
 
