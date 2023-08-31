@@ -26,7 +26,7 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	end
 
 	-- check if pointing at jungletree
-	if under.name ~= "default:jungletree"
+	if (under.name ~= "default:jungletree" and under.name ~= "mcl_core:jungletree")
 	or minetest.get_node(pt.above).name ~= "air" then
 		return
 	end
@@ -67,7 +67,7 @@ end
 minetest.register_craftitem("farming:cocoa_beans_raw", {
 	description = S("Raw Cocoa Beans"),
 	inventory_image = "farming_cocoa_beans.png^[brighten",
-	groups = {seed = 1, flammable = 2},
+	groups = {compostability = 65, seed = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_cocoa(itemstack, placer, pointed_thing, "farming:cocoa_1")
 	end
@@ -87,7 +87,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft( {
-	output = "dye:brown 2",
+	output = farming.mcl and "mcl_dye:brown 2" or "dye:brown 2",
 	recipe = {{"farming:cocoa_beans"}}
 })
 
@@ -125,7 +125,7 @@ minetest.register_node("farming:chocolate_block", {
 	tiles = {"farming_chocolate_block.png"},
 	is_ground_content = false,
 	groups = {cracky = 2, oddly_breakable_by_hand = 2},
-	sounds = default.node_sound_stone_defaults()
+	sounds = farming.sounds.node_sound_stone_defaults()
 })
 
 minetest.register_craft({
@@ -154,13 +154,14 @@ local def = {
 	},
 	drop = {},
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, growing = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, growing = 1,
 		not_in_creative_inventory = 1, leafdecay = 1, leafdecay_drop = 1
 	},
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = farming.sounds.node_sound_leaves_defaults(),
 	growth_check = function(pos, node_name)
 
-		if minetest.find_node_near(pos, 1, {"default:jungletree"}) then
+		if minetest.find_node_near(pos, 1,
+				{"default:jungletree", "mcl_core:jungletree"}) then
 			return false -- can grow
 		end
 
@@ -218,14 +219,16 @@ minetest.register_on_generated(function(minp, maxp)
 	end
 
 	local pos, dir
-	local cocoa = minetest.find_nodes_in_area(minp, maxp, "default:jungletree")
+	local cocoa = minetest.find_nodes_in_area(minp, maxp,
+			{"default:jungletree", "mcl_core:jungletree"})
 
 	for n = 1, #cocoa do
 
 		pos = cocoa[n]
 
 		if minetest.find_node_near(pos, 1,
-			{"default:jungleleaves", "moretrees:jungletree_leaves_green"}) then
+			{"default:jungleleaves", "moretrees:jungletree_leaves_green",
+			"mcl_core:jungleleaves"}) then
 
 			dir = random(80)
 

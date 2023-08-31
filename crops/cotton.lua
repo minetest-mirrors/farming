@@ -13,14 +13,14 @@ minetest.register_node("farming:cotton_wild", {
 	sunlight_propagates = true,
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy = 3, attached_node = 1, flammable = 4},
+	groups = {handy = 1, snappy = 3, attached_node = 1, flammable = 4},
 	drop = {
 		items = {
 			{items = {"farming:cotton"}, rarity = 2},
 			{items = {"farming:seed_cotton"}, rarity = 1}
 		}
 	},
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = farming.sounds.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-6 / 16, -8 / 16, -6 / 16, 6 / 16, 5 / 16, 6 / 16}
@@ -34,7 +34,10 @@ minetest.register_node("farming:seed_cotton", {
 	inventory_image = "farming_cotton_seed.png",
 	wield_image = "farming_cotton_seed.png",
 	drawtype = "signlike",
-	groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 4, growing = 1},
+	groups = {
+		compostability = 65, seed = 1, snappy = 3, attached_node = 1,
+		flammable = 4, growing = 1
+	},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,
@@ -103,10 +106,10 @@ local def = {
 	waving = 1,
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 4, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 4, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

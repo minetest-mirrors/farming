@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:pumpkin_slice", {
 	description = S("Pumpkin Slice"),
 	inventory_image = "farming_pumpkin_slice.png",
-	groups = {seed = 2, food_pumpkin_slice = 1, flammable = 2},
+	groups = {compostability = 65, seed = 2, food_pumpkin_slice = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:pumpkin_1")
 	end,
@@ -37,8 +37,8 @@ minetest.register_node("farming:jackolantern", {
 		"farming_pumpkin_side.png", "farming_pumpkin_side.png^farming_pumpkin_face_off.png"
 	},
 	paramtype2 = "facedir",
-	groups = {snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+	groups = {handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+	sounds = farming.sounds.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher)
 		local name = puncher:get_player_name() or ""
 		if minetest.is_protected(pos, name) then return end
@@ -53,13 +53,13 @@ minetest.register_node("farming:jackolantern_on", {
 		"farming_pumpkin_side.png", "farming_pumpkin_side.png",
 		"farming_pumpkin_side.png", "farming_pumpkin_side.png^farming_pumpkin_face_on.png"
 	},
-	light_source = default.LIGHT_MAX - 1,
+	light_source = minetest.LIGHT_MAX - 1,
 	paramtype2 = "facedir",
 	groups = {
-		snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2,
+		handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2,
 		not_in_creative_inventory = 1
 	},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = farming.sounds.node_sound_wood_defaults(),
 	drop = "farming:jackolantern",
 	on_punch = function(pos, node, puncher)
 		local name = puncher:get_player_name() or ""
@@ -92,7 +92,7 @@ minetest.register_node("farming:scarecrow_bottom", {
 			{-12/16, 4/16, -1/16, 12/16, 2/16, 1/16},
 		}
 	},
-	groups = {snappy = 3, flammable = 2}
+	groups = {handy = 1, snappy = 3, flammable = 2}
 })
 
 minetest.register_craft({
@@ -143,10 +143,10 @@ local def = {
 	drop = "",
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1
@@ -189,7 +189,7 @@ minetest.register_node("farming:pumpkin_8", {
 		flammable = 2, plant = 1
 	},
 	drop = "farming:pumpkin_8",
-	sounds = default.node_sound_wood_defaults(),
+	sounds = farming.sounds.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	on_place = minetest.rotate_node
 })

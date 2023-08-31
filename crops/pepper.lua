@@ -11,7 +11,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:peppercorn", {
 	description = S("Peppercorn"),
 	inventory_image = "crops_peppercorn.png",
-	groups = {seed = 1, food_peppercorn = 1, flammable = 3},
+	groups = {compostability = 65, seed = 1, food_peppercorn = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:pepper_1")
 	end
@@ -59,7 +59,7 @@ minetest.register_node("farming:pepper_ground", {
 		vessel = 1, food_pepper_ground = 1,
 		dig_immediate = 3, attached_node = 1
 	},
-	sounds = default.node_sound_defaults(),
+	sounds = farming.sounds.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
@@ -92,10 +92,10 @@ local def = {
 	drop = "",
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 3, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 3, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

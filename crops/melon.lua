@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:melon_slice", {
 	description = S("Melon Slice"),
 	inventory_image = "farming_melon_slice.png",
-	groups = {seed = 2, food_melon_slice = 1, flammable = 3},
+	groups = {compostability = 65, seed = 2, food_melon_slice = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:melon_1")
 	end,
@@ -39,10 +39,10 @@ local def = {
 	drop = "",
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1
@@ -81,11 +81,11 @@ minetest.register_node("farming:melon_8", {
 		"farming_melon_side.png"
 	},
 	groups = {
-		food_melon = 1, snappy = 3, choppy = 3, oddly_breakable_by_hand = 2,
+		food_melon = 1, handy = 1, snappy = 3, choppy = 3, oddly_breakable_by_hand = 2,
 		flammable = 2, plant = 1
 	},
 	drop = "farming:melon_8",
-	sounds = default.node_sound_wood_defaults(),
+	sounds = farming.sounds.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	on_place = minetest.rotate_node
 })

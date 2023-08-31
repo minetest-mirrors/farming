@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:soy_pod", {
 	description = S("Soy Pod"),
 	inventory_image = "farming_soy_pod.png",
-	groups = {seed = 2, food_soy = 1, food_soy_pod = 1, flammable = 2},
+	groups = {compostability = 65, seed = 2, food_soy = 1, food_soy_pod = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:soy_1")
 	end
@@ -30,7 +30,7 @@ minetest.register_node("farming:soy_sauce", {
 	groups = {
 		vessel = 1, food_soy_sauce = 1, dig_immediate = 3, attached_node = 1
 	},
-	sounds = default.node_sound_glass_defaults()
+	sounds = farming.sounds.node_sound_glass_defaults()
 })
 
 local tmp = farming.use_utensils and "farming:juicer" or ""
@@ -66,7 +66,7 @@ minetest.register_node("farming:soy_milk", {
 		vessel = 1, food_milk_glass = 1, dig_immediate = 3,
 		attached_node = 1, drink = 1
 	},
-	sounds = default.node_sound_glass_defaults()
+	sounds = farming.sounds.node_sound_glass_defaults()
 })
 
 minetest.register_craft( {
@@ -130,10 +130,10 @@ local def = {
 	drop = "",
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

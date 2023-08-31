@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:chili_pepper", {
 	description = S("Chili Pepper"),
 	inventory_image = "farming_chili_pepper.png",
-	groups = {seed = 2, food_chili_pepper = 1, flammable = 4},
+	groups = {compostability = 65, seed = 2, food_chili_pepper = 1, flammable = 4},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:chili_1")
 	end,
@@ -29,7 +29,7 @@ minetest.register_craft({
 
 -- chili can be used for red dye
 minetest.register_craft({
-	output = "dye:red",
+	output = farming.mcl and "mcl_dye:red" or "dye:red",
 	recipe = {{"farming:chili_pepper"}}
 })
 
@@ -63,10 +63,10 @@ local def = {
 	waving = 1,
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 4, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 4, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

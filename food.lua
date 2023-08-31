@@ -74,7 +74,7 @@ minetest.register_node("farming:sugar_cube", {
 	tiles = {"farming_sugar_cube.png"},
 	groups = {crumbly = 2},
 	floodable = true,
-	sounds = default.node_sound_gravel_defaults()
+	sounds = farming.sounds.node_sound_gravel_defaults()
 })
 
 minetest.register_craft({
@@ -117,7 +117,7 @@ minetest.register_node("farming:salt", {
 	tiles = {"farming_salt.png"},
 	groups = {food_salt = 1, vessel = 1, dig_immediate = 3,
 			attached_node = 1},
-	sounds = default.node_sound_defaults(),
+	sounds = farming.sounds.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
@@ -185,7 +185,7 @@ minetest.register_node("farming:salt_crystal", {
 	light_source = 1,
 	tiles = {"farming_salt_crystal.png"},
 	groups = { dig_immediate = 3, attached_node = 1},
-	sounds = default.node_sound_defaults(),
+	sounds = farming.sounds.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
@@ -228,7 +228,7 @@ minetest.register_node("farming:mayonnaise", {
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.45, 0.25}
 	},
 	groups = {food_mayonnaise = 1, vessel = 1, dig_immediate = 3, attached_node = 1},
-	sounds = default.node_sound_glass_defaults()
+	sounds = farming.sounds.node_sound_glass_defaults()
 })
 
 minetest.register_craft({
@@ -252,7 +252,7 @@ minetest.register_node("farming:rose_water", {
 	tiles = {"farming_rose_water.png"},
 	groups = {food_rose_water = 1, vessel = 1, dig_immediate = 3,
 			attached_node = 1},
-	sounds = default.node_sound_defaults(),
+	sounds = farming.sounds.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}

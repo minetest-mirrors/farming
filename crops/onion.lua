@@ -11,7 +11,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:onion", {
 	description = S("Onion"),
 	inventory_image = "crops_onion.png",
-	groups = {seed = 2, food_onion = 1, flammable = 3},
+	groups = {compostability = 65, seed = 2, food_onion = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:onion_1")
 	end,
@@ -40,7 +40,7 @@ minetest.register_craft({
 
 -- yellow dye
 minetest.register_craft({
-	output = "dye:yellow",
+	output = farming.mcl and "mcl_dye:yellow" or "dye:yellow",
 	recipe = {{"group:food_onion"}}
 })
 
@@ -59,10 +59,10 @@ local def = {
 	waving = 1,
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 3, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 3, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

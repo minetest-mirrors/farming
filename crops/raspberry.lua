@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:raspberries", {
 	description = S("Raspberries"),
 	inventory_image = "farming_raspberries.png",
-	groups = {seed = 2, food_raspberries = 1, food_raspberry = 1,
+	groups = {compostability = 65, seed = 2, food_raspberries = 1, food_raspberry = 1,
 			food_berry = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:raspberry_1")
@@ -41,10 +41,10 @@ local def = {
 	drop = "",
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

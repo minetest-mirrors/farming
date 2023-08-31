@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230814",
+	version = "20230831",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -21,10 +21,24 @@ farming = {
 	min_light = 12,
 	max_light = 15,
 	mapgen = minetest.get_mapgen_setting("mg_name"),
-	use_utensils = minetest.settings:get_bool("farming_use_utensils") ~= false
+	use_utensils = minetest.settings:get_bool("farming_use_utensils") ~= false,
+	mtg = minetest.get_modpath("default"),
+	mcl = minetest.get_modpath("mcl_core"),
+	sounds = {}
 }
 
+-- default sound functions just incase
+function farming.sounds.node_sound_defaults() end
+function farming.sounds.node_sound_leaves_defaults() end
+function farming.sounds.node_sound_glass_defaults() end
+function farming.sounds.node_sound_wood_defaults() end
+function farming.sounds.node_sound_gravel_defaults() end
 
+-- sounds check
+if farming.mtg then farming.sounds = default end
+if farming.mcl then farming.sounds = mcl_sounds end
+
+-- check for creative mode or priv
 local creative_mode_cache = minetest.settings:get_bool("creative_mode")
 
 function farming.is_creative(name)
@@ -614,7 +628,7 @@ farming.register_plant = function(name, def)
 			drop = drop,
 			selection_box = sel,
 			groups = g,
-			sounds = default.node_sound_leaves_defaults(),
+			sounds = farming.sounds.node_sound_leaves_defaults(),
 			minlight = def.minlight,
 			maxlight = def.maxlight,
 			next_plant = next_plant
@@ -694,15 +708,34 @@ end
 
 
 -- important items
-dofile(farming.path.."/soil.lua")
-dofile(farming.path.."/hoes.lua")
-dofile(farming.path.."/grass.lua")
+if farming.mtg then
+	dofile(farming.path.."/soil.lua")
+	dofile(farming.path.."/hoes.lua")
+	dofile(farming.path.."/grass.lua")
+end
+
+if farming.mcl then
+	dofile(farming.path.."/mcl_grass.lua")
+end
+
 dofile(farming.path.."/utensils.lua")
 
 -- default crops
-dofile(farming.path.."/crops/wheat.lua")
+if farming.mtg then
+	dofile(farming.path.."/crops/wheat.lua")
+end
+
 dofile(farming.path.."/crops/cotton.lua")
 
+-- disable crops Mineclone already has
+if farming.mcl then
+	farming.carrot = nil
+	farming.potato = nil
+	farming.melon = nil
+	farming.cocoa = nil
+	farming.beetroot = nil
+	farming.sunflower = nil
+end
 
 -- helper function
 local function ddoo(file, check)
@@ -754,7 +787,10 @@ ddoo("spinach.lua", farming.eggplant)
 ddoo("ginger.lua", farming.ginger)
 
 dofile(farming.path .. "/food.lua")
-dofile(farming.path .. "/compatibility.lua") -- Farming Plus compatibility
+
+if farming.mtg then
+	dofile(farming.path .. "/compatibility.lua") -- Farming Plus compatibility
+end
 
 if minetest.get_modpath("lucky_block") then
 	dofile(farming.path .. "/lucky_block.lua")

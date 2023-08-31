@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:coffee_beans", {
 	description = S("Coffee Beans"),
 	inventory_image = "farming_coffee_beans.png",
-	groups = {seed = 2, food_coffee = 1, flammable = 2},
+	groups = {compostability = 65, seed = 2, food_coffee = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:coffee_1")
 	end
@@ -26,7 +26,7 @@ minetest.register_node("farming:coffee_cup", {
 	},
 	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, drink = 1},
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
-	sounds = default.node_sound_glass_defaults()
+	sounds = farming.sounds.node_sound_glass_defaults()
 })
 
 minetest.register_alias("farming:coffee_cup_hot", "farming:coffee_cup")
@@ -57,10 +57,10 @@ local def = {
 	waving = 1,
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

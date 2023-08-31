@@ -33,7 +33,7 @@ minetest.register_node("farming:straw", {
 	tiles = {"farming_straw.png"},
 	is_ground_content = false,
 	groups = {snappy = 3, flammable = 4, fall_damage_add_percent = -30},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 })
 
 minetest.register_craft({
@@ -59,7 +59,7 @@ if minetest.global_exists("stairs") then
 			{snappy = 3, flammable = 4},
 			{"farming_straw.png"},
 			"Straw",
-			default.node_sound_leaves_defaults())
+			farming.sounds.node_sound_leaves_defaults())
 	else
 
 		stairs.register_stair_and_slab("straw", "farming:straw",
@@ -67,7 +67,7 @@ if minetest.global_exists("stairs") then
 			{"farming_straw.png"},
 			"Straw Stair",
 			"Straw Slab",
-			default.node_sound_leaves_defaults())
+			farming.sounds.node_sound_leaves_defaults())
 	end
 end
 
@@ -169,7 +169,7 @@ local def = {
 		snappy = 3, flammable = 4, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

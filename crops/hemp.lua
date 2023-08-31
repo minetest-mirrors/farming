@@ -8,7 +8,7 @@ minetest.register_node("farming:seed_hemp", {
 	inventory_image = "farming_hemp_seed.png",
 	wield_image = "farming_hemp_seed.png",
 	drawtype = "signlike",
-	groups = {seed = 1, snappy = 3, attached_node = 1, growing = 1},
+	groups = {compostability = 65, seed = 1, snappy = 3, attached_node = 1, growing = 1},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,
@@ -41,7 +41,7 @@ minetest.register_node("farming:hemp_oil", {
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
 	groups = {food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1},
-	sounds = default.node_sound_glass_defaults()
+	sounds = farming.sounds.node_sound_glass_defaults()
 })
 
 minetest.register_craft( {
@@ -102,8 +102,8 @@ minetest.register_node("farming:hemp_block", {
 	description = S("Hemp Block"),
 	tiles = {"farming_hemp_block.png"},
 	paramtype = "light",
-	groups = {snappy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds =  default.node_sound_leaves_defaults()
+	groups = {handy = 1, snappy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	sounds =  farming.sounds.node_sound_leaves_defaults()
 })
 
 minetest.register_craft( {
@@ -124,7 +124,7 @@ if minetest.global_exists("stairs") then
 			{snappy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 			{"farming_hemp_block.png"},
 			"Hemp Block",
-			default.node_sound_leaves_defaults())
+			farming.sounds.node_sound_leaves_defaults())
 	else
 
 		stairs.register_stair_and_slab("hemp_block", "farming:hemp_block",
@@ -132,7 +132,7 @@ if minetest.global_exists("stairs") then
 			{"farming_hemp_block.png"},
 			"Hemp Block Stair",
 			"Hemp Block Slab",
-			default.node_sound_leaves_defaults())
+			farming.sounds.node_sound_leaves_defaults())
 	end
 end
 
@@ -166,7 +166,7 @@ minetest.register_node("farming:hemp_rope", {
 	inventory_image = "farming_hemp_rope.png",
 	drawtype = "plantlike",
 	groups = {flammable = 2, choppy = 3, oddly_breakable_by_hand = 3},
-	sounds =  default.node_sound_leaves_defaults(),
+	sounds =  farming.sounds.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7}
@@ -195,10 +195,10 @@ local def = {
 	waving = 1,
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1

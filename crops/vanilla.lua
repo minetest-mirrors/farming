@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:vanilla", {
 	description = S("Vanilla"),
 	inventory_image = "farming_vanilla.png",
-	groups = {seed = 2, food_vanilla = 1, flammable = 2},
+	groups = {compostability = 65, seed = 2, food_vanilla = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:vanilla_1")
 	end,
@@ -24,10 +24,10 @@ local def = {
 	waving = 1,
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- vanilla extract
@@ -45,7 +45,7 @@ minetest.register_node("farming:vanilla_extract", {
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
 	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
-	sounds = default.node_sound_glass_defaults(),
+	sounds = farming.sounds.node_sound_glass_defaults(),
 })
 
 minetest.register_craft( {

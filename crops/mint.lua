@@ -8,7 +8,10 @@ minetest.register_node("farming:seed_mint", {
 	inventory_image = "farming_mint_seeds.png",
 	wield_image = "farming_mint_seeds.png",
 	drawtype = "signlike",
-	groups = {seed = 1, snappy = 3, attached_node = 1, growing = 1, flammable = 2},
+	groups = {
+		compostability = 65, seed = 1, snappy = 3, attached_node = 1, growing = 1,
+		flammable = 2
+	},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,
@@ -60,10 +63,10 @@ local def = {
 	waving = 1,
 	selection_box = farming.select,
 	groups = {
-		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
+		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
 		not_in_creative_inventory = 1, growing = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = farming.sounds.node_sound_leaves_defaults()
 }
 
 -- stage 1
