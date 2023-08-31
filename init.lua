@@ -735,6 +735,7 @@ if farming.mcl then
 	farming.cocoa = nil
 	farming.beetroot = nil
 	farming.sunflower = nil
+	farming.pumpkin = nil
 end
 
 -- helper function
