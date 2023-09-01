@@ -24,6 +24,9 @@ THE SOFTWARE.
 License of media (textures):
 ----------------------------
 
+Created by Oz-tal (license: CC BY-SA 3.0):
+  crops_garlic_*.png
+
 Created by Shadall (CC0):
   farming_burger.png
 

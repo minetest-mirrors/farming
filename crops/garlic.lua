@@ -1,10 +1,4 @@
 
---[[
-	Original textures from Crops Plus mod
-	Copyright (C) 2018 Grizzly Adam
-	https://forum.minetest.net/viewtopic.php?f=9&t=19488
-]]
-
 local S = farming.translate
 
 -- garlic clove
@@ -49,16 +43,19 @@ minetest.register_node("farming:garlic_braid", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	tiles = {
-		"crops_garlic_braid_side.png","crops_garlic_braid.png",
-		"crops_garlic_braid_side.png^[transformFx","crops_garlic_braid_side.png",
-		"crops_garlic_braid.png","crops_garlic_braid.png"
+		"crops_garlic_braid_top.png",
+		"crops_garlic_braid.png",
+		"crops_garlic_braid_side.png^[transformFx",
+		"crops_garlic_braid_side.png",
+		"crops_garlic_braid.png",
+		"crops_garlic_braid.png"
 	},
 	groups = {vessel = 1, dig_immediate = 3, flammable = 3, compostability = 65},
 	sounds = farming.sounds.node_sound_leaves_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
-				{-0.13, -0.45, 0.5, 0.13, 0.45, 0.24}
+			{-0.1875, -0.5, 0.5, 0.1875, 0.5, 0.125}
 		}
 	}
 })
