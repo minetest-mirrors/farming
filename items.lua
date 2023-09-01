@@ -51,6 +51,8 @@ farming.recipe_items = {
 	cactus = "default:cactus",
 	paper = "default:paper",
 	snow = "default:snow",
+	string = "farming:string",
+	wool = "wool:white"
 }
 
 -- change recipe items to mineclone variations
@@ -81,6 +83,8 @@ if farming.mcl then
 	a.cactus = "mcl_core:cactus"
 	a.paper = "mcl_core:paper"
 	a.snow = "mcl_throwing:snowball"
+	a.string = "mcl_mobitems:string"
+	a.wool = "mcl_wool:white"
 
 	add_groups("mcl_core:sugar", {food_sugar = 1})
 	add_groups("mcl_throwing:egg", {food_egg = 1})

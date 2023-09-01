@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- wild cotton as a source of cotton seed and a chance of cotton itself
 minetest.register_node("farming:cotton_wild", {
@@ -57,15 +58,18 @@ minetest.register_craftitem("farming:cotton", {
 })
 
 -- string
-minetest.register_craftitem("farming:string", {
-	description = S("String"),
-	inventory_image = "farming_string.png",
-	groups = {flammable = 2}
-})
+if not farming.mcl then
+
+	minetest.register_craftitem("farming:string", {
+		description = S("String"),
+		inventory_image = "farming_string.png",
+		groups = {flammable = 2}
+	})
+end
 
 -- cotton to wool
 minetest.register_craft({
-	output = "wool:white",
+	output = a.wool,
 	recipe = {
 		{"farming:cotton", "farming:cotton"},
 		{"farming:cotton", "farming:cotton"}
@@ -74,7 +78,7 @@ minetest.register_craft({
 
 -- cotton to string
 minetest.register_craft({
-	output = "farming:string 2",
+	output = a.string .. " 2",
 	recipe = {
 		{"farming:cotton"},
 		{"farming:cotton"}
