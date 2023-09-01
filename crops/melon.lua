@@ -1,11 +1,12 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- melon
 minetest.register_craftitem("farming:melon_slice", {
 	description = S("Melon Slice"),
 	inventory_image = "farming_melon_slice.png",
-	groups = {compostability = 65, seed = 2, food_melon_slice = 1, flammable = 3},
+	groups = {compostability = 48, seed = 2, food_melon_slice = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:melon_1")
 	end,
@@ -20,11 +21,9 @@ minetest.register_craft({
 	}
 })
 
-local tmp = farming.use_utensils and "farming:cutting_board" or ""
-
 minetest.register_craft({
 	output = "farming:melon_slice 4",
-	recipe = {{"farming:melon_8", tmp}},
+	recipe = {{"farming:melon_8", a.cutting_board}},
 	replacements = {{"farming:cutting_board", "farming:cutting_board"}}
 })
 
@@ -82,7 +81,7 @@ minetest.register_node("farming:melon_8", {
 	},
 	groups = {
 		food_melon = 1, handy = 1, snappy = 3, choppy = 3, oddly_breakable_by_hand = 2,
-		flammable = 2, plant = 1
+		flammable = 2, plant = 1, compostability = 65
 	},
 	drop = "farming:melon_8",
 	sounds = farming.sounds.node_sound_wood_defaults(),
@@ -105,7 +104,7 @@ local mg = farming.mapgen == "v6"
 def = {
 	y_max = mg and 20 or 6,
 	spawn_on = mg and {"default:dirt_with_grass"} or {"default:dirt_with_dry_grass",
-			"default:dirt_with_rainforest_litter"},
+			"default:dirt_with_rainforest_litter", "mcl_core:dirt_with_grass"},
 	near = mg and "group:water" or nil,
 	num = mg and 1 or -1,
 }

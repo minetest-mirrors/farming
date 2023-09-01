@@ -6,7 +6,7 @@ minetest.register_craftitem("farming:blackberry", {
 	description = S("Blackberries"),
 	inventory_image = "farming_blackberry.png",
 	groups = {
-		compostability = 65, seed = 2, food_blackberries = 1, food_blackberry = 1,
+		compostability = 48, seed = 2, food_blackberries = 1, food_blackberry = 1,
 		food_berry = 1, flammable = 2
 	},
 	on_place = function(itemstack, placer, pointed_thing)
@@ -67,7 +67,7 @@ farming.registered_plants["farming:blackberry"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

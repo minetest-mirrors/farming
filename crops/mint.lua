@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- mint seed
 minetest.register_node("farming:seed_mint", {
@@ -9,7 +10,7 @@ minetest.register_node("farming:seed_mint", {
 	wield_image = "farming_mint_seeds.png",
 	drawtype = "signlike",
 	groups = {
-		compostability = 65, seed = 1, snappy = 3, attached_node = 1, growing = 1,
+		compostability = 48, seed = 1, snappy = 3, attached_node = 1, growing = 1,
 		flammable = 2
 	},
 	paramtype = "light",
@@ -27,7 +28,7 @@ minetest.register_node("farming:seed_mint", {
 minetest.register_craftitem("farming:mint_leaf", {
 	description = S("Mint Leaf"),
 	inventory_image = "farming_mint_leaf.png",
-	groups = {food_mint = 1, flammable = 4}
+	groups = {food_mint = 1, flammable = 4, compostability = 48}
 })
 
 -- mint tea
@@ -38,13 +39,11 @@ minetest.register_craftitem("farming:mint_tea", {
 	groups = {flammable = 4}
 })
 
-local tmp = farming.use_utensils and "farming:juicer" or ""
-
 minetest.register_craft({
 	output = "farming:mint_tea",
 	recipe = {
 		{"group:food_mint", "group:food_mint", "group:food_mint"},
-		{"group:food_water_glass", tmp, ""}
+		{"group:food_water_glass", a.juicer, ""}
 	},
 	replacements = {
 		{"group:food_juicer", "farming:juicer"}
@@ -106,7 +105,10 @@ farming.registered_plants["farming:mint"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass", "default:dirt_with_coniferous_litter"},
+	place_on = {
+		"default:dirt_with_grass", "default:dirt_with_coniferous_litter",
+		"mcl_core:dirt_with_grass"
+	},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

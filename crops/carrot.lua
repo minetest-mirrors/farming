@@ -5,12 +5,13 @@
 ]]
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- carrot
 minetest.register_craftitem("farming:carrot", {
 	description = S("Carrot"),
 	inventory_image = "farming_carrot.png",
-	groups = {compostability = 65, seed = 2, food_carrot = 1, flammable = 2},
+	groups = {compostability = 48, seed = 2, food_carrot = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:carrot_1")
 	end,
@@ -25,12 +26,10 @@ minetest.register_craftitem("farming:carrot_juice", {
 	groups = {vessel = 1, drink = 1}
 })
 
-local tmp = farming.use_utensils and "farming:juicer" or ""
-
 minetest.register_craft({
 	output = "farming:carrot_juice",
 	recipe = {
-		{tmp},
+		{a.juicer},
 		{"group:food_carrot"},
 		{"vessels:drinking_glass"}
 	},
@@ -135,7 +134,7 @@ def = {
 
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

@@ -1,11 +1,12 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- chili pepper
 minetest.register_craftitem("farming:chili_pepper", {
 	description = S("Chili Pepper"),
 	inventory_image = "farming_chili_pepper.png",
-	groups = {compostability = 65, seed = 2, food_chili_pepper = 1, flammable = 4},
+	groups = {compostability = 48, seed = 2, food_chili_pepper = 1, flammable = 4},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:chili_1")
 	end,
@@ -29,7 +30,7 @@ minetest.register_craft({
 
 -- chili can be used for red dye
 minetest.register_craft({
-	output = farming.mcl and "mcl_dye:red" or "dye:red",
+	output = a.dye_red,
 	recipe = {{"farming:chili_pepper"}}
 })
 
@@ -40,12 +41,10 @@ minetest.register_craftitem("farming:chili_powder", {
 	inventory_image = "farming_chili_powder.png"
 })
 
-local tmp = farming.use_utensils and "farming:mortar_pestle" or ""
-
 minetest.register_craft({
 	output = "farming:chili_powder",
 	recipe = {
-		{"farming:chili_pepper", tmp}
+		{"farming:chili_pepper", a.mortar_pestle}
 	},
 	replacements = {{"farming:mortar_pestle", "farming:mortar_pestle"}}
 })
@@ -120,7 +119,10 @@ farming.registered_plants["farming:chili_pepper"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass", "default:dirt_with_rainforest_litter"},
+	place_on = {
+		"default:dirt_with_grass", "default:dirt_with_rainforest_litter",
+		"mcl_core:dirt_with_grass"
+	},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

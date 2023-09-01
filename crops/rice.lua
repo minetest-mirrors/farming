@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- rice seed
 minetest.register_node("farming:seed_rice", {
@@ -9,7 +10,7 @@ minetest.register_node("farming:seed_rice", {
 	wield_image = "farming_rice_seed.png",
 	drawtype = "signlike",
 	groups = {
-		compostability = 65, seed = 1, snappy = 3, attached_node = 1,
+		compostability = 48, seed = 1, snappy = 3, attached_node = 1,
 		flammable = 4, growing = 1
 	},
 	paramtype = "light",
@@ -27,7 +28,7 @@ minetest.register_node("farming:seed_rice", {
 minetest.register_craftitem("farming:rice", {
 	description = S("Rice"),
 	inventory_image = "farming_rice.png",
-	groups = {seed = 2, food_rice = 1, flammable = 2},
+	groups = {seed = 2, food_rice = 1, flammable = 2, compostability = 65},
 })
 
 -- dry rice seed to give edible rice
@@ -43,22 +44,20 @@ minetest.register_craftitem("farming:rice_bread", {
 	description = S("Rice Bread"),
 	inventory_image = "farming_rice_bread.png",
 	on_use = minetest.item_eat(5),
-	groups = {food_rice_bread = 1, flammable = 2}
+	groups = {food_rice_bread = 1, flammable = 2, compostability = 65}
 })
 
 minetest.register_craftitem("farming:rice_flour", {
 	description = S("Rice Flour"),
 	inventory_image = "farming_rice_flour.png",
-	groups = {food_rice_flour = 1, flammable = 1}
+	groups = {food_rice_flour = 1, flammable = 1, compostability = 65}
 })
-
-local tmp = farming.use_utensils and "farming:mortar_pestle" or ""
 
 minetest.register_craft({
 	output = "farming:rice_flour",
 	recipe = {
 		{"farming:rice", "farming:rice", "farming:rice"},
-		{"farming:rice", tmp, ""}
+		{"farming:rice", a.mortar_pestle, ""}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })

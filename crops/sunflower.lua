@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- sunflower
 minetest.register_craftitem("farming:sunflower", {
@@ -16,7 +17,7 @@ minetest.register_node("farming:seed_sunflower", {
 	wield_image = "farming_sunflower_seeds.png",
 	drawtype = "signlike",
 	groups = {
-		compostability = 65, seed = 1, snappy = 3, attached_node = 1, growing = 1,
+		compostability = 48, seed = 1, snappy = 3, attached_node = 1, growing = 1,
 		food_sunflower_seeds = 1, flammable = 2
 	},
 	paramtype = "light",
@@ -41,7 +42,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:sunflower_seeds_toasted", {
 	description = S("Toasted Sunflower Seeds"),
 	inventory_image = "farming_sunflower_seeds_toasted.png",
-	groups = {food_sunflower_seeds_toasted = 1, flammable = 2},
+	groups = {food_sunflower_seeds_toasted = 1, flammable = 2, compostability = 65},
 	on_use = minetest.item_eat(1)
 })
 
@@ -68,7 +69,7 @@ minetest.register_node("farming:sunflower_oil", {
 	},
 	groups = {
 		food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1,
-		flammable = 2
+		flammable = 2, compostability = 65
 	},
 	sounds = farming.sounds.node_sound_glass_defaults()
 })
@@ -78,7 +79,7 @@ minetest.register_craft( {
 	recipe = {
 		{"group:food_sunflower_seeds", "group:food_sunflower_seeds", "group:food_sunflower_seeds"},
 		{"group:food_sunflower_seeds", "group:food_sunflower_seeds", "group:food_sunflower_seeds"},
-		{"group:food_sunflower_seeds", "vessels:glass_bottle", "group:food_sunflower_seeds"}
+		{"group:food_sunflower_seeds", a.glass_bottle, "group:food_sunflower_seeds"}
 	}
 })
 
@@ -86,7 +87,7 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:sunflower_oil",
 	burntime = 30,
-	replacements = {{"farming:sunflower_oil", "vessels:glass_bottle"}}
+	replacements = {{"farming:sunflower_oil", a.glass_bottle}}
 })
 
 -- sunflower seed bread
@@ -99,7 +100,13 @@ minetest.register_craftitem("farming:sunflower_bread", {
 
 minetest.register_craft({
 	output = "farming:sunflower_bread",
-	recipe = {{"group:food_sunflower_seeds_toasted", "group:food_bread", "group:food_sunflower_seeds_toasted"}}
+	recipe = {
+		{
+			"group:food_sunflower_seeds_toasted",
+			"group:food_bread",
+			"group:food_sunflower_seeds_toasted"
+		}
+	}
 })
 
 -- sunflower definition
@@ -172,7 +179,7 @@ farming.registered_plants["farming:sunflower"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:pumpkin_slice", {
 	description = S("Pumpkin Slice"),
 	inventory_image = "farming_pumpkin_slice.png",
-	groups = {compostability = 65, seed = 2, food_pumpkin_slice = 1, flammable = 2},
+	groups = {compostability = 48, seed = 2, food_pumpkin_slice = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:pumpkin_1")
 	end,
@@ -32,12 +32,17 @@ minetest.register_craft({
 minetest.register_node("farming:jackolantern", {
 	description = S("Jack 'O Lantern (punch to turn on and off)"),
 	tiles = {
-		"farming_pumpkin_bottom.png^farming_pumpkin_top.png", "farming_pumpkin_bottom.png",
-		"farming_pumpkin_side.png", "farming_pumpkin_side.png",
-		"farming_pumpkin_side.png", "farming_pumpkin_side.png^farming_pumpkin_face_off.png"
+		"farming_pumpkin_bottom.png^farming_pumpkin_top.png",
+		"farming_pumpkin_bottom.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png^farming_pumpkin_face_off.png"
 	},
 	paramtype2 = "facedir",
-	groups = {handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+	groups = {
+		handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2
+	},
 	sounds = farming.sounds.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher)
 		local name = puncher:get_player_name() or ""
@@ -49,9 +54,12 @@ minetest.register_node("farming:jackolantern", {
 
 minetest.register_node("farming:jackolantern_on", {
 	tiles = {
-		"farming_pumpkin_bottom.png^farming_pumpkin_top.png", "farming_pumpkin_bottom.png",
-		"farming_pumpkin_side.png", "farming_pumpkin_side.png",
-		"farming_pumpkin_side.png", "farming_pumpkin_side.png^farming_pumpkin_face_on.png"
+		"farming_pumpkin_bottom.png^farming_pumpkin_top.png",
+		"farming_pumpkin_bottom.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png",
+		"farming_pumpkin_side.png^farming_pumpkin_face_on.png"
 	},
 	light_source = minetest.LIGHT_MAX - 1,
 	paramtype2 = "facedir",
@@ -216,7 +224,7 @@ def = {
 
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

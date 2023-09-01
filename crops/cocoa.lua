@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- place cocoa
 local function place_cocoa(itemstack, placer, pointed_thing, plantname)
@@ -67,7 +68,7 @@ end
 minetest.register_craftitem("farming:cocoa_beans_raw", {
 	description = S("Raw Cocoa Beans"),
 	inventory_image = "farming_cocoa_beans.png^[brighten",
-	groups = {compostability = 65, seed = 1, flammable = 2},
+	groups = {compostability = 48, seed = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_cocoa(itemstack, placer, pointed_thing, "farming:cocoa_1")
 	end
@@ -76,7 +77,7 @@ minetest.register_craftitem("farming:cocoa_beans_raw", {
 minetest.register_craftitem("farming:cocoa_beans", {
 	description = S("Cocoa Beans"),
 	inventory_image = "farming_cocoa_beans.png",
-	groups = {food_cocoa = 1, flammable = 2}
+	groups = {compostability = 65, food_cocoa = 1, flammable = 2}
 })
 
 minetest.register_craft({
@@ -87,7 +88,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft( {
-	output = farming.mcl and "mcl_dye:brown 2" or "dye:brown 2",
+	output = a.dye_brown,
 	recipe = {{"farming:cocoa_beans"}}
 })
 

@@ -582,9 +582,11 @@ farming.register_plant = function(name, def)
 	for i = 1, def.steps do
 
 		local base_rarity = 1
+
 		if def.steps ~= 1 then
 			base_rarity =  8 - (i - 1) * 7 / (def.steps - 1)
 		end
+
 		local drop = {
 			items = {
 				{items = {mname .. ":" .. pname}, rarity = base_rarity},
@@ -596,7 +598,7 @@ farming.register_plant = function(name, def)
 
 		local sel = farming.select
 		local g = {
-			snappy = 3, flammable = 2, plant = 1, growing = 1,
+			handy = 1, snappy = 3, flammable = 2, plant = 1, growing = 1,
 			attached_node = 1, not_in_creative_inventory = 1,
 		}
 
@@ -692,7 +694,7 @@ farming.rice = true
 
 
 -- Load new global settings if found inside mod folder
-local input = io.open(farming.path.."/farming.conf", "r")
+local input = io.open(farming.path .. "/farming.conf", "r")
 if input then
 	dofile(farming.path .. "/farming.conf")
 	input:close()
@@ -700,24 +702,22 @@ end
 
 -- load new world-specific settings if found inside world folder
 local worldpath = minetest.get_worldpath()
-input = io.open(worldpath.."/farming.conf", "r")
+input = io.open(worldpath .. "/farming.conf", "r")
 if input then
 	dofile(worldpath .. "/farming.conf")
 	input:close()
 end
 
+-- recipe items
+dofile(farming.path .. "/items.lua")
 
 -- important items
 if farming.mtg then
-	dofile(farming.path.."/soil.lua")
-	dofile(farming.path.."/hoes.lua")
-	dofile(farming.path.."/grass.lua")
+	dofile(farming.path .. "/soil.lua")
+	dofile(farming.path .. "/hoes.lua")
 end
 
-if farming.mcl then
-	dofile(farming.path.."/mcl_grass.lua")
-end
-
+dofile(farming.path.."/grass.lua")
 dofile(farming.path.."/utensils.lua")
 
 -- default crops

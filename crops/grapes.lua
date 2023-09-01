@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- place trellis
 local function place_grapes(itemstack, placer, pointed_thing, plantname)
@@ -67,7 +68,7 @@ minetest.register_craftitem("farming:grapes", {
 	description = S("Grapes"),
 	inventory_image = "farming_grapes.png",
 	on_use = minetest.item_eat(2),
-	groups = {compostability = 65, seed = 2, food_grapes = 1, flammable = 3},
+	groups = {compostability = 48, seed = 2, food_grapes = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_grapes(itemstack, placer, pointed_thing, "farming:grapes_1")
 	end
@@ -75,7 +76,7 @@ minetest.register_craftitem("farming:grapes", {
 
 -- grapes can be used for violet dye
 minetest.register_craft({
-	output = farming.mcl and "mcl_dye:violet" or "dye:violet",
+	output = a.dye_violet,
 	recipe = {{"farming:grapes"}}
 })
 
@@ -153,9 +154,9 @@ minetest.register_node("farming:trellis", {
 minetest.register_craft({
 	output = "farming:trellis",
 	recipe = {
-		{"default:stick", "default:stick", "default:stick"},
-		{"default:stick", "default:stick", "default:stick"},
-		{"default:stick", "default:stick", "default:stick"}
+		{"group:stick", "group:stick", "group:stick"},
+		{"group:stick", "group:stick", "group:stick"},
+		{"group:stick", "group:stick", "group:stick"}
 	}
 })
 
@@ -257,7 +258,7 @@ minetest.register_node("farming:grapebush", {
 	selection_box = farming.select,
 	groups = {
 		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
-		not_in_creative_inventory = 1
+		not_in_creative_inventory = 1, compostability = 35
 	},
 	sounds = farming.sounds.node_sound_leaves_defaults()
 })
@@ -265,7 +266,7 @@ minetest.register_node("farming:grapebush", {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

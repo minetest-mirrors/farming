@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- barley seeds
 minetest.register_node("farming:seed_barley", {
@@ -8,7 +9,7 @@ minetest.register_node("farming:seed_barley", {
 	inventory_image = "farming_barley_seed.png",
 	wield_image = "farming_barley_seed.png",
 	drawtype = "signlike",
-	groups = {compostability = 65, seed = 1, snappy = 3, attached_node = 1, growing = 1},
+	groups = {compostability = 48, seed = 1, snappy = 3, attached_node = 1, growing = 1},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,
@@ -27,14 +28,12 @@ minetest.register_craftitem("farming:barley", {
 	groups = {food_barley = 1, flammable = 2}
 })
 
-local tmp = farming.use_utensils and "farming:mortar_pestle" or ""
-
 -- flour
 minetest.register_craft({
 	output = "farming:flour",
 	recipe = {
 		{"farming:barley", "farming:barley", "farming:barley"},
-		{"farming:barley", tmp, ""}
+		{"farming:barley", a.mortar_pestle, ""}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })

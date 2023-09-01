@@ -13,7 +13,7 @@ minetest.register_node("farming:cotton_wild", {
 	sunlight_propagates = true,
 	walkable = false,
 	buildable_to = true,
-	groups = {handy = 1, snappy = 3, attached_node = 1, flammable = 4},
+	groups = {handy = 1, snappy = 3, attached_node = 1, flammable = 4, compostability = 60},
 	drop = {
 		items = {
 			{items = {"farming:cotton"}, rarity = 2},
@@ -35,7 +35,7 @@ minetest.register_node("farming:seed_cotton", {
 	wield_image = "farming_cotton_seed.png",
 	drawtype = "signlike",
 	groups = {
-		compostability = 65, seed = 1, snappy = 3, attached_node = 1,
+		compostability = 48, seed = 1, snappy = 3, attached_node = 1,
 		flammable = 4, growing = 1
 	},
 	paramtype = "light",
@@ -53,7 +53,7 @@ minetest.register_node("farming:seed_cotton", {
 minetest.register_craftitem("farming:cotton", {
 	description = S("Cotton"),
 	inventory_image = "farming_cotton.png",
-	groups = {flammable = 4}
+	groups = {flammable = 4, compostability = 50}
 })
 
 -- string
@@ -195,7 +195,8 @@ farming.register_plant("farming:cotton", {
 local mg = farming.mapgen == "v6"
 
 def = {
-	grow_on = mg and {"default:dirt_with_grass"} or {"default:dry_dirt_with_dry_grass"},
+	grow_on = mg and {"default:dirt_with_grass"} or {"default:dry_dirt_with_dry_grass",
+			"mcl_core:dirt_with_grass"},
 	biome = mg and {"jungle"} or {"savanna"}
 }
 

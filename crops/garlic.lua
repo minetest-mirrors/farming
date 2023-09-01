@@ -11,7 +11,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:garlic_clove", {
 	description = S("Garlic clove"),
 	inventory_image = "crops_garlic_clove.png",
-	groups = {compostability = 65, seed = 2, food_garlic_clove = 1, flammable = 3},
+	groups = {compostability = 35, seed = 2, food_garlic_clove = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:garlic_1")
 	end
@@ -22,7 +22,7 @@ minetest.register_craftitem("farming:garlic", {
 	description = S("Garlic"),
 	inventory_image = "crops_garlic.png",
 	on_use = minetest.item_eat(1),
-	groups = {food_garlic = 1, flammable = 3}
+	groups = {food_garlic = 1, flammable = 3, compostability = 55}
 })
 
 minetest.register_craft({
@@ -53,7 +53,7 @@ minetest.register_node("farming:garlic_braid", {
 		"crops_garlic_braid_side.png^[transformFx","crops_garlic_braid_side.png",
 		"crops_garlic_braid.png","crops_garlic_braid.png"
 	},
-	groups = {vessel = 1, dig_immediate = 3, flammable = 3},
+	groups = {vessel = 1, dig_immediate = 3, flammable = 3, compostability = 65},
 	sounds = farming.sounds.node_sound_leaves_defaults(),
 	node_box = {
 		type = "fixed",
@@ -138,7 +138,7 @@ farming.registered_plants["farming:garlic"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

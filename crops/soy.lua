@@ -1,11 +1,12 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- soy pod
 minetest.register_craftitem("farming:soy_pod", {
 	description = S("Soy Pod"),
 	inventory_image = "farming_soy_pod.png",
-	groups = {compostability = 65, seed = 2, food_soy = 1, food_soy_pod = 1, flammable = 2},
+	groups = {compostability = 48, seed = 2, food_soy = 1, food_soy_pod = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:soy_1")
 	end
@@ -28,22 +29,21 @@ minetest.register_node("farming:soy_sauce", {
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	groups = {
-		vessel = 1, food_soy_sauce = 1, dig_immediate = 3, attached_node = 1
+		vessel = 1, food_soy_sauce = 1, dig_immediate = 3, attached_node = 1,
+		compostability = 65
 	},
 	sounds = farming.sounds.node_sound_glass_defaults()
 })
-
-local tmp = farming.use_utensils and "farming:juicer" or ""
 
 -- soy sauce recipe
 minetest.register_craft( {
 	output = "farming:soy_sauce",
 	recipe = {
 		{"group:food_soy", "group:food_salt", "group:food_soy"},
-		{tmp, "bucket:bucket_water", "vessels:glass_bottle"}
+		{a.juicer, a.bucket_water, a.glass_bottle}
 	},
 	replacements = {
-		{"bucket:bucket_water", "bucket:bucket_empty"},
+		{a.bucket_water, a.bucket_empty},
 		{"group:food_juicer", "farming:juicer"}
 	}
 })
@@ -64,7 +64,7 @@ minetest.register_node("farming:soy_milk", {
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
 	groups = {
 		vessel = 1, food_milk_glass = 1, dig_immediate = 3,
-		attached_node = 1, drink = 1
+		attached_node = 1, drink = 1, compostability = 65
 	},
 	sounds = farming.sounds.node_sound_glass_defaults()
 })
@@ -73,11 +73,11 @@ minetest.register_craft( {
 	output = "farming:soy_milk",
 	recipe = {
 		{"group:food_soy", "group:food_soy", "group:food_soy"},
-		{"farming:vanilla_extract", "bucket:bucket_water", "vessels:drinking_glass"}
+		{"farming:vanilla_extract", "bucket:bucket_water", a.drinking_glass}
 	},
 	replacements = {
-		{"bucket:bucket_water", "bucket:bucket_empty"},
-		{"farming:vanilla_extract", "vessels:glass_bottle"}
+		{a.bucket_water, a.bucket_empty},
+		{"farming:vanilla_extract", a.glass_bottle}
 	}
 })
 
@@ -85,17 +85,15 @@ minetest.register_craft( {
 minetest.register_craftitem("farming:tofu", {
 	description = S("Tofu"),
 	inventory_image = "farming_tofu.png",
-	groups = {food_tofu = 1, food_meat_raw = 1, flammable = 2},
+	groups = {food_tofu = 1, food_meat_raw = 1, flammable = 2, compostability = 65},
 	on_use = minetest.item_eat(3)
 })
-
-tmp = farming.use_utensils and "farming:baking_tray" or ""
 
 minetest.register_craft({
 	output = "farming:tofu",
 	recipe = {
 		{"group:food_soy", "group:food_soy", "group:food_soy"},
-		{"group:food_soy", "group:food_soy", tmp}
+		{"group:food_soy", "group:food_soy", a.baking_tray}
 	},
 	replacements = {{"farming:baking_tray", "farming:baking_tray"}}
 })
@@ -104,7 +102,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:tofu_cooked", {
 	description = S("Cooked Tofu"),
 	inventory_image = "farming_tofu_cooked.png",
-	groups = {food_meat = 1, flammable = 2},
+	groups = {food_meat = 1, flammable = 2, compostability = 65},
 	on_use = minetest.item_eat(6)
 })
 
@@ -200,7 +198,8 @@ local mg = farming.mapgen == "v6"
 
 def = {
 	spawn_on = mg and {"default:dirt_with_grass"} or {"default:dirt_with_dry_grass",
-			"default:dirt_with_rainforest_litter", "default:dry_dirt_with_dry_grass"}
+			"default:dirt_with_rainforest_litter", "default:dry_dirt_with_dry_grass",
+			"mcl_core:dirt_with_grass"}
 }
 
 minetest.register_decoration({

@@ -1,11 +1,12 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- vanilla
 minetest.register_craftitem("farming:vanilla", {
 	description = S("Vanilla"),
 	inventory_image = "farming_vanilla.png",
-	groups = {compostability = 65, seed = 2, food_vanilla = 1, flammable = 2},
+	groups = {compostability = 48, seed = 2, food_vanilla = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:vanilla_1")
 	end,
@@ -55,7 +56,7 @@ minetest.register_craft( {
 		{"group:food_vanilla", "farming:bottle_ethanol", "group:food_water_glass"},
 	},
 	replacements = {
-		{"group:food_water_glass", "vessels:drinking_glass"}
+		{"group:food_water_glass", a.drinking_glass}
 	}
 })
 
@@ -127,7 +128,7 @@ farming.registered_plants["farming:vanilla"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

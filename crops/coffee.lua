@@ -1,11 +1,12 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- coffee
 minetest.register_craftitem("farming:coffee_beans", {
 	description = S("Coffee Beans"),
 	inventory_image = "farming_coffee_beans.png",
-	groups = {compostability = 65, seed = 2, food_coffee = 1, flammable = 2},
+	groups = {compostability = 48, seed = 2, food_coffee = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:coffee_1")
 	end
@@ -32,12 +33,10 @@ minetest.register_node("farming:coffee_cup", {
 minetest.register_alias("farming:coffee_cup_hot", "farming:coffee_cup")
 minetest.register_alias("farming:drinking_cup", "vessels:drinking_glass")
 
-local tmp = farming.use_utensils and "farming:saucepan" or ""
-
 minetest.register_craft( {
 	output = "farming:coffee_cup",
 	recipe = {
-		{"group:food_coffee", "group:food_water_glass", tmp}
+		{"group:food_coffee", "group:food_water_glass", a.saucepan}
 	},
 	replacements = {
 		{"group:food_saucepan", "farming:saucepan"}
@@ -106,7 +105,8 @@ local mg = farming.mapgen == "v6"
 def = {
 	y_max = mg and 50 or 55,
 	spawn_on = mg and {"default:dirt_with_grass"} or {"default:dirt_with_dry_grass",
-			"default:dirt_with_rainforest_litter", "default:dry_dirt_with_dry_grass"}
+			"default:dirt_with_rainforest_litter", "default:dry_dirt_with_dry_grass",
+			"mcl_core:dirt_with_grass"}
 }
 
 minetest.register_decoration({

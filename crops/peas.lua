@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- Textures for Pea crop and Peas were done by Andrey01
 
@@ -8,7 +9,7 @@ minetest.register_craftitem("farming:pea_pod", {
 	description = S("Pea Pod"),
 	inventory_image = "farming_pea_pod.png",
 	groups = {
-		compostability = 65, seed = 2, food_peas = 1, food_pea_pod = 1, flammable = 2
+		compostability = 48, seed = 2, food_peas = 1, food_pea_pod = 1, flammable = 2
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:pea_1")
@@ -24,7 +25,7 @@ minetest.register_craftitem("farming:pea_soup", {
 	description = S("Pea Soup"),
 	inventory_image = "farming_pea_soup.png",
 	groups = {flammable = 2},
-	on_use = minetest.item_eat(4, "farming:bowl")
+	on_use = minetest.item_eat(4, a.bowl)
 })
 
 minetest.register_craft({
@@ -96,7 +97,7 @@ farming.registered_plants["farming:pea_pod"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

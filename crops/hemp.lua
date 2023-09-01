@@ -1,5 +1,6 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- hemp seeds
 minetest.register_node("farming:seed_hemp", {
@@ -8,7 +9,7 @@ minetest.register_node("farming:seed_hemp", {
 	inventory_image = "farming_hemp_seed.png",
 	wield_image = "farming_hemp_seed.png",
 	drawtype = "signlike",
-	groups = {compostability = 65, seed = 1, snappy = 3, attached_node = 1, growing = 1},
+	groups = {compostability = 38, seed = 1, snappy = 3, attached_node = 1, growing = 1},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,
@@ -40,7 +41,10 @@ minetest.register_node("farming:hemp_oil", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
-	groups = {food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1},
+	groups = {
+		food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1,
+		compostability = 45
+	},
 	sounds = farming.sounds.node_sound_glass_defaults()
 })
 
@@ -49,7 +53,7 @@ minetest.register_craft( {
 	recipe = {
 		{"farming:hemp_leaf", "farming:hemp_leaf", "farming:hemp_leaf"},
 		{"farming:hemp_leaf", "farming:hemp_leaf", "farming:hemp_leaf"},
-		{"", "vessels:glass_bottle", ""}
+		{"", a.glass_bottle, ""}
 	}
 })
 
@@ -58,7 +62,7 @@ minetest.register_craft( {
 	recipe = {
 		{"farming:seed_hemp", "farming:seed_hemp", "farming:seed_hemp"},
 		{"farming:seed_hemp", "farming:seed_hemp", "farming:seed_hemp"},
-		{"farming:seed_hemp", "vessels:glass_bottle", "farming:seed_hemp"}
+		{"farming:seed_hemp", a.glass_bottle, "farming:seed_hemp"}
 	}
 })
 
@@ -66,13 +70,14 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:hemp_oil",
 	burntime = 20,
-	replacements = {{"farming:hemp_oil", "vessels:glass_bottle"}}
+	replacements = {{"farming:hemp_oil", a.glass_bottle}}
 })
 
 -- hemp fibre
 minetest.register_craftitem("farming:hemp_fibre", {
 	description = S("Hemp Fibre"),
-	inventory_image = "farming_hemp_fibre.png"
+	inventory_image = "farming_hemp_fibre.png",
+	groups = {compostability = 55}
 })
 
 minetest.register_craft( {
@@ -82,7 +87,7 @@ minetest.register_craft( {
 		{"farming:hemp_leaf", "group:water_bucket", "farming:hemp_leaf"},
 		{"farming:hemp_leaf", "farming:hemp_leaf", "farming:hemp_leaf"}
 	},
-	replacements = {{"group:water_bucket", "bucket:bucket_empty"}}
+	replacements = {{a.bucket_water, a.bucket_empty}}
 })
 
 if minetest.get_modpath("bucket_wooden") then
@@ -102,7 +107,10 @@ minetest.register_node("farming:hemp_block", {
 	description = S("Hemp Block"),
 	tiles = {"farming_hemp_block.png"},
 	paramtype = "light",
-	groups = {handy = 1, snappy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {
+		handy = 1, snappy = 2, oddly_breakable_by_hand = 1, flammable = 2,
+		compostability = 85
+	},
 	sounds =  farming.sounds.node_sound_leaves_defaults()
 })
 
@@ -138,7 +146,7 @@ end
 
 -- paper
 minetest.register_craft( {
-	output = "default:paper 3",
+	output = a.paper .. " 3",
 	recipe = {
 		{"farming:hemp_fibre", "farming:hemp_fibre", "farming:hemp_fibre"}
 	}
@@ -165,7 +173,9 @@ minetest.register_node("farming:hemp_rope", {
 	wield_image = "farming_hemp_rope.png",
 	inventory_image = "farming_hemp_rope.png",
 	drawtype = "plantlike",
-	groups = {flammable = 2, choppy = 3, oddly_breakable_by_hand = 3},
+	groups = {
+		flammable = 2, choppy = 3, oddly_breakable_by_hand = 3, compostability = 55
+	},
 	sounds =  farming.sounds.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -268,7 +278,10 @@ farming.registered_plants["farming:hemp"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass", "default:dirt_with_rainforest_litter"},
+	place_on = {
+		"default:dirt_with_grass", "default:dirt_with_rainforest_litter",
+		"mcl_core:dirt_with_grass"
+	},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

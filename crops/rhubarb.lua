@@ -1,11 +1,12 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- rhubarb
 minetest.register_craftitem("farming:rhubarb", {
 	description = S("Rhubarb"),
 	inventory_image = "farming_rhubarb.png",
-	groups = {compostability = 65, seed = 2, food_rhubarb = 1, flammable = 2},
+	groups = {compostability = 48, seed = 2, food_rhubarb = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:rhubarb_1")
 	end,
@@ -19,12 +20,10 @@ minetest.register_craftitem("farming:rhubarb_pie", {
 	on_use = minetest.item_eat(6)
 })
 
-local tmp = farming.use_utensils and "farming:baking_tray" or ""
-
 minetest.register_craft({
 	output = "farming:rhubarb_pie",
 	recipe = {
-		{tmp, "group:food_sugar", ""},
+		{a.baking_tray, "group:food_sugar", ""},
 		{"group:food_rhubarb", "group:food_rhubarb", "group:food_rhubarb"},
 		{"group:food_wheat", "group:food_wheat", "group:food_wheat"}
 	},
@@ -92,7 +91,7 @@ farming.registered_plants["farming:rhubarb"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

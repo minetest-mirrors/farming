@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:ginger", {
 	description = S("Ginger"),
 	inventory_image = "farming_ginger.png",
-	groups = {compostability = 65, seed = 2, food_ginger = 1, flammable = 2},
+	groups = {compostability = 48, seed = 2, food_ginger = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:ginger_1")
 	end,
@@ -72,7 +72,7 @@ farming.registered_plants["farming:ginger"] = {
 minetest.register_decoration({
 	name = "farming:ginger_4",
 	deco_type = "simple",
-	place_on = {"default:dirt_with_rainforest_litter"},
+	place_on = {"default:dirt_with_rainforest_litter", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

@@ -1,12 +1,13 @@
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- blueberries
 minetest.register_craftitem("farming:blueberries", {
 	description = S("Wild Blueberries"),
 	inventory_image = "farming_blueberries.png",
 	groups = {
-		compostability = 65,seed = 2, food_blueberries = 1, food_blueberry = 1,
+		compostability = 48,seed = 2, food_blueberries = 1, food_blueberry = 1,
 		food_berry = 1, flammable = 2
 	},
 	on_place = function(itemstack, placer, pointed_thing)
@@ -36,20 +37,18 @@ minetest.register_craftitem("farming:blueberry_pie", {
 	on_use = minetest.item_eat(6)
 })
 
-local tmp = farming.use_utensils and "farming:baking_tray" or ""
-
 minetest.register_craft({
 	output = "farming:blueberry_pie",
 	recipe = {
 		{"group:food_flour", "group:food_sugar", "group:food_blueberries"},
-		{"", tmp, ""}
+		{"", a.baking_tray, ""}
 	},
 	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
 })
 
 -- Blue Dye
 minetest.register_craft({
-	output = farming.mcl and "mcl_dye:blue" or "dye:blue",
+	output = a.dye_blue,
 	recipe = {{"farming:blueberries"}}
 })
 
@@ -106,7 +105,7 @@ farming.registered_plants["farming:blueberries"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

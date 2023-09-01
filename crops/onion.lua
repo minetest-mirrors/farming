@@ -6,12 +6,13 @@
 ]]
 
 local S = farming.translate
+local a = farming.recipe_items
 
 -- onion
 minetest.register_craftitem("farming:onion", {
 	description = S("Onion"),
 	inventory_image = "crops_onion.png",
-	groups = {compostability = 65, seed = 2, food_onion = 1, flammable = 3},
+	groups = {compostability = 48, seed = 2, food_onion = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:onion_1")
 	end,
@@ -26,21 +27,19 @@ minetest.register_craftitem("farming:onion_soup", {
 	on_use = minetest.item_eat(6, "farming:bowl")
 })
 
-local tmp = farming.use_utensils and "farming:pot" or ""
-
 minetest.register_craft({
 	output = "farming:onion_soup",
 	recipe = {
 		{"group:food_onion", "group:food_onion", "group:food_onion"},
 		{"group:food_onion", "group:food_bowl", "group:food_onion"},
-		{"", tmp, ""}
+		{"", a.pot, ""}
 	},
 	replacements = {{"farming:pot", "farming:pot"}}
 })
 
 -- yellow dye
 minetest.register_craft({
-	output = farming.mcl and "mcl_dye:yellow" or "dye:yellow",
+	output = a.dye_yellow,
 	recipe = {{"group:food_onion"}}
 })
 
@@ -107,7 +106,7 @@ farming.registered_plants["farming:onion"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

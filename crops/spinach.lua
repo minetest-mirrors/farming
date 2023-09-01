@@ -5,7 +5,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:spinach", {
 	description = S("Spinach"),
 	inventory_image = "farming_spinach.png",
-	groups = {compostability = 65, seed = 2, food_spinach = 1, flammable = 2},
+	groups = {compostability = 48, seed = 2, food_spinach = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:spinach_1")
 	end,
@@ -72,7 +72,7 @@ farming.registered_plants["farming:spinach"] = {
 -- mapgen
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_grass"},
+	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = -0.1,
