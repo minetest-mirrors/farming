@@ -72,8 +72,8 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "farming:flour_multigrain",
 	recipe = {
-		"farming:wheat", "farming:barley", "farming:oat",
-		"farming:rye", a.mortar_pestle
+		"group:food_wheat", "group:food_barley", "group:food_oats",
+		"group:food_rye", a.mortar_pestle
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })

@@ -52,8 +52,15 @@ farming.recipe_items = {
 	paper = "default:paper",
 	snow = "default:snow",
 	string = "farming:string",
-	wool = "wool:white"
+	wool = "wool:white",
+	steel_ingot = "default:steel_ingot",
+	clay_brick = "default:clay_brick",
+	stone = "default:stone",
+	glass = "default:glass",
 }
+
+add_groups("default:apple", {food_apple = 1})
+
 
 -- change recipe items to mineclone variations
 if farming.mcl then
@@ -78,13 +85,17 @@ if farming.mcl then
 	a.dye_violet = "mcl_dye:violet"
 	a.dye_yellow = "mcl_dye:yellow"
 	a.bowl = "mcl_core:bowl"
-	a.flour = "mcl_farming:bread"
+--	a.flour = "mcl_farming:bread"
 	a.bread = "mcl_farming:bread"
 	a.cactus = "mcl_core:cactus"
 	a.paper = "mcl_core:paper"
 	a.snow = "mcl_throwing:snowball"
 	a.string = "mcl_mobitems:string"
 	a.wool = "mcl_wool:white"
+	a.steel_ingot = "mcl_core:iron_ingot"
+	a.clay_brick = "mcl_core:clay_lump"
+	a.stone = "mcl_core:stone"
+	a.glass = "mcl_core:glass"
 
 	add_groups("mcl_core:sugar", {food_sugar = 1})
 	add_groups("mcl_throwing:egg", {food_egg = 1})
@@ -100,4 +111,11 @@ if farming.mcl then
 	add_groups("mcl_mobitems:beef", {food_meat_raw = 1})
 	add_groups("mcl_farming:potato_item", {food_potato = 1})
 	add_groups("mcl_farming:bread", {food_bread = 1})
+	add_groups("mcl_mobitems:milk_bucket", {food_milk = 1})
+	add_groups("mcl_ocean:dried_kelp", {food_seaweed = 1})
+
+	-- add missing food groups to current items so recipes work
+	add_groups("mcl_dye:yellow", {food_lemon = 1, food_banana = 1})
+	add_groups("mcl_dye:orange", {food_orange = 1})
+	add_groups("mcl_flowers:sunflower", {food_olive_oil = 1, food_butter = 1})
 end

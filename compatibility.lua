@@ -8,13 +8,6 @@ local alias = function(orig, new)
 	minetest.register_alias(orig, new)
 end
 
---= Overrides (add food_* group to apple and brown mushroom)
-
-minetest.override_item("default:apple", {
-	groups = {food_apple = 1, fleshy = 3, dig_immediate = 3, flammable = 2,
-		leafdecay = 3, leafdecay_drop = 1}
-})
-
 --= Aliases
 
 -- Banana

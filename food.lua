@@ -8,7 +8,7 @@ minetest.register_craftitem("farming:bread_slice", {
 	description = S("Sliced Bread"),
 	inventory_image = "farming_bread_slice.png",
 	on_use = minetest.item_eat(1),
-	groups = {food_bread_slice = 1, flammable = 2}
+	groups = {food_bread_slice = 1, flammable = 2, compostability = 65}
 })
 
 minetest.register_craft({
@@ -23,7 +23,7 @@ minetest.register_craftitem("farming:toast", {
 	description = S("Toast"),
 	inventory_image = "farming_toast.png",
 	on_use = minetest.item_eat(1),
-	groups = {food_toast = 1, flammable = 2}
+	groups = {food_toast = 1, flammable = 2, compostability = 65}
 })
 
 minetest.register_craft({
@@ -39,7 +39,7 @@ minetest.register_craftitem("farming:toast_sandwich", {
 	description = S("Toast Sandwich"),
 	inventory_image = "farming_toast_sandwich.png",
 	on_use = minetest.item_eat(4),
-	groups = {flammable = 2}
+	groups = {flammable = 2, compostability = 85}
 })
 
 minetest.register_craft({
