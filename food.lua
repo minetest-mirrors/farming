@@ -105,7 +105,7 @@ end
 
 -- Sugar
 
-if farming.mtg then
+if not farming.mcl then
 
 	minetest.register_craftitem("farming:sugar", {
 		description = S("Sugar"),
