@@ -53,10 +53,10 @@ minetest.register_craft( {
 	output = "farming:vanilla_extract",
 	recipe = {
 		{"group:food_vanilla", "group:food_vanilla", "group:food_vanilla"},
-		{"group:food_vanilla", "farming:bottle_ethanol", "group:food_water_glass"},
+		{"group:food_vanilla", "farming:bottle_ethanol", "group:food_glass_water"},
 	},
 	replacements = {
-		{"group:food_water_glass", a.drinking_glass}
+		{"group:food_glass_water", a.drinking_glass}
 	}
 })
 
@@ -64,7 +64,7 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:vanilla_extract",
 	burntime = 25,
-	replacements = {{"farming:vanilla_extract", "vessels:glass_bottle"}}
+	replacements = {{"farming:vanilla_extract", a.glass_bottle}}
 })
 
 -- stage 1

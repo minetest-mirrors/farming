@@ -99,7 +99,7 @@ if farming.mcl then
 
 	add_groups("mcl_core:sugar", {food_sugar = 1})
 	add_groups("mcl_throwing:egg", {food_egg = 1})
-	add_groups("mcl_farming:wheat", {food_wheat = 1})
+	add_groups("mcl_farming:wheat_item", {food_wheat = 1})
 	add_groups("mcl_cocoas:cocoa_beans", {food_cocoa = 1})
 	add_groups("mcl_core:apple", {food_apple = 1})
 	add_groups("mcl_core:bowl", {food_bowl = 1})
@@ -113,7 +113,7 @@ if farming.mcl then
 	add_groups("mcl_farming:bread", {food_bread = 1})
 	add_groups("mcl_mobitems:milk_bucket", {food_milk = 1})
 	add_groups("mcl_ocean:dried_kelp", {food_seaweed = 1})
-	add_groups("mcl_potions:river_water", {food_water_glass = 1})
+	add_groups("mcl_potions:river_water", {food_glass_water = 1})
 
 	-- add missing food groups to current items so recipes work
 	add_groups("mcl_dye:yellow", {food_lemon = 1, food_banana = 1})

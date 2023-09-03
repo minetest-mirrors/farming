@@ -62,12 +62,23 @@ minetest.register_craft({
 	}
 })
 
+if farming.mcl then
+
+	minetest.register_craft({
+		output = "mcl_potions:river_water",
+		recipe = {
+			{"farming:hemp_fibre"},
+			{"mcl_potions:water"}
+		}
+	})
+end
+
 -- glass of water
 
 minetest.register_craftitem("farming:glass_water", {
 	description = S("Glass of Water"),
 	inventory_image = "farming_water_glass.png",
-	groups = {food_water_glass = 1, flammable = 3, vessel = 1}
+	groups = {food_glass_water = 1, flammable = 3, vessel = 1}
 })
 
 minetest.register_craft({
@@ -319,10 +330,10 @@ minetest.register_craft({
 	recipe = {
 		{a.rose, a.rose, a.rose},
 		{a.rose, a.rose, a.rose},
-		{"group:food_water_glass", a.pot, a.glass_bottle}
+		{"group:food_glass_water", a.pot, a.glass_bottle}
 	},
 	replacements = {
-		{"group:food_water_glass", a.drinking_glass},
+		{"group:food_glass_water", a.drinking_glass},
 		{"group:food_pot", "farming:pot"}
 	}
 })
@@ -822,11 +833,11 @@ minetest.register_craft({
 	recipe = {
 		{"", a.mortar_pestle, ""},
 		{"group:food_rice", "group:food_sugar", "group:food_rice"},
-		{"", "farming:glass_water", ""}
+		{"", "group:food_glass_water", ""}
 	},
 	replacements = {
 		{"group:food_mortar_pestle", "farming:mortar_pestle"},
-		{"farming:glass_water", a.drinking_glass}
+		{"group:food_glass_water", a.drinking_glass}
 	}
 })
 

@@ -35,7 +35,7 @@ minetest.register_craftitem("farming:mint_leaf", {
 minetest.register_craftitem("farming:mint_tea", {
 	description = S("Mint Tea"),
 	inventory_image = "farming_mint_tea.png",
-	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
+	on_use = minetest.item_eat(2, a.drinking_glass),
 	groups = {flammable = 4}
 })
 
@@ -43,7 +43,7 @@ minetest.register_craft({
 	output = "farming:mint_tea",
 	recipe = {
 		{"group:food_mint", "group:food_mint", "group:food_mint"},
-		{"group:food_water_glass", a.juicer, ""}
+		{"group:food_glass_water", a.juicer, ""}
 	},
 	replacements = {
 		{"group:food_juicer", "farming:juicer"}

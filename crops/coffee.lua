@@ -36,7 +36,7 @@ minetest.register_alias("farming:drinking_cup", "vessels:drinking_glass")
 minetest.register_craft( {
 	output = "farming:coffee_cup",
 	recipe = {
-		{"group:food_coffee", "group:food_water_glass", a.saucepan}
+		{"group:food_coffee", "group:food_glass_water", a.saucepan}
 	},
 	replacements = {
 		{"group:food_saucepan", "farming:saucepan"}
