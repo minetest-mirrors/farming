@@ -29,6 +29,7 @@ Created by Oz-tal (license: CC BY-SA 3.0):
   crops_onion.png
   farming_cookie.png
   farming_grapes.png
+  farming_vanilla.png
 
 Created by Shadall (CC0):
   farming_burger.png
@@ -172,7 +173,7 @@ Created by Felfa (CC0)
   farming_blackberry*.png
   farming_lettuce*.png
   farming_soy*.png
-  farming_vanilla*.png
+  farming_vanilla_*.png
   farming_artichoke*.png
   farming_parsley*.png
   farming_paella.png
