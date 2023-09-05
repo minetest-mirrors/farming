@@ -17,7 +17,8 @@ minetest.register_craftitem("farming:chili_pepper", {
 minetest.register_craftitem("farming:chili_bowl", {
 	description = S("Bowl of Chili"),
 	inventory_image = "farming_chili_bowl.png",
-	on_use = minetest.item_eat(8, "farming:bowl")
+	on_use = minetest.item_eat(8, a.bowl),
+	groups = {compostability = 65}
 })
 
 minetest.register_craft({
@@ -38,7 +39,8 @@ minetest.register_craft({
 minetest.register_craftitem("farming:chili_powder", {
 	description = S("Chili Powder"),
 	on_use = minetest.item_eat(-1),
-	inventory_image = "farming_chili_powder.png"
+	inventory_image = "farming_chili_powder.png",
+	groups = {compostability = 45}
 })
 
 minetest.register_craft({

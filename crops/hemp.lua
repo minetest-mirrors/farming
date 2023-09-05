@@ -24,7 +24,8 @@ minetest.register_node("farming:seed_hemp", {
 -- harvested hemp
 minetest.register_craftitem("farming:hemp_leaf", {
 	description = S("Hemp Leaf"),
-	inventory_image = "farming_hemp_leaf.png"
+	inventory_image = "farming_hemp_leaf.png",
+	groups = {compostability = 35}
 })
 
 -- hemp oil

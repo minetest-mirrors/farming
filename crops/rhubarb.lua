@@ -17,7 +17,8 @@ minetest.register_craftitem("farming:rhubarb", {
 minetest.register_craftitem("farming:rhubarb_pie", {
 	description = S("Rhubarb Pie"),
 	inventory_image = "farming_rhubarb_pie.png",
-	on_use = minetest.item_eat(6)
+	on_use = minetest.item_eat(6),
+	groups = {compostability = 65}
 })
 
 minetest.register_craft({

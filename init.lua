@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230831",
+	version = "20230905",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -556,7 +556,10 @@ farming.register_plant = function(name, def)
 		inventory_image = def.inventory_image,
 		wield_image = def.inventory_image,
 		drawtype = "signlike",
-		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2, growing = 1},
+		groups = {
+			seed = 1, snappy = 3, attached_node = 1, flammable = 2, growing = 1,
+			compostability = 65
+		},
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		walkable = false,

@@ -20,7 +20,8 @@ minetest.register_craftitem("farming:blueberries", {
 minetest.register_craftitem("farming:muffin_blueberry", {
 	description = S("Blueberry Muffin"),
 	inventory_image = "farming_blueberry_muffin.png",
-	on_use = minetest.item_eat(2)
+	on_use = minetest.item_eat(2),
+	groups = {compostability = 65}
 })
 
 minetest.register_craft({
@@ -34,7 +35,8 @@ minetest.register_craft({
 minetest.register_craftitem("farming:blueberry_pie", {
 	description = S("Blueberry Pie"),
 	inventory_image = "farming_blueberry_pie.png",
-	on_use = minetest.item_eat(6)
+	on_use = minetest.item_eat(6),
+	groups = {compostability = 75}
 })
 
 minetest.register_craft({

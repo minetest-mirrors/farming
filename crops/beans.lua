@@ -251,7 +251,7 @@ minetest.register_node("farming:beanbush", {
 	selection_box = farming.select,
 	groups = {
 		handy = 1, snappy = 3, flammable = 2, plant = 1, attached_node = 1,
-		not_in_creative_inventory = 1
+		compostability = 35, not_in_creative_inventory = 1
 	},
 	sounds = farming.sounds.node_sound_leaves_defaults()
 })

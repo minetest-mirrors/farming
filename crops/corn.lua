@@ -56,7 +56,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:cornstarch", {
 	description = S("Cornstarch"),
 	inventory_image = "farming_cornstarch.png",
-	groups = {food_cornstarch = 1, food_gelatin = 1, flammable = 2}
+	groups = {food_cornstarch = 1, food_gelatin = 1, flammable = 2, compostability = 65}
 })
 
 minetest.register_craft({

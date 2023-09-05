@@ -24,7 +24,7 @@ minetest.register_alias("farming:peas", "farming:pea_pod")
 minetest.register_craftitem("farming:pea_soup", {
 	description = S("Pea Soup"),
 	inventory_image = "farming_pea_soup.png",
-	groups = {flammable = 2},
+	groups = {flammable = 2, compostability = 65},
 	on_use = minetest.item_eat(4, a.bowl)
 })
 

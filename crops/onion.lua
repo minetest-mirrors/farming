@@ -23,8 +23,8 @@ minetest.register_craftitem("farming:onion", {
 minetest.register_craftitem("farming:onion_soup", {
 	description = S("Onion Soup"),
 	inventory_image = "farming_onion_soup.png",
-	groups = {flammable = 2},
-	on_use = minetest.item_eat(6, "farming:bowl")
+	groups = {flammable = 2, compostability = 65},
+	on_use = minetest.item_eat(6, a.bowl)
 })
 
 minetest.register_craft({
