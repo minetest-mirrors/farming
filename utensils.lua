@@ -10,13 +10,16 @@ minetest.register_craftitem("farming:bowl", {
 	groups = {food_bowl = 1, flammable = 2}
 })
 
-minetest.register_craft({
-	output = "farming:bowl 4",
-	recipe = {
-		{"group:wood", "", "group:wood"},
-		{"", "group:wood", ""}
-	}
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		output = "farming:bowl 4",
+		recipe = {
+			{"group:wood", "", "group:wood"},
+			{"", "group:wood", ""}
+		}
+	})
+end
 
 minetest.register_craft({
 	type = "fuel",
