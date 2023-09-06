@@ -729,7 +729,7 @@ end
 dofile(farming.path .. "/items.lua")
 
 -- important items
-if farming.mtg then
+if not farming.mcl then
 	dofile(farming.path .. "/soil.lua")
 	dofile(farming.path .. "/hoes.lua")
 end
@@ -738,7 +738,7 @@ dofile(farming.path.."/grass.lua")
 dofile(farming.path.."/utensils.lua")
 
 -- default crops
-if farming.mtg then
+if not farming.mcl then
 	dofile(farming.path.."/crops/wheat.lua")
 end
 
@@ -806,7 +806,7 @@ ddoo("ginger.lua", farming.ginger)
 
 dofile(farming.path .. "/food.lua")
 
-if farming.mtg then
+if not farming.mcl then
 	dofile(farming.path .. "/compatibility.lua") -- Farming Plus compatibility
 end
 
