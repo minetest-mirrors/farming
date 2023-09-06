@@ -53,9 +53,9 @@ If a mod registers nodes to be used as crops using the {growing=1} group then an
 growth_check = function(pos, node_name)
 	-- check surrounding for jungle tree
 	if minetest.find_node_near(pos, 1, {"default:jungletree"}) then
-		return false -- place next growth stage
+		return true -- place next growth stage
 	end
-	return true -- condition not met, skip next growth stage until next check
+	return false -- condition not met, skip next growth stage until next check
 end,
 
 ### Scythe items that will not drop
