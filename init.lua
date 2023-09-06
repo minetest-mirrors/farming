@@ -426,7 +426,7 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 		local on_grow = minetest.registered_nodes[node_name].on_grow
 
 		if on_grow then
-			on_grow(pos, stages.stages_left[growth])
+			growth = on_grow(pos, stages.stages_left[growth], growth) or growth
 		else
 			farming.classic_growth(pos, stages.stages_left[growth])
 		end
