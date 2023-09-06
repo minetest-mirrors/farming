@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230905",
+	version = "20230906",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -332,6 +332,15 @@ minetest.register_abm({
 })
 
 
+-- Standard growth logic, swap node until we reach last stage.
+function farming.classic_growth(pos, next_stage)
+
+	local p2 = minetest.registered_nodes[next_stage].place_param2 or 1
+
+	minetest.swap_node(pos, {name = next_stage, param2 = p2})
+end
+
+
 -- Plant timer function that grows plants under the right conditions.
 function farming.plant_growth_timer(pos, elapsed, node_name)
 
@@ -352,7 +361,7 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 
 	if chk then
 
-		if chk(pos, node_name) then
+		if not chk(pos, node_name) then
 			return true
 		end
 
@@ -413,9 +422,14 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 
 	if minetest.registered_nodes[stages.stages_left[growth]] then
 
-		local p2 = minetest.registered_nodes[stages.stages_left[growth] ].place_param2 or 1
+		-- Custom grow function
+		local on_grow = minetest.registered_nodes[node_name].on_grow
 
-		minetest.swap_node(pos, {name = stages.stages_left[growth], param2 = p2})
+		if on_grow then
+			on_grow(pos, stages.stages_left[growth])
+		else
+			farming.classic_growth(pos, stages.stages_left[growth])
+		end
 	else
 		return true
 	end

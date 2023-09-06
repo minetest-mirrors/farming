@@ -163,10 +163,10 @@ local def = {
 
 		if minetest.find_node_near(pos, 1,
 				{"default:jungletree", "mcl_core:jungletree"}) then
-			return false -- can grow
+			return true -- place next growth stage
 		end
 
-		return true -- cannot grow
+		return false -- condition not met, skip growth stage until next check
 	end
 }
 
