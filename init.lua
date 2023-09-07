@@ -332,15 +332,6 @@ minetest.register_abm({
 })
 
 
--- Standard growth logic, swap node until we reach last stage.
-function farming.classic_growth(pos, next_stage)
-
-	local p2 = minetest.registered_nodes[next_stage].place_param2 or 1
-
-	minetest.swap_node(pos, {name = next_stage, param2 = p2})
-end
-
-
 -- Plant timer function that grows plants under the right conditions.
 function farming.plant_growth_timer(pos, elapsed, node_name)
 
@@ -422,14 +413,9 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 
 	if minetest.registered_nodes[stages.stages_left[growth]] then
 
-		-- Custom grow function
-		local on_grow = minetest.registered_nodes[node_name].on_grow
+		local p2 = minetest.registered_nodes[stages.stages_left[growth] ].place_param2 or 1
 
-		if on_grow then
-			growth = on_grow(pos, stages.stages_left[growth], growth) or growth
-		else
-			farming.classic_growth(pos, stages.stages_left[growth])
-		end
+		minetest.swap_node(pos, {name = stages.stages_left[growth], param2 = p2})
 	else
 		return true
 	end
