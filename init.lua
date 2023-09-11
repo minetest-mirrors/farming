@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230906",
+	version = "20230911",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -105,6 +105,16 @@ end
 local STAGE_LENGTH_AVG = tonumber(
 		minetest.settings:get("farming_stage_length")) or 200
 local STAGE_LENGTH_DEV = STAGE_LENGTH_AVG / 6
+
+
+-- quick start seed timer
+farming.start_seed_timer = function(pos)
+
+	local timer = minetest.get_node_timer(pos)
+	local grow_time = math.floor(math.random(STAGE_LENGTH_DEV, STAGE_LENGTH_AVG))
+
+	timer:start(grow_time)
+end
 
 
 -- return plant name and stage from node provided
@@ -318,8 +328,15 @@ minetest.register_abm({
 
 			def = minetest.registered_nodes[next_stage]
 
-			-- change seed to stage_1 or crop
-			if def then
+			local timer = minetest.get_node_timer(pos):is_started()
+
+			-- if seed has timer function that isn't started then start timer
+			if def and def.on_timer and not timer then
+
+				farming.start_seed_timer(pos)
+
+			-- otherwise switch seed to stage_1 of crop
+			elseif def then
 
 				local p2 = def.place_param2 or 1
 
@@ -503,6 +520,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 		minetest.set_node(pt.above, {name = plantname, param2 = p2})
 
+farming.start_seed_timer(pt.above)
 --minetest.get_node_timer(pt.above):start(1)
 --farming.handle_growth(pt.above)--, node)
 
@@ -567,6 +585,18 @@ farming.register_plant = function(name, def)
 		selection_box = farming.select,
 		place_param2 = 1, -- place seed flat
 		next_plant = mname .. ":" .. pname .. "_1",
+
+		on_timer = function(pos, elapsed)
+
+			local def = minetest.registered_nodes[mname .. ":" .. pname .. "_1"]
+
+			if def then
+				minetest.swap_node(pos, {
+					name = def.next_plant,
+					param2 = def.place_param2
+				})
+			end
+		end,
 
 		on_place = function(itemstack, placer, pointed_thing)
 			return farming.place_seed(itemstack, placer, pointed_thing,
