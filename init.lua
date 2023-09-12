@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230911",
+	version = "20230912",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -53,6 +53,9 @@ local S = minetest.get_translator("farming")
 
 farming.translate = S
 
+-- localise
+local random = math.random
+local floor = math.floor
 
 -- Utility Function
 local time_speed = tonumber(minetest.settings:get("time_speed")) or 72
@@ -92,7 +95,7 @@ local function day_or_night_time(dt, count_day)
 	local dt_c = clamp(t2_c, 0, 0.5) - clamp(t1_c, 0, 0.5)  -- this cycle
 
 	if t1_c < -0.5 then
-		local nc = math.floor(-t1_c)
+		local nc = floor(-t1_c)
 		t1_c = t1_c + nc
 		dt_c = dt_c + 0.5 * nc + clamp(-t1_c - 0.5, 0, 0.5)
 	end
@@ -111,7 +114,7 @@ local STAGE_LENGTH_DEV = STAGE_LENGTH_AVG / 6
 farming.start_seed_timer = function(pos)
 
 	local timer = minetest.get_node_timer(pos)
-	local grow_time = math.floor(math.random(STAGE_LENGTH_DEV, STAGE_LENGTH_AVG))
+	local grow_time = floor(random(STAGE_LENGTH_DEV, STAGE_LENGTH_AVG))
 
 	timer:start(grow_time)
 end
@@ -277,7 +280,7 @@ local function set_growing(pos, stages_left)
 
 			stage_length = clamp(stage_length, 0.5 * STAGE_LENGTH_AVG, 3.0 * STAGE_LENGTH_AVG)
 
-			timer:set(stage_length, -0.5 * math.random() * STAGE_LENGTH_AVG)
+			timer:set(stage_length, -0.5 * random() * STAGE_LENGTH_AVG)
 		end
 
 	elseif timer:is_started() then
@@ -319,30 +322,37 @@ minetest.register_abm({
 	catch_up = false,
 	action = function(pos, node)
 
+		-- skip if node timer already active
+		if minetest.get_node_timer(pos):is_started() then
+			return
+		end
+
 		-- check if group:growing node is a seed
 		local def = minetest.registered_nodes[node.name]
 
 		if def and def.groups and def.groups.seed then
 
+			-- start node timer if found
+			if def.on_timer then
+
+				farming.start_seed_timer(pos)
+
+				return
+			end
+
 			local next_stage = def.next_plant
 
 			def = minetest.registered_nodes[next_stage]
 
-			local timer = minetest.get_node_timer(pos):is_started()
-
-			-- if seed has timer function that isn't started then start timer
-			if def and def.on_timer and not timer then
-
-				farming.start_seed_timer(pos)
-
-			-- otherwise switch seed to stage_1 of crop
-			elseif def then
+			-- switch seed without timer to stage_1 of crop
+			if def then
 
 				local p2 = def.place_param2 or 1
 
 				minetest.set_node(pos, {name = next_stage, param2 = p2})
 			end
 		else
+			-- start normal crop timer
 			farming.handle_growth(pos, node)
 		end
 	end
