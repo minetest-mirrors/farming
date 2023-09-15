@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20230912",
+	version = "20230915",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -442,7 +442,7 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 
 		local p2 = minetest.registered_nodes[stages.stages_left[growth] ].place_param2 or 1
 
-		minetest.swap_node(pos, {name = stages.stages_left[growth], param2 = p2})
+		minetest.set_node(pos, {name = stages.stages_left[growth], param2 = p2})
 	else
 		return true
 	end
