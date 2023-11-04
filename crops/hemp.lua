@@ -91,7 +91,7 @@ minetest.register_craft( {
 		{"farming:hemp_leaf", "group:water_bucket", "farming:hemp_leaf"},
 		{"farming:hemp_leaf", "farming:hemp_leaf", "farming:hemp_leaf"}
 	},
-	replacements = {{a.bucket_water, a.bucket_empty}}
+	replacements = {{"group:water_bucket", a.bucket_empty}}
 })
 
 if minetest.get_modpath("bucket_wooden") then
