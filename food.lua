@@ -135,7 +135,7 @@ end
 minetest.register_node("farming:sugar_cube", {
 	description = S("Sugar Cube"),
 	tiles = {"farming_sugar_cube.png"},
-	groups = {pickaxey = 1, crumbly = 2},
+	groups = {shovely = 1, handy = 1, crumbly = 2},
 	floodable = true,
 	sounds = farming.sounds.node_sound_gravel_defaults(),
 	_mcl_hardness = 0.8,

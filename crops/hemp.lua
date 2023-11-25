@@ -183,8 +183,8 @@ minetest.register_node("farming:hemp_rope", {
 	inventory_image = "farming_hemp_rope.png",
 	drawtype = "plantlike",
 	groups = {
-		handy = 1, axey = 1, flammable = 2, choppy = 3, oddly_breakable_by_hand = 3,
-		compostability = 55
+		handy = 1, axey = 1, swordy = 1, flammable = 2, choppy = 3,
+		oddly_breakable_by_hand = 3, compostability = 55
 	},
 	sounds =  farming.sounds.node_sound_leaves_defaults(),
 	selection_box = {
