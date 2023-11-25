@@ -9,7 +9,9 @@ minetest.register_node("farming:seed_wheat", {
 	inventory_image = "farming_wheat_seed.png",
 	wield_image = "farming_wheat_seed.png",
 	drawtype = "signlike",
-	groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 4, growing = 1},
+	groups = {
+		handy = 1, seed = 1, snappy = 3, attached_node = 1, flammable = 4, growing = 1
+	},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,

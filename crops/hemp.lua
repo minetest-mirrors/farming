@@ -9,7 +9,10 @@ minetest.register_node("farming:seed_hemp", {
 	inventory_image = "farming_hemp_seed.png",
 	wield_image = "farming_hemp_seed.png",
 	drawtype = "signlike",
-	groups = {compostability = 38, seed = 1, snappy = 3, attached_node = 1, growing = 1},
+	groups = {
+		handy = 1, compostability = 38, seed = 1, snappy = 3, attached_node = 1,
+		growing = 1
+	},
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	walkable = false,
@@ -178,7 +181,8 @@ minetest.register_node("farming:hemp_rope", {
 	inventory_image = "farming_hemp_rope.png",
 	drawtype = "plantlike",
 	groups = {
-		flammable = 2, choppy = 3, oddly_breakable_by_hand = 3, compostability = 55
+		handy = 1, axey = 1, flammable = 2, choppy = 3, oddly_breakable_by_hand = 3,
+		compostability = 55
 	},
 	sounds =  farming.sounds.node_sound_leaves_defaults(),
 	selection_box = {
