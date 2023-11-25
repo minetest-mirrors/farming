@@ -115,10 +115,12 @@ minetest.register_node("farming:hemp_block", {
 	tiles = {"farming_hemp_block.png"},
 	paramtype = "light",
 	groups = {
-		handy = 1, snappy = 2, oddly_breakable_by_hand = 1, flammable = 2,
+		axey = 1, handy = 1, snappy = 2, oddly_breakable_by_hand = 1, flammable = 2,
 		compostability = 85
 	},
-	sounds =  farming.sounds.node_sound_leaves_defaults()
+	sounds =  farming.sounds.node_sound_leaves_defaults(),
+	_mcl_hardness = 0.8,
+	_mcl_blast_resistance = 1
 })
 
 minetest.register_craft( {
@@ -188,7 +190,9 @@ minetest.register_node("farming:hemp_rope", {
 	selection_box = {
 		type = "fixed",
 		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7}
-	}
+	},
+	_mcl_hardness = 0.8,
+	_mcl_blast_resistance = 1
 })
 
 -- string
