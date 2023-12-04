@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20231125",
+	version = "20231204",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -755,7 +755,7 @@ end
 dofile(farming.path .. "/items.lua")
 
 -- important items
-if not farming.mcl then
+if minetest.get_modpath("default") then
 	dofile(farming.path .. "/soil.lua")
 	dofile(farming.path .. "/hoes.lua")
 end
