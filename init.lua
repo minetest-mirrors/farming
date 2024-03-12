@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20240229",
+	version = "20240312",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -734,7 +734,7 @@ farming.artichoke = 0.001
 farming.parsley = 0.002
 farming.sunflower = 0.001
 farming.ginger = 0.002
-farming.strawberry = not minetest.get_modpath("ethereal") and 0.002
+farming.strawberry = 0.002
 farming.grains = true
 farming.rice = true
 
