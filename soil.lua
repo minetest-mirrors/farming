@@ -23,13 +23,16 @@ minetest.override_item("default:dirt_with_grass", {
 	}
 })
 
-minetest.override_item("default:dirt_with_dry_grass", {
-	soil = {
-		base = "default:dirt_with_dry_grass",
-		dry = "farming:soil",
-		wet = "farming:soil_wet"
-	}
-})
+if minetest.registered_nodes["default:dirt_with_dry_grass"] then
+
+	minetest.override_item("default:dirt_with_dry_grass", {
+		soil = {
+			base = "default:dirt_with_dry_grass",
+			dry = "farming:soil",
+			wet = "farming:soil_wet"
+		}
+	})
+end
 
 minetest.override_item("default:dirt_with_rainforest_litter", {
 	soil = {
