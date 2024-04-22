@@ -3,7 +3,7 @@
 
 if minetest.registered_nodes["default:grass_1"] then
 
-	for i = 4, 5 do
+	for i = 1, 5 do
 
 		minetest.override_item("default:grass_" .. i, {
 			drop = {
@@ -20,7 +20,7 @@ end
 
 if minetest.registered_nodes["default:dry_grass_1"] then
 
-	for i = 4, 5 do
+	for i = 1, 5 do
 
 		minetest.override_item("default:dry_grass_" .. i, {
 			drop = {
