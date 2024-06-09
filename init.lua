@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20240312",
+	version = "20240609",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
