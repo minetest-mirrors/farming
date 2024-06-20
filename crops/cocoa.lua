@@ -160,6 +160,8 @@ local def = {
 	},
 	is_ground_content = false,
 	sounds = farming.sounds.node_sound_leaves_defaults(),
+
+	-- custom function to check for growing conditions, returning True when found
 	growth_check = function(pos, node_name)
 
 		if minetest.find_node_near(pos, 1,
