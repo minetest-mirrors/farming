@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20240609",
+	version = "20240624",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -360,6 +360,12 @@ minetest.register_abm({
 })
 
 
+-- check if on wet soil
+farming.can_grow = function(pos)
+	local below = minetest.get_node({x = pos.x, y = pos.y -1, z = pos.z})
+	return minetest.get_item_group(below.name, "soil") >= 3
+end
+
 -- Plant timer function that grows plants under the right conditions.
 function farming.plant_growth_timer(pos, elapsed, node_name)
 
@@ -375,22 +381,26 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 		return false
 	end
 
-	-- custom growth check
-	local chk = minetest.registered_nodes[node_name].growth_check
+	local chk1 = minetest.registered_nodes[node_name].growth_check -- old
+	local chk2 = minetest.registered_nodes[node_name].can_grow -- new
 
-	if chk then
+	-- custom farming redo growth_check function
+	if chk1 then
 
-		if not chk(pos, node_name) then
+		if not chk1(pos, node_name) then
 			return true
 		end
 
-	-- otherwise check for wet soil beneath crop
-	else
-		local under = minetest.get_node({x = pos.x, y = pos.y - 1, z = pos.z})
+	-- custom mt 5.9x farming can_grow function
+	elseif chk2 then
 
-		if minetest.get_item_group(under.name, "soil") < 3 then
+		if not chk2(pos) then
 			return true
 		end
+
+	-- default mt 5.9x farming.can_grow function
+	elseif not farming.can_grow(pos) then
+		return true
 	end
 
 	local growth

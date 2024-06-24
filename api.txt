@@ -50,7 +50,7 @@ Note: Any crops registered with the above function will use the new growing rout
 
 If a mod registers nodes to be used as crops using the {growing=1} group then an additional function can be used for custom growth checks instead of the standard 'are we above wet soil'.
 
-growth_check = function(pos, [node_name])
+growth_check = function(pos, [node_name]) [DEPRECATED for above can_grow function]
 	-- check surrounding for jungle tree
 	if minetest.find_node_near(pos, 1, {"default:jungletree"}) then
 		return true -- place next growth stage
