@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20240624",
+	version = "20240625",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -24,7 +24,8 @@ farming = {
 	use_utensils = minetest.settings:get_bool("farming_use_utensils") ~= false,
 	mtg = minetest.get_modpath("default"),
 	mcl = minetest.get_modpath("mcl_core"),
-	sounds = {}
+	sounds = {},
+	mcl_hardness = 0.01
 }
 
 -- default sound functions just incase
@@ -599,6 +600,7 @@ farming.register_plant = function(name, def)
 			seed = 1, snappy = 3, attached_node = 1, flammable = 2, growing = 1,
 			compostability = 65, handy = 1
 		},
+		_mcl_hardness = farming.mcl_hardness,
 		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "wallmounted",
@@ -685,6 +687,7 @@ farming.register_plant = function(name, def)
 			drop = drop,
 			selection_box = sel,
 			groups = g,
+			_mcl_hardness = farming.mcl_hardness,
 			is_ground_content = false,
 			sounds = farming.sounds.node_sound_leaves_defaults(),
 			minlight = def.minlight,
