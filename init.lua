@@ -498,7 +498,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	local pt = pointed_thing
 
 	-- check if pointing at a node
-	if not pt or pt.type ~= "node" then
+	if not itemstack or not pt or pt.type ~= "node" then
 		return
 	end
 
