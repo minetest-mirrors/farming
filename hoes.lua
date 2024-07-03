@@ -360,7 +360,6 @@ local function node_not_num(nodename)
 	if not num or num == 1 then return end
 
 	for v = 1, (num - 1) do
-		bit = nodename:split("_")[v]
 		str = str .. nodename:split("_")[v] .. "_"
 	end
 
