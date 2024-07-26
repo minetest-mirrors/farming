@@ -4,11 +4,11 @@ local a = farming.recipe_items
 
 -- blueberries
 minetest.register_craftitem("farming:blueberries", {
-	description = S("Wild Blueberries"),
+	description = S("Wild Blueberries") .. " (♥1)",
 	inventory_image = "farming_blueberries.png",
 	groups = {
 		compostability = 48,seed = 2, food_blueberries = 1, food_blueberry = 1,
-		food_berry = 1, flammable = 2
+		food_berry = 1, flammable = 2, eatable = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:blueberry_1")
@@ -18,10 +18,10 @@ minetest.register_craftitem("farming:blueberries", {
 
 -- blueberry muffin (thanks to sosogirl123 @ deviantart.com for muffin image)
 minetest.register_craftitem("farming:muffin_blueberry", {
-	description = S("Blueberry Muffin"),
+	description = S("Blueberry Muffin") .. " (♥2)",
 	inventory_image = "farming_blueberry_muffin.png",
 	on_use = minetest.item_eat(2),
-	groups = {compostability = 65}
+	groups = {compostability = 65, eatable = 2}
 })
 
 minetest.register_craft({
@@ -33,10 +33,10 @@ minetest.register_craft({
 
 -- Blueberry Pie
 minetest.register_craftitem("farming:blueberry_pie", {
-	description = S("Blueberry Pie"),
+	description = S("Blueberry Pie") .. " (♥6)",
 	inventory_image = "farming_blueberry_pie.png",
 	on_use = minetest.item_eat(6),
-	groups = {compostability = 75}
+	groups = {compostability = 75, eatable = 6}
 })
 
 minetest.register_craft({

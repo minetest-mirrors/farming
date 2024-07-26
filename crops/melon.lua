@@ -4,9 +4,11 @@ local a = farming.recipe_items
 
 -- melon
 minetest.register_craftitem("farming:melon_slice", {
-	description = S("Melon Slice"),
+	description = S("Melon Slice") .. " (♥2)",
 	inventory_image = "farming_melon_slice.png",
-	groups = {compostability = 48, seed = 2, food_melon_slice = 1, flammable = 3},
+	groups = {
+		compostability = 48, seed = 2, food_melon_slice = 1, flammable = 3, eatable = 2
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:melon_1")
 	end,

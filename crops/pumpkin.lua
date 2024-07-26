@@ -3,9 +3,11 @@ local S = farming.translate
 
 -- pumpkin slice
 minetest.register_craftitem("farming:pumpkin_slice", {
-	description = S("Pumpkin Slice"),
+	description = S("Pumpkin Slice") .. " (♥2)",
 	inventory_image = "farming_pumpkin_slice.png",
-	groups = {compostability = 48, seed = 2, food_pumpkin_slice = 1, flammable = 2},
+	groups = {
+		compostability = 48, seed = 2, food_pumpkin_slice = 1, flammable = 2, eatable = 2
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:pumpkin_1")
 	end,
@@ -123,10 +125,10 @@ minetest.register_craft({
 
 -- pumpkin bread
 minetest.register_craftitem("farming:pumpkin_bread", {
-	description = S("Pumpkin Bread"),
+	description = S("Pumpkin Bread") .. " (♥8)",
 	inventory_image = "farming_pumpkin_bread.png",
 	on_use = minetest.item_eat(8),
-	groups = {food_bread = 1, flammable = 2}
+	groups = {food_bread = 1, flammable = 2, eatable = 8}
 })
 
 minetest.register_craftitem("farming:pumpkin_dough", {

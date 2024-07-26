@@ -3,12 +3,15 @@ local S = farming.translate
 
 -- item definition
 minetest.register_craftitem("farming:parsley", {
-	description = S("Parsley"),
+	description = S("Parsley") .. " (♥1)",
 	inventory_image = "farming_parsley.png",
-	groups = {compostability = 48, seed = 2, food_parsley = 1, flammable = 2},
+	groups = {
+		compostability = 48, seed = 2, food_parsley = 1, flammable = 2, eatable = 1
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:parsley_1")
-	end
+	end,
+	on_use = minetest.item_eat(1)
 })
 
 -- crop definition

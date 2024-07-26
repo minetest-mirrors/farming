@@ -3,9 +3,11 @@ local S = farming.translate
 
 -- ginger
 minetest.register_craftitem("farming:ginger", {
-	description = S("Ginger"),
+	description = S("Ginger") .. " (♥1)",
 	inventory_image = "farming_ginger.png",
-	groups = {compostability = 48, seed = 2, food_ginger = 1, flammable = 2},
+	groups = {
+		compostability = 48, seed = 2, food_ginger = 1, flammable = 2, eatable = 1
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:ginger_1")
 	end,

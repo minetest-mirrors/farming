@@ -99,10 +99,10 @@ minetest.register_craft({
 
 -- bread
 minetest.register_craftitem("farming:bread", {
-	description = S("Bread"),
+	description = S("Bread") .. " (♥5)",
 	inventory_image = "farming_bread.png",
 	on_use = minetest.item_eat(5),
-	groups = {food_bread = 1, flammable = 2}
+	groups = {food_bread = 1, flammable = 2, eatable = 5}
 })
 
 minetest.register_craft({

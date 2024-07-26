@@ -3,9 +3,11 @@ local S = farming.translate
 
 -- asparagus
 minetest.register_craftitem("farming:asparagus", {
-	description = S("Asparagus"),
+	description = S("Asparagus") .. " (♥1)",
 	inventory_image = "farming_asparagus.png",
-	groups = {compostability = 48, seed = 2, food_asparagus = 1, flammable = 2},
+	groups = {
+		compostability = 48, seed = 2, food_asparagus = 1, flammable = 2, eatable = 1
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:asparagus_1")
 	end,

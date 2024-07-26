@@ -3,11 +3,11 @@ local S = farming.translate
 
 -- blackberries
 minetest.register_craftitem("farming:blackberry", {
-	description = S("Blackberries"),
+	description = S("Blackberries" .. " (♥1)"),
 	inventory_image = "farming_blackberry.png",
 	groups = {
 		compostability = 48, seed = 2, food_blackberries = 1, food_blackberry = 1,
-		food_berry = 1, flammable = 2
+		food_berry = 1, flammable = 2, eatable = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:blackberry_1")

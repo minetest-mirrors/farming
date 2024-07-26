@@ -3,9 +3,11 @@ local S = farming.translate
 
 -- item definition
 minetest.register_craftitem("farming:artichoke", {
-	description = S("Artichoke"),
+	description = S("Artichoke") .. " (♥4)",
 	inventory_image = "farming_artichoke.png",
-	groups = {compostability = 48, seed = 2, food_artichoke = 1, flammable = 2},
+	groups = {
+		compostability = 48, seed = 2, food_artichoke = 1, flammable = 2, eatable = 4
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:artichoke_1")
 	end,

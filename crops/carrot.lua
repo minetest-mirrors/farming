@@ -9,9 +9,11 @@ local a = farming.recipe_items
 
 -- carrot
 minetest.register_craftitem("farming:carrot", {
-	description = S("Carrot"),
+	description = S("Carrot") .. " (♥4)",
 	inventory_image = "farming_carrot.png",
-	groups = {compostability = 48, seed = 2, food_carrot = 1, flammable = 2},
+	groups = {
+		compostability = 48, seed = 2, food_carrot = 1, flammable = 2, eatable = 4
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:carrot_1")
 	end,
@@ -20,10 +22,10 @@ minetest.register_craftitem("farming:carrot", {
 
 -- carrot juice
 minetest.register_craftitem("farming:carrot_juice", {
-	description = S("Carrot Juice"),
+	description = S("Carrot Juice") .. " (♥4)",
 	inventory_image = "farming_carrot_juice.png",
 	on_use = minetest.item_eat(4, "vessels:drinking_glass"),
-	groups = {vessel = 1, drink = 1}
+	groups = {vessel = 1, drink = 1, eatable = 4}
 })
 
 minetest.register_craft({
@@ -40,9 +42,10 @@ minetest.register_craft({
 
 -- golden carrot
 minetest.register_craftitem("farming:carrot_gold", {
-	description = S("Golden Carrot"),
+	description = S("Golden Carrot") .. " (♥10)",
 	inventory_image = "farming_carrot_gold.png",
-	on_use = minetest.item_eat(10)
+	on_use = minetest.item_eat(10),
+	groups = {eatable = 10}
 })
 
 minetest.register_craft({

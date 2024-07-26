@@ -17,7 +17,7 @@ if eth then
 	alias("farming_plus:banana", "ethereal:banana")
 else
 	minetest.register_node(":ethereal:banana", {
-		description = S("Banana"),
+		description = S("Banana") .. " (♥2)",
 		drawtype = "torchlike",
 		tiles = {"farming_banana_single.png"},
 		inventory_image = "farming_banana_single.png",
@@ -29,7 +29,9 @@ else
 			type = "fixed",
 			fixed = {-0.2, -0.5, -0.2, 0.2, 0.2, 0.2}
 		},
-		groups = {food_banana = 1, fleshy = 3, dig_immediate = 3, flammable = 2},
+		groups = {
+			food_banana = 1, fleshy = 3, dig_immediate = 3, flammable = 2, eatable = 2
+		},
 		is_ground_content = false,
 		on_use = minetest.item_eat(2),
 		sounds = farming.sounds.node_sound_leaves_defaults()
@@ -77,7 +79,7 @@ if eth then
 	alias("farming_plus:orange_seed", "ethereal:orange_tree_sapling")
 else
 	minetest.register_node(":ethereal:orange", {
-		description = S("Orange"),
+		description = S("Orange") .. " (♥4)",
 		drawtype = "plantlike",
 		tiles = {"farming_orange.png"},
 		inventory_image = "farming_orange.png",
@@ -89,7 +91,9 @@ else
 			type = "fixed",
 			fixed = {-0.2, -0.3, -0.2, 0.2, 0.2, 0.2}
 		},
-		groups = {food_orange = 1, fleshy = 3, dig_immediate = 3, flammable = 2},
+		groups = {
+			food_orange = 1, fleshy = 3, dig_immediate = 3, flammable = 2, eatable = 4
+		},
 		is_ground_content = false,
 		on_use = minetest.item_eat(4),
 		sounds = farming.sounds.node_sound_leaves_defaults()

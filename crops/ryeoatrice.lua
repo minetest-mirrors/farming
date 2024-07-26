@@ -81,10 +81,10 @@ minetest.register_craft({
 -- Multigrain bread
 
 minetest.register_craftitem("farming:bread_multigrain", {
-	description = S("Multigrain Bread"),
+	description = S("Multigrain Bread") .. " (♥7)",
 	inventory_image = "farming_bread_multigrain.png",
 	on_use = minetest.item_eat(7),
-	groups = {food_bread = 1, flammable = 2, compostability = 65}
+	groups = {food_bread = 1, flammable = 2, compostability = 65, eatable = 7}
 })
 
 minetest.register_craft({

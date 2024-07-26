@@ -3,9 +3,11 @@ local S = farming.translate
 
 -- eggplant
 minetest.register_craftitem("farming:eggplant", {
-	description = S("Eggplant"),
+	description = S("Eggplant") .. " (♥3)",
 	inventory_image = "farming_eggplant.png",
-	groups = {compostability = 48, seed = 2, food_eggplant = 1, flammable = 2},
+	groups = {
+		compostability = 48, seed = 2, food_eggplant = 1, flammable = 2, eatable = 3
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:eggplant_1")
 	end,

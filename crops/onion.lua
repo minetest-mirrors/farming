@@ -10,9 +10,11 @@ local a = farming.recipe_items
 
 -- onion
 minetest.register_craftitem("farming:onion", {
-	description = S("Onion"),
+	description = S("Onion") .. " (♥1)",
 	inventory_image = "crops_onion.png",
-	groups = {compostability = 48, seed = 2, food_onion = 1, flammable = 3},
+	groups = {
+		compostability = 48, seed = 2, food_onion = 1, flammable = 3, eatable = 1
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:onion_1")
 	end,
@@ -21,9 +23,9 @@ minetest.register_craftitem("farming:onion", {
 
 -- onion soup
 minetest.register_craftitem("farming:onion_soup", {
-	description = S("Onion Soup"),
+	description = S("Onion Soup") .. " (♥6)",
 	inventory_image = "farming_onion_soup.png",
-	groups = {flammable = 2, compostability = 65},
+	groups = {flammable = 2, compostability = 65, eatable = 6},
 	on_use = minetest.item_eat(6, a.bowl)
 })
 

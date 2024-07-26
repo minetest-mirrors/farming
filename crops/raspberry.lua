@@ -4,10 +4,12 @@ local a = farming.recipe_items
 
 -- raspberries
 minetest.register_craftitem("farming:raspberries", {
-	description = S("Raspberries"),
+	description = S("Raspberries") .. " (♥1)",
 	inventory_image = "farming_raspberries.png",
-	groups = {compostability = 48, seed = 2, food_raspberries = 1, food_raspberry = 1,
-			food_berry = 1, flammable = 2},
+	groups = {
+		compostability = 48, seed = 2, food_raspberries = 1, food_raspberry = 1,
+		food_berry = 1, flammable = 2, eatable = 1
+	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:raspberry_1")
 	end,
@@ -16,10 +18,10 @@ minetest.register_craftitem("farming:raspberries", {
 
 -- raspberry smoothie
 minetest.register_craftitem("farming:smoothie_raspberry", {
-	description = S("Raspberry Smoothie"),
+	description = S("Raspberry Smoothie") .. " (♥2)",
 	inventory_image = "farming_raspberry_smoothie.png",
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
-	groups = {vessel = 1, drink = 1, compostability = 65}
+	groups = {vessel = 1, drink = 1, compostability = 65, eatable = 2}
 })
 
 minetest.register_craft({

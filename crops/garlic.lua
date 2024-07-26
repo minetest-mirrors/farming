@@ -13,10 +13,10 @@ minetest.register_craftitem("farming:garlic_clove", {
 
 -- garlic bulb
 minetest.register_craftitem("farming:garlic", {
-	description = S("Garlic"),
+	description = S("Garlic") .. " (♥1)",
 	inventory_image = "crops_garlic.png",
 	on_use = minetest.item_eat(1),
-	groups = {food_garlic = 1, flammable = 3, compostability = 55}
+	groups = {food_garlic = 1, flammable = 3, compostability = 55, eatable = 1}
 })
 
 minetest.register_craft({

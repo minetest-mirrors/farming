@@ -6,10 +6,11 @@ local a = farming.recipe_items
 
 -- pea pod
 minetest.register_craftitem("farming:pea_pod", {
-	description = S("Pea Pod"),
+	description = S("Pea Pod") .. " (♥1)",
 	inventory_image = "farming_pea_pod.png",
 	groups = {
-		compostability = 48, seed = 2, food_peas = 1, food_pea_pod = 1, flammable = 2
+		compostability = 48, seed = 2, food_peas = 1, food_pea_pod = 1, flammable = 2,
+		eatable = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:pea_1")
@@ -22,9 +23,9 @@ minetest.register_alias("farming:peas", "farming:pea_pod")
 
 -- pea soup
 minetest.register_craftitem("farming:pea_soup", {
-	description = S("Pea Soup"),
+	description = S("Pea Soup") .. " (♥4)",
 	inventory_image = "farming_pea_soup.png",
-	groups = {flammable = 2, compostability = 65},
+	groups = {flammable = 2, compostability = 65, eatable = 4},
 	on_use = minetest.item_eat(4, a.bowl)
 })
 

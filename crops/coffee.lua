@@ -14,7 +14,7 @@ minetest.register_craftitem("farming:coffee_beans", {
 
 -- cup of coffee
 minetest.register_node("farming:coffee_cup", {
-	description = S("Cup of Coffee"),
+	description = S("Cup of Coffee") .. " (♥2)",
 	drawtype = "torchlike",
 	tiles = {"farming_coffee_cup.png"},
 	inventory_image = "farming_coffee_cup.png",
@@ -25,7 +25,7 @@ minetest.register_node("farming:coffee_cup", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.25, 0.25}
 	},
-	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, drink = 1},
+	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, drink = 1, eatable = 2},
 	is_ground_content = false,
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
 	sounds = farming.sounds.node_sound_glass_defaults()
