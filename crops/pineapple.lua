@@ -36,11 +36,13 @@ minetest.register_node("farming:pineapple", {
 
 -- pineapple
 minetest.register_craftitem("farming:pineapple_ring", {
-	description = S("Pineapple Ring") .. " (♥1)",
+	description = S("Pineapple Ring"),
 	inventory_image = "farming_pineapple_ring.png",
-	groups = {food_pineapple_ring = 1, flammable = 2, compostability = 45, eatable = 1},
+	groups = {food_pineapple_ring = 1, flammable = 2, compostability = 45},
 	on_use = minetest.item_eat(1)
 })
+
+farming.add_eatable("farming:pineapple_ring", 1)
 
 minetest.register_craft( {
 	output = "farming:pineapple_ring 5",
@@ -50,11 +52,13 @@ minetest.register_craft( {
 
 -- pineapple juice
 minetest.register_craftitem("farming:pineapple_juice", {
-	description = S("Pineapple Juice") .. " (♥4)",
+	description = S("Pineapple Juice"),
 	inventory_image = "farming_pineapple_juice.png",
 	on_use = minetest.item_eat(4, "vessels:drinking_glass"),
-	groups = {vessel = 1, drink = 1, compostability = 35, eatable = 4}
+	groups = {vessel = 1, drink = 1, compostability = 35}
 })
+
+farming.add_eatable("farming:pineapple_juice", 4)
 
 minetest.register_craft({
 	output = "farming:pineapple_juice",

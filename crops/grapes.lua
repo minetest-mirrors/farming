@@ -65,16 +65,18 @@ end
 
 -- grapes
 minetest.register_craftitem("farming:grapes", {
-	description = S("Grapes") .. " (♥2)",
+	description = S("Grapes"),
 	inventory_image = "farming_grapes.png",
 	on_use = minetest.item_eat(2),
 	groups = {
-		compostability = 48, seed = 2, food_grapes = 1, flammable = 3, eatable = 2
+		compostability = 48, seed = 2, food_grapes = 1, flammable = 3
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_grapes(itemstack, placer, pointed_thing, "farming:grapes_1")
 	end
 })
+
+farming.add_eatable("farming:grapes", 2)
 
 -- grapes can be used for violet dye
 minetest.register_craft({

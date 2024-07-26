@@ -51,7 +51,7 @@ minetest.register_craft( {
 
 -- soy milk
 minetest.register_node("farming:soy_milk", {
-	description = S("Soy Milk") .. " (♥2)",
+	description = S("Soy Milk"),
 	drawtype = "plantlike",
 	tiles = {"farming_soy_milk_glass.png"},
 	inventory_image = "farming_soy_milk_glass.png",
@@ -64,12 +64,14 @@ minetest.register_node("farming:soy_milk", {
 	},
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
 	groups = {
-		vessel = 1, food_milk_glass = 1, dig_immediate = 3, eatable = 2,
+		vessel = 1, food_milk_glass = 1, dig_immediate = 3,
 		attached_node = 1, drink = 1, compostability = 65
 	},
 	is_ground_content = false,
 	sounds = farming.sounds.node_sound_glass_defaults()
 })
+
+farming.add_eatable("farming:soy_milk", 2)
 
 minetest.register_craft( {
 	output = "farming:soy_milk",
@@ -85,13 +87,15 @@ minetest.register_craft( {
 
 -- tofu
 minetest.register_craftitem("farming:tofu", {
-	description = S("Tofu") .. " (♥3)",
+	description = S("Tofu"),
 	inventory_image = "farming_tofu.png",
 	groups = {
-		food_tofu = 1, food_meat_raw = 1, flammable = 2, compostability = 65, eatable = 3
+		food_tofu = 1, food_meat_raw = 1, flammable = 2, compostability = 65,
 	},
 	on_use = minetest.item_eat(3)
 })
+
+farming.add_eatable("farming:tofu", 3)
 
 minetest.register_craft({
 	output = "farming:tofu",
@@ -104,11 +108,13 @@ minetest.register_craft({
 
 -- cooked tofu
 minetest.register_craftitem("farming:tofu_cooked", {
-	description = S("Cooked Tofu") .. " (♥6)",
+	description = S("Cooked Tofu"),
 	inventory_image = "farming_tofu_cooked.png",
-	groups = {food_meat = 1, flammable = 2, compostability = 65, eatable = 6},
+	groups = {food_meat = 1, flammable = 2, compostability = 65},
 	on_use = minetest.item_eat(6)
 })
+
+farming.add_eatable("farming:tofu_cooked", 6)
 
 minetest.register_craft({
 	type = "cooking",

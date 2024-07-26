@@ -4,10 +4,10 @@ local a = farming.recipe_items
 
 -- chili pepper
 minetest.register_craftitem("farming:chili_pepper", {
-	description = S("Chili Pepper") .. " (♥2)",
+	description = S("Chili Pepper"),
 	inventory_image = "farming_chili_pepper.png",
 	groups = {
-		compostability = 48, seed = 2, food_chili_pepper = 1, flammable = 4, eatable = 2
+		compostability = 48, seed = 2, food_chili_pepper = 1, flammable = 4
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:chili_1")
@@ -15,13 +15,17 @@ minetest.register_craftitem("farming:chili_pepper", {
 	on_use = minetest.item_eat(2)
 })
 
+farming.add_eatable("farming:chili_pepper", 2)
+
 -- bowl of chili
 minetest.register_craftitem("farming:chili_bowl", {
-	description = S("Bowl of Chili") .. " (♥8)",
+	description = S("Bowl of Chili"),
 	inventory_image = "farming_chili_bowl.png",
 	on_use = minetest.item_eat(8, a.bowl),
-	groups = {compostability = 65, eatable = 8}
+	groups = {compostability = 65}
 })
+
+farming.add_eatable("farming:chili_bowl", 8)
 
 minetest.register_craft({
 	output = "farming:chili_bowl",

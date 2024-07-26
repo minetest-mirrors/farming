@@ -94,11 +94,13 @@ minetest.register_craft( {
 
 -- chocolate cookie
 minetest.register_craftitem("farming:cookie", {
-	description = S("Cookie") .. " (♥2)",
+	description = S("Cookie"),
 	inventory_image = "farming_cookie.png",
 	on_use = minetest.item_eat(2),
-	groups = {eatable = 2}
+	groups = {flammable = 2}
 })
+
+farming.add_eatable("farming:cookie", 2)
 
 minetest.register_craft( {
 	output = "farming:cookie 8",
@@ -109,11 +111,13 @@ minetest.register_craft( {
 
 -- bar of dark chocolate (thanks to Ice Pandora for her deviantart.com chocolate tutorial)
 minetest.register_craftitem("farming:chocolate_dark", {
-	description = S("Bar of Dark Chocolate") .. " (♥3)",
+	description = S("Bar of Dark Chocolate"),
 	inventory_image = "farming_chocolate_dark.png",
 	on_use = minetest.item_eat(3),
-	groups = {eatable = 3}
+	groups = {flammable = 2}
 })
+
+farming.add_eatable("farming:chocolate_dark", 3)
 
 minetest.register_craft( {
 	output = "farming:chocolate_dark",

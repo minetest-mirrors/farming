@@ -4,16 +4,18 @@ local a = farming.recipe_items
 
 -- vanilla
 minetest.register_craftitem("farming:vanilla", {
-	description = S("Vanilla") .. " (♥1)",
+	description = S("Vanilla"),
 	inventory_image = "farming_vanilla.png",
 	groups = {
-		compostability = 48, seed = 2, food_vanilla = 1, flammable = 2, eatable = 1
+		compostability = 48, seed = 2, food_vanilla = 1, flammable = 2
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:vanilla_1")
 	end,
 	on_use = minetest.item_eat(1)
 })
+
+farming.add_eatable("farming:vanilla", 1)
 
 -- crop definition
 local def = {

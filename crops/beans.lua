@@ -70,14 +70,16 @@ end
 
 -- beans
 minetest.register_craftitem("farming:beans", {
-	description = S("Green Beans" .. " (♥1)"),
+	description = S("Green Beans"),
 	inventory_image = "farming_beans.png",
-	groups = {compostability = 48, seed = 2, food_beans = 1, flammable = 2, eatable = 1},
+	groups = {compostability = 48, seed = 2, food_beans = 1, flammable = 2},
 	on_use = minetest.item_eat(1),
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_beans(itemstack, placer, pointed_thing, "farming:beanpole_1")
 	end
 })
+
+farming.add_eatable("farming:beans", 1)
 
 -- beans can be used for green dye
 minetest.register_craft({

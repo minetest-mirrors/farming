@@ -3,16 +3,18 @@ local S = farming.translate
 
 -- lettuce
 minetest.register_craftitem("farming:lettuce", {
-	description = S("Lettuce") .. " (♥2)",
+	description = S("Lettuce"),
 	inventory_image = "farming_lettuce.png",
 	groups = {
-		compostability = 48, seed = 2, food_lettuce = 1, flammable = 2, eatable = 2
+		compostability = 48, seed = 2, food_lettuce = 1, flammable = 2
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:lettuce_1")
 	end,
 	on_use = minetest.item_eat(2)
 })
+
+farming.add_eatable("farming:lettuce", 2)
 
 local def = {
 	drawtype = "plantlike",

@@ -45,13 +45,15 @@ minetest.register_craft({
 
 -- sunflower seeds (toasted)
 minetest.register_craftitem("farming:sunflower_seeds_toasted", {
-	description = S("Toasted Sunflower Seeds") .. " (♥1)",
+	description = S("Toasted Sunflower Seeds"),
 	inventory_image = "farming_sunflower_seeds_toasted.png",
 	groups = {
-		food_sunflower_seeds_toasted = 1, flammable = 2, compostability = 65, eatable = 1
+		food_sunflower_seeds_toasted = 1, flammable = 2, compostability = 65
 	},
 	on_use = minetest.item_eat(1)
 })
+
+farming.add_eatable("farming:sunflower_seeds_toasted", 1)
 
 minetest.register_craft({
 	type = "cooking",
@@ -99,11 +101,13 @@ minetest.register_craft({
 
 -- sunflower seed bread
 minetest.register_craftitem("farming:sunflower_bread", {
-	description = S("Sunflower Seed Bread") .. " (♥8)",
+	description = S("Sunflower Seed Bread"),
 	inventory_image = "farming_sunflower_bread.png",
 	on_use = minetest.item_eat(8),
-	groups = {food_bread = 1, flammable = 2, eatable = 8}
+	groups = {food_bread = 1, flammable = 2}
 })
+
+farming.add_eatable("farming:sunflower_bread", 8)
 
 minetest.register_craft({
 	output = "farming:sunflower_bread",

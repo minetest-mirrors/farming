@@ -3,16 +3,18 @@ local S = farming.translate
 
 -- spinach
 minetest.register_craftitem("farming:spinach", {
-	description = S("Spinach") .. " (♥1)",
+	description = S("Spinach"),
 	inventory_image = "farming_spinach.png",
 	groups = {
-		compostability = 48, seed = 2, food_spinach = 1, flammable = 2, eatable = 1
+		compostability = 48, seed = 2, food_spinach = 1, flammable = 2
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:spinach_1")
 	end,
 	on_use = minetest.item_eat(1)
 })
+
+farming.add_eatable("farming:spinach", 1)
 
 -- definition
 local def = {

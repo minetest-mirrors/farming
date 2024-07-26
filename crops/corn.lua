@@ -9,10 +9,10 @@ local a = farming.recipe_items
 
 -- corn
 minetest.register_craftitem("farming:corn", {
-	description = S("Corn") .. " (♥3)",
+	description = S("Corn"),
 	inventory_image = "farming_corn.png",
 	groups = {
-		compostability = 45, seed = 2, food_corn = 1, flammable = 2, eatable = 3
+		compostability = 45, seed = 2, food_corn = 1, flammable = 2
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:corn_1")
@@ -20,13 +20,17 @@ minetest.register_craftitem("farming:corn", {
 	on_use = minetest.item_eat(3)
 })
 
+farming.add_eatable("farming:corn", 3)
+
 -- corn on the cob (texture by TenPlus1)
 minetest.register_craftitem("farming:corn_cob", {
-	description = S("Corn on the Cob") .. " (♥5)",
+	description = S("Corn on the Cob"),
 	inventory_image = "farming_corn_cob.png",
-	groups = {compostability = 65, food_corn_cooked = 1, flammable = 2, eatable = 5},
+	groups = {compostability = 65, food_corn_cooked = 1, flammable = 2},
 	on_use = minetest.item_eat(5)
 })
+
+farming.add_eatable("farming:corn_cob", 5)
 
 minetest.register_craft({
 	type = "cooking",
@@ -37,11 +41,13 @@ minetest.register_craft({
 
 -- popcorn
 minetest.register_craftitem("farming:popcorn", {
-	description = S("Popcorn") .. " (♥4)",
+	description = S("Popcorn"),
 	inventory_image = "farming_popcorn.png",
-	groups = {compostability = 55, food_popcorn = 1, flammable = 2, eatable = 4},
+	groups = {compostability = 55, food_popcorn = 1, flammable = 2},
 	on_use = minetest.item_eat(4)
 })
+
+farming.add_eatable("farming:popcorn", 4)
 
 minetest.register_craft({
 	output = "farming:popcorn",

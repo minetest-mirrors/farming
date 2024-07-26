@@ -8,16 +8,18 @@ local S = farming.translate
 
 -- cucumber
 minetest.register_craftitem("farming:cucumber", {
-	description = S("Cucumber") .. " (♥4)",
+	description = S("Cucumber"),
 	inventory_image = "farming_cucumber.png",
 	groups = {
-		compostability = 48, seed = 2, food_cucumber = 1, flammable = 2, eatable = 4
+		compostability = 48, seed = 2, food_cucumber = 1, flammable = 2
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:cucumber_1")
 	end,
 	on_use = minetest.item_eat(4)
 })
+
+farming.add_eatable("farming:cucumber", 4)
 
 -- cucumber definition
 local def = {

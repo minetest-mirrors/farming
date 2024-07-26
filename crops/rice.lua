@@ -46,11 +46,13 @@ minetest.register_craft({
 
 -- rice flour and bread
 minetest.register_craftitem("farming:rice_bread", {
-	description = S("Rice Bread") .. " (♥5)",
+	description = S("Rice Bread"),
 	inventory_image = "farming_rice_bread.png",
 	on_use = minetest.item_eat(5),
-	groups = {food_rice_bread = 1, flammable = 2, compostability = 65, eatable = 5}
+	groups = {food_rice_bread = 1, flammable = 2, compostability = 65}
 })
+
+farming.add_eatable("farming:rice_bread", 5)
 
 minetest.register_craftitem("farming:rice_flour", {
 	description = S("Rice Flour"),

@@ -8,29 +8,12 @@ local alias = function(orig, new)
 	minetest.register_alias(orig, new)
 end
 
---= Add {eatable} group to default apple, blueberries and brown mushroom
+--= Add {eatable} group to default food items if found
 
-local function add_grp(item, hp)
-
-	local def = minetest.registered_items[item]
-
-	if def then
-
-		def.groups.eatable = hp
-		def.description = def.description .. " (♥" .. hp .. ")"
-
-		minetest.override_item(item, {
-			description = def.description,
-			groups = def.groups
-		})
-	end
-end
-
-add_grp("default:apple", 2)
-add_grp("default:blueberries", 1)
-add_grp("flowers:mushroom_brown", 1)
-add_grp("flowers:mushroom_red", -5)
-
+farming.add_eatable("default:apple", 2)
+farming.add_eatable("default:blueberries", 1)
+farming.add_eatable("flowers:mushroom_brown", 1)
+farming.add_eatable("flowers:mushroom_red", -5)
 
 --= Aliases
 
@@ -41,7 +24,7 @@ if eth then
 	alias("farming_plus:banana", "ethereal:banana")
 else
 	minetest.register_node(":ethereal:banana", {
-		description = S("Banana") .. " (♥2)",
+		description = S("Banana"),
 		drawtype = "torchlike",
 		tiles = {"farming_banana_single.png"},
 		inventory_image = "farming_banana_single.png",
@@ -54,12 +37,14 @@ else
 			fixed = {-0.2, -0.5, -0.2, 0.2, 0.2, 0.2}
 		},
 		groups = {
-			food_banana = 1, fleshy = 3, dig_immediate = 3, flammable = 2, eatable = 2
+			food_banana = 1, fleshy = 3, dig_immediate = 3
 		},
 		is_ground_content = false,
 		on_use = minetest.item_eat(2),
 		sounds = farming.sounds.node_sound_leaves_defaults()
 	})
+
+	farming.add_eatable("ethereal:banana", 2)
 
 	minetest.register_node(":ethereal:bananaleaves", {
 		description = S("Banana Leaves"),
@@ -103,7 +88,7 @@ if eth then
 	alias("farming_plus:orange_seed", "ethereal:orange_tree_sapling")
 else
 	minetest.register_node(":ethereal:orange", {
-		description = S("Orange") .. " (♥4)",
+		description = S("Orange"),
 		drawtype = "plantlike",
 		tiles = {"farming_orange.png"},
 		inventory_image = "farming_orange.png",
@@ -116,12 +101,14 @@ else
 			fixed = {-0.2, -0.3, -0.2, 0.2, 0.2, 0.2}
 		},
 		groups = {
-			food_orange = 1, fleshy = 3, dig_immediate = 3, flammable = 2, eatable = 4
+			food_orange = 1, fleshy = 3, dig_immediate = 3, flammable = 2
 		},
 		is_ground_content = false,
 		on_use = minetest.item_eat(4),
 		sounds = farming.sounds.node_sound_leaves_defaults()
 	})
+
+	farming.add_eatable("ethereal:orange", 4)
 
 	alias("farming_plus:orange_item", "ethereal:orange")
 	alias("farming_plus:orange", "ethereal:orange")
