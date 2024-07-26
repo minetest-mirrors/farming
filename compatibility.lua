@@ -8,6 +8,30 @@ local alias = function(orig, new)
 	minetest.register_alias(orig, new)
 end
 
+--= Add {eatable} group to default apple, blueberries and brown mushroom
+
+local function add_grp(item, hp)
+
+	local def = minetest.registered_items[item]
+
+	if def then
+
+		def.groups.eatable = hp
+		def.description = def.description .. " (♥" .. hp .. ")"
+
+		minetest.override_item(item, {
+			description = def.description,
+			groups = def.groups
+		})
+	end
+end
+
+add_grp("default:apple", 2)
+add_grp("default:blueberries", 1)
+add_grp("flowers:mushroom_brown", 1)
+add_grp("flowers:mushroom_red", -5)
+
+
 --= Aliases
 
 -- Banana
