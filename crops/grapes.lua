@@ -69,7 +69,7 @@ minetest.register_craftitem("farming:grapes", {
 	inventory_image = "farming_grapes.png",
 	on_use = minetest.item_eat(2),
 	groups = {
-		compostability = 48, seed = 2, food_grapes = 1, flammable = 3
+		compostability = 48, seed = 2, food_grapes = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_grapes(itemstack, placer, pointed_thing, "farming:grapes_1")

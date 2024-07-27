@@ -7,7 +7,7 @@ minetest.register_craftitem("farming:chili_pepper", {
 	description = S("Chili Pepper"),
 	inventory_image = "farming_chili_pepper.png",
 	groups = {
-		compostability = 48, seed = 2, food_chili_pepper = 1, flammable = 4
+		compostability = 48, seed = 2, food_chili_pepper = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:chili_1")

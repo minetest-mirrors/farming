@@ -38,7 +38,7 @@ minetest.register_node("farming:pineapple", {
 minetest.register_craftitem("farming:pineapple_ring", {
 	description = S("Pineapple Ring"),
 	inventory_image = "farming_pineapple_ring.png",
-	groups = {food_pineapple_ring = 1, flammable = 2, compostability = 45},
+	groups = {food_pineapple_ring = 1, compostability = 45},
 	on_use = minetest.item_eat(1)
 })
 

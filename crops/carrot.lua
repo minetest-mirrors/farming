@@ -12,7 +12,7 @@ minetest.register_craftitem("farming:carrot", {
 	description = S("Carrot"),
 	inventory_image = "farming_carrot.png",
 	groups = {
-		compostability = 48, seed = 2, food_carrot = 1, flammable = 2
+		compostability = 48, seed = 2, food_carrot = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:carrot_1")
@@ -48,8 +48,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:carrot_gold", {
 	description = S("Golden Carrot"),
 	inventory_image = "farming_carrot_gold.png",
-	on_use = minetest.item_eat(10),
-	groups = {flammable = 2}
+	on_use = minetest.item_eat(10)
 })
 
 farming.add_eatable("farming:carrot_gold", 10)

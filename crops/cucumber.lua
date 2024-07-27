@@ -11,7 +11,7 @@ minetest.register_craftitem("farming:cucumber", {
 	description = S("Cucumber"),
 	inventory_image = "farming_cucumber.png",
 	groups = {
-		compostability = 48, seed = 2, food_cucumber = 1, flammable = 2
+		compostability = 48, seed = 2, food_cucumber = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:cucumber_1")

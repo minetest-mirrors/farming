@@ -48,7 +48,7 @@ minetest.register_craftitem("farming:sunflower_seeds_toasted", {
 	description = S("Toasted Sunflower Seeds"),
 	inventory_image = "farming_sunflower_seeds_toasted.png",
 	groups = {
-		food_sunflower_seeds_toasted = 1, flammable = 2, compostability = 65
+		food_sunflower_seeds_toasted = 1, compostability = 65
 	},
 	on_use = minetest.item_eat(1)
 })
@@ -104,7 +104,7 @@ minetest.register_craftitem("farming:sunflower_bread", {
 	description = S("Sunflower Seed Bread"),
 	inventory_image = "farming_sunflower_bread.png",
 	on_use = minetest.item_eat(8),
-	groups = {food_bread = 1, flammable = 2}
+	groups = {food_bread = 1}
 })
 
 farming.add_eatable("farming:sunflower_bread", 8)

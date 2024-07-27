@@ -16,7 +16,7 @@ minetest.register_craftitem("farming:garlic", {
 	description = S("Garlic"),
 	inventory_image = "crops_garlic.png",
 	on_use = minetest.item_eat(1),
-	groups = {food_garlic = 1, flammable = 3, compostability = 55}
+	groups = {food_garlic = 1, compostability = 55}
 })
 
 farming.add_eatable("farming:garlic", 1)

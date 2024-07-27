@@ -6,7 +6,7 @@ minetest.register_craftitem("farming:lettuce", {
 	description = S("Lettuce"),
 	inventory_image = "farming_lettuce.png",
 	groups = {
-		compostability = 48, seed = 2, food_lettuce = 1, flammable = 2
+		compostability = 48, seed = 2, food_lettuce = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:lettuce_1")

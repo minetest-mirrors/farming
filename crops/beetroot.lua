@@ -7,7 +7,7 @@ minetest.register_craftitem("farming:beetroot", {
 	description = S("Beetroot"),
 	inventory_image = "farming_beetroot.png",
 	groups = {
-		compostability = 48, seed = 2, food_beetroot = 1, flammable = 2
+		compostability = 48, seed = 2, food_beetroot = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:beetroot_1")
@@ -21,7 +21,6 @@ farming.add_eatable("farming:beetroot", 1)
 minetest.register_craftitem("farming:beetroot_soup", {
 	description = S("Beetroot Soup"),
 	inventory_image = "farming_beetroot_soup.png",
-	groups = {flammable = 2},
 	on_use = minetest.item_eat(6, "farming:bowl")
 })
 

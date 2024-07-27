@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20240726",
+	version = "20240727",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -777,11 +777,13 @@ function farming.add_eatable(item, hp)
 	if def then
 
 		local grps = def.groups or {}
+		local txt = " (" ; if hp > 0 then txt = txt .. "+" end
+		txt = txt .. hp .. " HP)"
 
 		grps.eatable = hp ; grps.flammable = 2
 
 		if mod_tt_base == nil then
-			def.description = def.description .. " (♥" .. hp .. ")"
+			def.description = def.description .. txt
 		end
 
 		minetest.override_item(item, {description = def.description, groups = grps})

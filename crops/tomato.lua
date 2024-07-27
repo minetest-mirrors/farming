@@ -10,7 +10,7 @@ local S = farming.translate
 minetest.register_craftitem("farming:tomato", {
 	description = S("Tomato"),
 	inventory_image = "farming_tomato.png",
-	groups = {compostability = 45, seed = 2, food_tomato = 1, flammable = 2},
+	groups = {compostability = 45, seed = 2, food_tomato = 1},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:tomato_1")
 	end,
@@ -23,7 +23,7 @@ farming.add_eatable("farming:tomato", 4)
 minetest.register_craftitem("farming:tomato_soup", {
 	description = S("Tomato Soup"),
 	inventory_image = "farming_tomato_soup.png",
-	groups = {flammable = 2, compostability = 65},
+	groups = {compostability = 65},
 	on_use = minetest.item_eat(8, "farming:bowl")
 })
 

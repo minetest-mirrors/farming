@@ -308,6 +308,8 @@ minetest.register_node("farming:mayonnaise", {
 	sounds = farming.sounds.node_sound_glass_defaults()
 })
 
+farming.add_eatable("farming:mayonnaise", 3)
+
 minetest.register_craft({
 	output = "farming:mayonnaise",
 	recipe = {

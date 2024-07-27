@@ -8,7 +8,7 @@ minetest.register_craftitem("farming:blueberries", {
 	inventory_image = "farming_blueberries.png",
 	groups = {
 		compostability = 48,seed = 2, food_blueberries = 1, food_blueberry = 1,
-		food_berry = 1, flammable = 2
+		food_berry = 1
 	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:blueberry_1")
