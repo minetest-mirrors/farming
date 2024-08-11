@@ -27,6 +27,7 @@ lucky_block:add_blocks({
 	{"dro", {"farming:juicer"}, 1},
 	{"dro", {"farming:mixing_bowl"}, 1},
 	{"dro", {"farming:hoe_bronze"}, 1},
+	{"dro", {"farming:sunflower_oil", 5},
 	{"dro", {"farming:hoe_mese"}, 1},
 	{"dro", {"farming:hoe_diamond"}, 1},
 	{"dro", {"farming:hoe_bomb"}, 10},

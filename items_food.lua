@@ -113,11 +113,14 @@ minetest.register_alias("farming:drinking_cup", "vessels:drinking_glass")
 
 -- Cocoa beans
 
-minetest.register_craftitem("farming:cocoa_beans", {
-	description = S("Cocoa Beans"),
-	inventory_image = "farming_cocoa_beans.png",
-	groups = {compostability = 65, food_cocoa = 1, flammable = 2}
-})
+if not farming.mcl then
+
+	minetest.register_craftitem("farming:cocoa_beans", {
+		description = S("Cocoa Beans"),
+		inventory_image = "farming_cocoa_beans.png",
+		groups = {compostability = 65, food_cocoa = 1, flammable = 2}
+	})
+end
 
 -- Chocolate cookie
 
@@ -180,13 +183,16 @@ farming.add_eatable("farming:carrot_juice", 4)
 
 -- Golden carrot
 
-minetest.register_craftitem("farming:carrot_gold", {
-	description = S("Golden Carrot"),
-	inventory_image = "farming_carrot_gold.png",
-	on_use = minetest.item_eat(10)
-})
+if not farming.mcl then
 
-farming.add_eatable("farming:carrot_gold", 10)
+	minetest.register_craftitem("farming:carrot_gold", {
+		description = S("Golden Carrot"),
+		inventory_image = "farming_carrot_gold.png",
+		on_use = minetest.item_eat(10)
+	})
+
+	farming.add_eatable("farming:carrot_gold", 10)
+end
 
 -- Blueberry Pie
 
@@ -212,13 +218,16 @@ farming.add_eatable("farming:muffin_blueberry", 2)
 
 -- beetroot soup
 
-minetest.register_craftitem("farming:beetroot_soup", {
-	description = S("Beetroot Soup"),
-	inventory_image = "farming_beetroot_soup.png",
-	on_use = minetest.item_eat(6, "farming:bowl")
-})
+if not farming.mcl then
 
-farming.add_eatable("farming:beetroot_soup", 6)
+	minetest.register_craftitem("farming:beetroot_soup", {
+		description = S("Beetroot Soup"),
+		inventory_image = "farming_beetroot_soup.png",
+		on_use = minetest.item_eat(6, "farming:bowl")
+	})
+
+	farming.add_eatable("farming:beetroot_soup", 6)
+end
 
 -- Tomato soup
 
@@ -784,13 +793,16 @@ farming.add_eatable("farming:pineapple_juice", 4)
 
 -- Baked potato
 
-minetest.register_craftitem("farming:baked_potato", {
-	description = S("Baked Potato"),
-	inventory_image = "farming_baked_potato.png",
-	on_use = minetest.item_eat(6)
-})
+if not farming.mcl then
 
-farming.add_eatable("farming:baked_potato", 6)
+	minetest.register_craftitem("farming:baked_potato", {
+		description = S("Baked Potato"),
+		inventory_image = "farming_baked_potato.png",
+		on_use = minetest.item_eat(6)
+	})
+
+	farming.add_eatable("farming:baked_potato", 6)
+end
 
 -- Potato & cucumber Salad
 

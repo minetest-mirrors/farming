@@ -3,11 +3,14 @@ local S = minetest.get_translator("farming")
 
 -- wooden bowl
 
-minetest.register_craftitem("farming:bowl", {
-	description = S("Wooden Bowl"),
-	inventory_image = "farming_bowl.png",
-	groups = {food_bowl = 1, flammable = 2}
-})
+if not farming.mcl then
+
+	minetest.register_craftitem("farming:bowl", {
+		description = S("Wooden Bowl"),
+		inventory_image = "farming_bowl.png",
+		groups = {food_bowl = 1, flammable = 2}
+	})
+end
 
 -- saucepan
 
@@ -189,61 +192,64 @@ minetest.register_node("farming:hemp_rope", {
 
 -- Jack 'O Lantern
 
-minetest.register_node("farming:jackolantern", {
-	description = S("Jack 'O Lantern (punch to turn on and off)"),
-	tiles = {
-		"farming_pumpkin_bottom.png^farming_pumpkin_top.png",
-		"farming_pumpkin_bottom.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_side.png^farming_pumpkin_face_off.png"
-	},
-	paramtype2 = "facedir",
-	groups = {
-		handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2
-	},
-	is_ground_content = false,
-	sounds = farming.node_sound_wood_defaults(),
+if not farming.mcl then
 
-	on_punch = function(pos, node, puncher)
-		local name = puncher:get_player_name() or ""
-		if minetest.is_protected(pos, name) then return end
-		node.name = "farming:jackolantern_on"
-		minetest.swap_node(pos, node)
-	end,
-	_mcl_hardness = 0.8,
-	_mcl_blast_resistance = 1
-})
+	minetest.register_node("farming:jackolantern", {
+		description = S("Jack 'O Lantern (punch to turn on and off)"),
+		tiles = {
+			"farming_pumpkin_bottom.png^farming_pumpkin_top.png",
+			"farming_pumpkin_bottom.png",
+			"farming_pumpkin_side.png",
+			"farming_pumpkin_side.png",
+			"farming_pumpkin_side.png",
+			"farming_pumpkin_side.png^farming_pumpkin_face_off.png"
+		},
+		paramtype2 = "facedir",
+		groups = {
+			handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2
+		},
+		is_ground_content = false,
+		sounds = farming.node_sound_wood_defaults(),
 
-minetest.register_node("farming:jackolantern_on", {
-	tiles = {
-		"farming_pumpkin_bottom.png^farming_pumpkin_top.png",
-		"farming_pumpkin_bottom.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_side.png",
-		"farming_pumpkin_side.png^farming_pumpkin_face_on.png"
-	},
-	light_source = minetest.LIGHT_MAX - 1,
-	paramtype2 = "facedir",
-	groups = {
-		handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2,
-		not_in_creative_inventory = 1
-	},
-	is_ground_content = false,
-	sounds = farming.node_sound_wood_defaults(),
-	drop = "farming:jackolantern",
+		on_punch = function(pos, node, puncher)
+			local name = puncher:get_player_name() or ""
+			if minetest.is_protected(pos, name) then return end
+			node.name = "farming:jackolantern_on"
+			minetest.swap_node(pos, node)
+		end,
+		_mcl_hardness = 0.8,
+		_mcl_blast_resistance = 1
+	})
 
-	on_punch = function(pos, node, puncher)
-		local name = puncher:get_player_name() or ""
-		if minetest.is_protected(pos, name) then return end
-		node.name = "farming:jackolantern"
-		minetest.swap_node(pos, node)
-	end,
-	_mcl_hardness = 0.8,
-	_mcl_blast_resistance = 1
-})
+	minetest.register_node("farming:jackolantern_on", {
+		tiles = {
+			"farming_pumpkin_bottom.png^farming_pumpkin_top.png",
+			"farming_pumpkin_bottom.png",
+			"farming_pumpkin_side.png",
+			"farming_pumpkin_side.png",
+			"farming_pumpkin_side.png",
+			"farming_pumpkin_side.png^farming_pumpkin_face_on.png"
+		},
+		light_source = minetest.LIGHT_MAX - 1,
+		paramtype2 = "facedir",
+		groups = {
+			handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2,
+			not_in_creative_inventory = 1
+		},
+		is_ground_content = false,
+		sounds = farming.node_sound_wood_defaults(),
+		drop = "farming:jackolantern",
+
+		on_punch = function(pos, node, puncher)
+			local name = puncher:get_player_name() or ""
+			if minetest.is_protected(pos, name) then return end
+			node.name = "farming:jackolantern"
+			minetest.swap_node(pos, node)
+		end,
+		_mcl_hardness = 0.8,
+		_mcl_blast_resistance = 1
+	})
+end
 
 --- Wooden scarecrow base
 

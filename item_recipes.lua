@@ -192,12 +192,15 @@ minetest.register_craft( {
 
 -- cocoa beans
 
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 5,
-	output = "farming:cocoa_beans",
-	recipe = "farming:cocoa_beans_raw"
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 5,
+		output = "farming:cocoa_beans",
+		recipe = "farming:cocoa_beans_raw"
+	})
+end
 
 -- bar of dark chocolate
 
@@ -269,10 +272,13 @@ minetest.register_craft({
 
 -- golden carrot
 
-minetest.register_craft({
-	output = "farming:carrot_gold",
-	recipe = {{"group:food_carrot", "default:gold_lump"}}
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		output = "farming:carrot_gold",
+		recipe = {{"group:food_carrot", "default:gold_lump"}}
+	})
+end
 
 -- blueberry pie
 
@@ -296,13 +302,16 @@ minetest.register_craft({
 
 -- beetroot soup
 
-minetest.register_craft({
-	output = "farming:beetroot_soup",
-	recipe = {
-		{"group:food_beetroot", "group:food_beetroot", "group:food_beetroot"},
-		{"group:food_beetroot", "group:food_bowl", "group:food_beetroot"}
-	}
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		output = "farming:beetroot_soup",
+		recipe = {
+			{"group:food_beetroot", "group:food_beetroot", "group:food_beetroot"},
+			{"group:food_beetroot", "group:food_bowl", "group:food_beetroot"}
+		}
+	})
+end
 
 -- tomato soup
 
@@ -885,12 +894,15 @@ minetest.register_craft({
 
 -- baked potato
 
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 10,
-	output = "farming:baked_potato",
-	recipe = "group:food_potato"
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 10,
+		output = "farming:baked_potato",
+		recipe = "group:food_potato"
+	})
+end
 
 -- potato & cucumber salad
 
@@ -1046,36 +1058,47 @@ minetest.register_craft({
 
 -- toasted sunflower seeds
 
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 10,
-	output = "farming:sunflower_seeds_toasted",
-	recipe = "farming:seed_sunflower"
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 10,
+		output = "farming:sunflower_seeds_toasted",
+		recipe = "farming:seed_sunflower"
+	})
+end
 
 -- sunflower oil
 
-minetest.register_craft( {
-	output = "farming:sunflower_oil",
-	recipe = {
-		{"group:food_sunflower_seeds", "group:food_sunflower_seeds", "group:food_sunflower_seeds"},
-		{"group:food_sunflower_seeds", "group:food_sunflower_seeds", "group:food_sunflower_seeds"},
-		{"group:food_sunflower_seeds", a.glass_bottle, "group:food_sunflower_seeds"}
-	}
-})
+if not farming.mcl then
+
+	local tmp = "group:food_sunflower_seeds"
+
+	minetest.register_craft( {
+		output = "farming:sunflower_oil",
+		recipe = {
+			{tmp, tmp, tmp},
+			{tmp, tmp, tmp},
+			{tmp, a.glass_bottle, tmp}
+		}
+	})
+end
 
 -- sunflower seed bread
 
-minetest.register_craft({
-	output = "farming:sunflower_bread",
-	recipe = {
-		{
-			"group:food_sunflower_seeds_toasted",
-			"group:food_bread",
-			"group:food_sunflower_seeds_toasted"
+if not farming.mcl then
+
+	minetest.register_craft({
+		output = "farming:sunflower_bread",
+		recipe = {
+			{
+				"group:food_sunflower_seeds_toasted",
+				"group:food_bread",
+				"group:food_sunflower_seeds_toasted"
+			}
 		}
-	}
-})
+	})
+end
 
 -- vanilla extract
 
@@ -1092,13 +1115,16 @@ minetest.register_craft( {
 
 -- jack 'o lantern
 
-minetest.register_craft({
-	output = "farming:jackolantern",
-	recipe = {
-		{"default:torch"},
-		{"group:food_pumpkin"}
-	}
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		output = "farming:jackolantern",
+		recipe = {
+			{"default:torch"},
+			{"group:food_pumpkin"}
+		}
+	})
+end
 
 -- wooden scarecrow base
 
