@@ -1,3 +1,6 @@
+
+-- add lucky blocks
+
 lucky_block:add_blocks({
 	{"dro", {"farming:corn"}, 5},
 	{"dro", {"farming:coffee_cup_hot"}, 1},

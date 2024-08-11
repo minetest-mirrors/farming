@@ -1,37 +1,23 @@
 
-local S = farming.translate
-local a = farming.recipe_items
+local S = minetest.get_translator("farming")
 
--- melon
+-- item/seed
+
 minetest.register_craftitem("farming:melon_slice", {
 	description = S("Melon Slice"),
 	inventory_image = "farming_melon_slice.png",
-	groups = {
-		compostability = 48, seed = 2, food_melon_slice = 1
-	},
+	groups = {compostability = 48, seed = 2, food_melon_slice = 1},
+	on_use = minetest.item_eat(2),
+
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:melon_1")
-	end,
-	on_use = minetest.item_eat(2)
+	end
 })
 
 farming.add_eatable("farming:melon_slice", 2)
 
-minetest.register_craft({
-	output = "farming:melon_8",
-	recipe = {
-		{"farming:melon_slice", "farming:melon_slice"},
-		{"farming:melon_slice", "farming:melon_slice"}
-	}
-})
+-- crop definition
 
-minetest.register_craft({
-	output = "farming:melon_slice 4",
-	recipe = {{"farming:melon_8", a.cutting_board}},
-	replacements = {{"farming:cutting_board", "farming:cutting_board"}}
-})
-
--- melon definition
 local def = {
 	drawtype = "plantlike",
 	tiles = {"farming_melon_1.png"},
@@ -51,33 +37,41 @@ local def = {
 }
 
 -- stage 1
+
 minetest.register_node("farming:melon_1", table.copy(def))
 
 -- stage 2
+
 def.tiles = {"farming_melon_2.png"}
 minetest.register_node("farming:melon_2", table.copy(def))
 
 -- stage 3
+
 def.tiles = {"farming_melon_3.png"}
 minetest.register_node("farming:melon_3", table.copy(def))
 
 -- stage 4
+
 def.tiles = {"farming_melon_4.png"}
 minetest.register_node("farming:melon_4", table.copy(def))
 
 -- stage 5
+
 def.tiles = {"farming_melon_5.png"}
 minetest.register_node("farming:melon_5", table.copy(def))
 
 -- stage 6
+
 def.tiles = {"farming_melon_6.png"}
 minetest.register_node("farming:melon_6", table.copy(def))
 
 -- stage 7
+
 def.tiles = {"farming_melon_7.png"}
 minetest.register_node("farming:melon_7", table.copy(def))
 
 -- stage 8 (final)
+
 minetest.register_node("farming:melon_8", {
 	description = S("Melon"),
 	tiles = {
@@ -99,6 +93,7 @@ minetest.register_node("farming:melon_8", {
 })
 
 -- add to registered_plants
+
 farming.registered_plants["farming:melon"] = {
 	crop = "farming:melon",
 	seed = "farming:melon_slice",
@@ -108,6 +103,7 @@ farming.registered_plants["farming:melon"] = {
 }
 
 -- mapgen
+
 local mg = farming.mapgen == "v6"
 
 def = {
