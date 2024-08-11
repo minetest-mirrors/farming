@@ -75,7 +75,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1

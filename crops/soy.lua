@@ -33,7 +33,7 @@ minetest.register_node("farming:soy_sauce", {
 		compostability = 65
 	},
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_glass_defaults()
+	sounds = farming.node_sound_glass_defaults()
 })
 
 -- soy sauce recipe
@@ -68,7 +68,7 @@ minetest.register_node("farming:soy_milk", {
 		attached_node = 1, drink = 1, compostability = 65
 	},
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_glass_defaults()
+	sounds = farming.node_sound_glass_defaults()
 })
 
 farming.add_eatable("farming:soy_milk", 2)
@@ -143,7 +143,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1

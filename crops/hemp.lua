@@ -54,7 +54,7 @@ minetest.register_node("farming:hemp_oil", {
 		food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1,
 		compostability = 45
 	},
-	sounds = farming.sounds.node_sound_glass_defaults()
+	sounds = farming.node_sound_glass_defaults()
 })
 
 minetest.register_craft( {
@@ -121,7 +121,7 @@ minetest.register_node("farming:hemp_block", {
 		compostability = 85
 	},
 	is_ground_content = false,
-	sounds =  farming.sounds.node_sound_leaves_defaults(),
+	sounds =  farming.node_sound_leaves_defaults(),
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
 })
@@ -144,7 +144,7 @@ if minetest.global_exists("stairs") then
 			{snappy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 			{"farming_hemp_block.png"},
 			"Hemp Block",
-			farming.sounds.node_sound_leaves_defaults())
+			farming.node_sound_leaves_defaults())
 	else
 
 		stairs.register_stair_and_slab("hemp_block", "farming:hemp_block",
@@ -152,7 +152,7 @@ if minetest.global_exists("stairs") then
 			{"farming_hemp_block.png"},
 			"Hemp Block Stair",
 			"Hemp Block Slab",
-			farming.sounds.node_sound_leaves_defaults())
+			farming.node_sound_leaves_defaults())
 	end
 end
 
@@ -190,7 +190,7 @@ minetest.register_node("farming:hemp_rope", {
 		oddly_breakable_by_hand = 3, compostability = 55
 	},
 	is_ground_content = false,
-	sounds =  farming.sounds.node_sound_leaves_defaults(),
+	sounds =  farming.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7}
@@ -226,7 +226,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1

@@ -41,7 +41,7 @@ minetest.register_node("farming:straw", {
 	tiles = {"farming_straw.png"},
 	is_ground_content = false,
 	groups = {handy = 1, snappy = 3, flammable = 4, fall_damage_add_percent = -30},
-	sounds = farming.sounds.node_sound_leaves_defaults(),
+	sounds = farming.node_sound_leaves_defaults(),
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
 })
@@ -69,7 +69,7 @@ if minetest.global_exists("stairs") then
 			{snappy = 3, flammable = 4},
 			{"farming_straw.png"},
 			"Straw",
-			farming.sounds.node_sound_leaves_defaults())
+			farming.node_sound_leaves_defaults())
 	else
 
 		stairs.register_stair_and_slab("straw", "farming:straw",
@@ -77,7 +77,7 @@ if minetest.global_exists("stairs") then
 			{"farming_straw.png"},
 			"Straw Stair",
 			"Straw Slab",
-			farming.sounds.node_sound_leaves_defaults())
+			farming.node_sound_leaves_defaults())
 	end
 end
 
@@ -133,7 +133,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1

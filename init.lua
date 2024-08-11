@@ -7,15 +7,13 @@
 
 farming = {
 	mod = "redo",
-	version = "20240803",
+	version = "20240811",
 	path = minetest.get_modpath("farming"),
 	select = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
+		type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
 	},
 	select_final = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}
+		type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}
 	},
 	registered_plants = {},
 	min_light = 12,
@@ -24,21 +22,30 @@ farming = {
 	use_utensils = minetest.settings:get_bool("farming_use_utensils") ~= false,
 	mtg = minetest.get_modpath("default"),
 	mcl = minetest.get_modpath("mcl_core"),
-	sounds = {},
 	mcl_hardness = 0.01
 }
 
--- default sound functions just incase
-function farming.sounds.node_sound_defaults() end
-function farming.sounds.node_sound_glass_defaults() end
-function farming.sounds.node_sound_gravel_defaults() end
-function farming.sounds.node_sound_leaves_defaults() end
-function farming.sounds.node_sound_stone_defaults() end
-function farming.sounds.node_sound_wood_defaults() end
+-- determine which sounds to use, default or mcl_sounds
 
--- sounds check
-if farming.mtg then farming.sounds = default end
-if farming.mcl then farming.sounds = mcl_sounds end
+local function sound_helper(snd)
+
+	farming[snd] = (farming.mtg and default[snd]) or (farming.mcl and mcl_sounds[snd])
+			or function() return {} end
+end
+
+sound_helper("node_sound_defaults")
+sound_helper("node_sound_stone_defaults")
+sound_helper("node_sound_dirt_defaults")
+sound_helper("node_sound_sand_defaults")
+sound_helper("node_sound_gravel_defaults")
+sound_helper("node_sound_wood_defaults")
+sound_helper("node_sound_leaves_defaults")
+sound_helper("node_sound_ice_defaults")
+sound_helper("node_sound_metal_defaults")
+sound_helper("node_sound_water_defaults")
+sound_helper("node_sound_snow_defaults")
+sound_helper("node_sound_glass_defaults")
+
 
 -- check for creative mode or priv
 local creative_mode_cache = minetest.settings:get_bool("creative_mode")
@@ -689,7 +696,7 @@ farming.register_plant = function(name, def)
 			groups = g,
 			_mcl_hardness = farming.mcl_hardness,
 			is_ground_content = false,
-			sounds = farming.sounds.node_sound_leaves_defaults(),
+			sounds = farming.node_sound_leaves_defaults(),
 			minlight = def.minlight,
 			maxlight = def.maxlight,
 			next_plant = next_plant

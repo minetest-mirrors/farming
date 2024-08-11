@@ -47,7 +47,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1
@@ -91,7 +91,7 @@ minetest.register_node("farming:melon_8", {
 	},
 	is_ground_content = false,
 	drop = "farming:melon_8",
-	sounds = farming.sounds.node_sound_wood_defaults(),
+	sounds = farming.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	on_place = minetest.rotate_node,
 	_mcl_hardness = 0.8,

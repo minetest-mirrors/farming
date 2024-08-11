@@ -130,7 +130,7 @@ minetest.register_node("farming:chocolate_block", {
 	tiles = {"farming_chocolate_block.png"},
 	is_ground_content = false,
 	groups = {cracky = 2, oddly_breakable_by_hand = 2},
-	sounds = farming.sounds.node_sound_stone_defaults()
+	sounds = farming.node_sound_stone_defaults()
 })
 
 minetest.register_craft({
@@ -164,7 +164,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults(),
+	sounds = farming.node_sound_leaves_defaults(),
 
 	-- custom function to check for growing conditions, returning True when found
 	growth_check = function(pos, node_name)

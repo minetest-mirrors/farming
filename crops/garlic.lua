@@ -54,7 +54,7 @@ minetest.register_node("farming:garlic_braid", {
 	},
 	groups = {vessel = 1, dig_immediate = 3, flammable = 3, compostability = 65},
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults(),
+	sounds = farming.node_sound_leaves_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -97,7 +97,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1

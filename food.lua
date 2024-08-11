@@ -144,7 +144,7 @@ minetest.register_node("farming:sugar_cube", {
 	groups = {shovely = 1, handy = 1, crumbly = 2},
 	is_ground_content = false,
 	floodable = true,
-	sounds = farming.sounds.node_sound_gravel_defaults(),
+	sounds = farming.node_sound_gravel_defaults(),
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
 })
@@ -190,7 +190,7 @@ minetest.register_node("farming:salt", {
 	tiles = {"farming_salt.png"},
 	groups = {food_salt = 1, vessel = 1, dig_immediate = 3, attached_node = 1},
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_defaults(),
+	sounds = farming.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
@@ -259,7 +259,7 @@ minetest.register_node("farming:salt_crystal", {
 	tiles = {"farming_salt_crystal.png"},
 	groups = {dig_immediate = 3, attached_node = 1},
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_defaults(),
+	sounds = farming.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
@@ -305,7 +305,7 @@ minetest.register_node("farming:mayonnaise", {
 		compostability = 65, food_mayonnaise = 1, vessel = 1, dig_immediate = 3,
 		attached_node = 1
 	},
-	sounds = farming.sounds.node_sound_glass_defaults()
+	sounds = farming.node_sound_glass_defaults()
 })
 
 farming.add_eatable("farming:mayonnaise", 3)
@@ -333,7 +333,7 @@ minetest.register_node("farming:rose_water", {
 		food_rose_water = 1, vessel = 1, dig_immediate = 3, attached_node = 1
 	},
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_defaults(),
+	sounds = farming.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}

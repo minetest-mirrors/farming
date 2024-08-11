@@ -80,7 +80,7 @@ minetest.register_node("farming:sunflower_oil", {
 		food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1,
 		flammable = 2, compostability = 65
 	},
-	sounds = farming.sounds.node_sound_glass_defaults()
+	sounds = farming.node_sound_glass_defaults()
 })
 
 minetest.register_craft( {
@@ -137,7 +137,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1

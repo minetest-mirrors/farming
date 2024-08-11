@@ -48,7 +48,7 @@ minetest.register_node("farming:jackolantern", {
 		handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2
 	},
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_wood_defaults(),
+	sounds = farming.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher)
 		local name = puncher:get_player_name() or ""
 		if minetest.is_protected(pos, name) then return end
@@ -75,7 +75,7 @@ minetest.register_node("farming:jackolantern_on", {
 		not_in_creative_inventory = 1
 	},
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_wood_defaults(),
+	sounds = farming.node_sound_wood_defaults(),
 	drop = "farming:jackolantern",
 	on_punch = function(pos, node, puncher)
 		local name = puncher:get_player_name() or ""
@@ -171,7 +171,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1
@@ -215,7 +215,7 @@ minetest.register_node("farming:pumpkin_8", {
 	},
 	is_ground_content = false,
 	drop = "farming:pumpkin_8",
-	sounds = farming.sounds.node_sound_wood_defaults(),
+	sounds = farming.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
 	on_place = minetest.rotate_node,
 	_mcl_hardness = 0.8,

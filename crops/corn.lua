@@ -94,7 +94,7 @@ minetest.register_node("farming:bottle_ethanol", {
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
 	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
-	sounds = farming.sounds.node_sound_glass_defaults()
+	sounds = farming.node_sound_glass_defaults()
 })
 
 minetest.register_craft( {
@@ -130,7 +130,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1

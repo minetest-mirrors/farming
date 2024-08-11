@@ -25,7 +25,7 @@ minetest.register_node("farming:cotton_wild", {
 			{items = {"farming:seed_cotton"}, rarity = 1}
 		}
 	},
-	sounds = farming.sounds.node_sound_leaves_defaults(),
+	sounds = farming.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-6 / 16, -8 / 16, -6 / 16, 6 / 16, 5 / 16, 6 / 16}
@@ -124,7 +124,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1

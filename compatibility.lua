@@ -41,7 +41,7 @@ else
 		},
 		is_ground_content = false,
 		on_use = minetest.item_eat(2),
-		sounds = farming.sounds.node_sound_leaves_defaults()
+		sounds = farming.node_sound_leaves_defaults()
 	})
 
 	farming.add_eatable("ethereal:banana", 2)
@@ -55,7 +55,7 @@ else
 		waving = 1,
 		groups = {snappy = 3, leafdecay = 3, leaves = 1, flammable = 2},
 		is_ground_content = false,
-		sounds = farming.sounds.node_sound_leaves_defaults()
+		sounds = farming.node_sound_leaves_defaults()
 	})
 
 	alias("farming_plus:banana_sapling", "default:sapling")
@@ -105,7 +105,7 @@ else
 		},
 		is_ground_content = false,
 		on_use = minetest.item_eat(4),
-		sounds = farming.sounds.node_sound_leaves_defaults()
+		sounds = farming.node_sound_leaves_defaults()
 	})
 
 	farming.add_eatable("ethereal:orange", 4)

@@ -28,7 +28,7 @@ minetest.register_node("farming:coffee_cup", {
 	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, drink = 1},
 	is_ground_content = false,
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
-	sounds = farming.sounds.node_sound_glass_defaults()
+	sounds = farming.node_sound_glass_defaults()
 })
 
 farming.add_eatable("farming:coffee_cup", 2)
@@ -64,7 +64,7 @@ local def = {
 	},
 	_mcl_hardness = farming.mcl_hardness,
 	is_ground_content = false,
-	sounds = farming.sounds.node_sound_leaves_defaults()
+	sounds = farming.node_sound_leaves_defaults()
 }
 
 -- stage 1
