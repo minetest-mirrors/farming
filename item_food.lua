@@ -3,6 +3,7 @@ local S = minetest.get_translator("farming")
 local a = farming.recipe_items
 
 -- Flour
+
 minetest.register_craftitem("farming:flour", {
 	description = S("Flour"),
 	inventory_image = "farming_flour.png",
@@ -10,14 +11,18 @@ minetest.register_craftitem("farming:flour", {
 })
 
 -- Bread
-minetest.register_craftitem("farming:bread", {
-	description = S("Bread"),
-	inventory_image = "farming_bread.png",
-	on_use = minetest.item_eat(5),
-	groups = {food_bread = 1}
-})
 
-farming.add_eatable("farming:bread", 5)
+if not farming.mcl then
+
+	minetest.register_craftitem("farming:bread", {
+		description = S("Bread"),
+		inventory_image = "farming_bread.png",
+		on_use = minetest.item_eat(5),
+		groups = {food_bread = 1}
+	})
+
+	farming.add_eatable("farming:bread", 5)
+end
 
 -- Garlic bulb
 
@@ -124,13 +129,16 @@ end
 
 -- Chocolate cookie
 
-minetest.register_craftitem("farming:cookie", {
-	description = S("Cookie"),
-	inventory_image = "farming_cookie.png",
-	on_use = minetest.item_eat(2)
-})
+if not farming.mcl then
 
-farming.add_eatable("farming:cookie", 2)
+	minetest.register_craftitem("farming:cookie", {
+		description = S("Cookie"),
+		inventory_image = "farming_cookie.png",
+		on_use = minetest.item_eat(2)
+	})
+
+	farming.add_eatable("farming:cookie", 2)
+end
 
 -- Bar of of dark chocolate (thx to Ice Pandora for her deviantart.com chocolate tutorial)
 minetest.register_craftitem("farming:chocolate_dark", {

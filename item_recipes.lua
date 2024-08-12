@@ -3,14 +3,17 @@ local a = farming.recipe_items
 
 -- flour recipes
 
-minetest.register_craft({
-	output = "farming:flour",
-	recipe = {
-		{"farming:wheat", "farming:wheat", "farming:wheat"},
-		{"farming:wheat", a.mortar_pestle, ""}
-	},
-	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		output = "farming:flour",
+		recipe = {
+			{"farming:wheat", "farming:wheat", "farming:wheat"},
+			{"farming:wheat", a.mortar_pestle, ""}
+		},
+		replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
+	})
+end
 
 minetest.register_craft({
 	output = "farming:flour",
@@ -62,12 +65,15 @@ minetest.register_craft({
 
 -- bread
 
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 15,
-	output = "farming:bread",
-	recipe = "farming:flour"
-})
+if not farming.mcl then
+
+	minetest.register_craft({
+		type = "cooking",
+		cooktime = 15,
+		output = "farming:bread",
+		recipe = "farming:flour"
+	})
+end
 
 -- sliced bread
 
@@ -213,12 +219,15 @@ minetest.register_craft( {
 
 -- chocolate cookie
 
-minetest.register_craft( {
-	output = "farming:cookie 8",
-	recipe = {
-		{"group:food_wheat", "group:food_cocoa", "group:food_wheat" }
-	}
-})
+if not farming.mcl then
+
+	minetest.register_craft( {
+		output = "farming:cookie 8",
+		recipe = {
+			{"group:food_wheat", "group:food_cocoa", "group:food_wheat" }
+		}
+	})
+end
 
 -- chocolate block
 

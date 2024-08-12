@@ -12,7 +12,7 @@ local S = minetest.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20240811",
+	version = "20240812",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
@@ -735,7 +735,7 @@ end
 
 -- recipe item list and alternatives
 
-dofile(farming.path .. "/items_list.lua")
+dofile(farming.path .. "/item_list.lua")
 
 -- important items
 
@@ -816,8 +816,8 @@ ddoo("ginger.lua", farming.ginger)
 
 -- register food items, non-food items, recipes and stairs
 
-dofile(farming.path .. "/items_non_food.lua")
-dofile(farming.path .. "/items_food.lua")
+dofile(farming.path .. "/item_non_food.lua")
+dofile(farming.path .. "/item_food.lua")
 dofile(farming.path .. "/item_recipes.lua")
 dofile(farming.path .. "/item_stairs.lua")
 
