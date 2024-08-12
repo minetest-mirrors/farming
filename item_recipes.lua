@@ -1211,7 +1211,7 @@ minetest.register_craft( {
 
 -- straw
 
-local tmp = "group:food_wheat"
+local tmp = farming.mcl and "farming:rye" or "farming:wheat"
 
 minetest.register_craft({
 	output = "farming:straw 3",
@@ -1223,7 +1223,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "farming:wheat 3",
+	output = tmp .. " 3",
 	recipe = {{"farming:straw"}}
 })
 

@@ -1,6 +1,5 @@
 --[[
-	Farming Redo Mod
-	by TenPlus1
+	Farming Redo Mod by TenPlus1
 	NEW growing routine by prestidigitator
 	auto-refill by crabman77
 ]]
@@ -8,18 +7,14 @@
 -- Translation support
 local S = minetest.get_translator("farming")
 
--- set global
+-- global
 
 farming = {
 	mod = "redo",
 	version = "20240812",
 	path = minetest.get_modpath("farming"),
-	select = {
-		type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
-	},
-	select_final = {
-		type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}
-	},
+	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
+	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
 	registered_plants = {},
 	min_light = 12,
 	max_light = 15,
@@ -172,8 +167,6 @@ farming.plant_stages = plant_stages
  -- @return - The (possibly zero) number of stages of growth the plant will go through
  --           before being fully grown, or nil if not a plant.
 
-local register_plant_node
-
 -- Recursive helper
 
 local function reg_plant_stages(plant_name, stage, force_last)
@@ -251,9 +244,8 @@ local register_plant_node = function(node)
 	if plant_name then
 
 		local stages = reg_plant_stages(plant_name, stage, false)
+
 		return stages and #stages.stages_left
-	else
-		return nil
 	end
 end
 
@@ -291,14 +283,6 @@ function farming.handle_growth(pos, node)
 	if stages_left then set_growing(pos, stages_left) end
 end
 
-
-minetest.after(0, function()
-
-	for _, node_def in pairs(minetest.registered_nodes) do
-		register_plant_node(node_def)
-	end
-end)
-
 -- Just in case a growing type or added node is missed (also catches existing
 -- nodes added to map before timers were incorporated).
 
@@ -319,8 +303,7 @@ minetest.register_abm({
 
 		if def and def.groups and def.groups.seed then
 
-			-- start node timer if found
-			if def.on_timer then
+			if def.on_timer then -- start node timer if found
 
 				farming.start_seed_timer(pos)
 
@@ -331,24 +314,24 @@ minetest.register_abm({
 
 			def = minetest.registered_nodes[next_stage]
 
-			-- switch seed without timer to stage_1 of crop
-			if def then
+			if def then -- switch seed without timer to stage_1 of crop
 
 				local p2 = def.place_param2 or 1
 
 				minetest.set_node(pos, {name = next_stage, param2 = p2})
 			end
 		else
-			-- start normal crop timer
-			farming.handle_growth(pos, node)
+			farming.handle_growth(pos, node) -- start normal crop timer
 		end
 	end
 })
 
--- default check if on wet soil
+-- default check crop is on wet soil
 
 farming.can_grow = function(pos)
+
 	local below = minetest.get_node({x = pos.x, y = pos.y -1, z = pos.z})
+
 	return minetest.get_item_group(below.name, "soil") >= 3
 end
 
@@ -367,13 +350,11 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 	local chk1 = minetest.registered_nodes[node_name].growth_check -- old
 	local chk2 = minetest.registered_nodes[node_name].can_grow -- new
 
-	-- custom farming redo growth_check function
-	if chk1 then
+	if chk1 then -- custom farming redo growth_check function
 
 		if not chk1(pos, node_name) then return true end
 
-	-- custom mt 5.9x farming can_grow function
-	elseif chk2 then
+	elseif chk2 then -- custom mt 5.9x farming can_grow function
 
 		if not chk2(pos) then return true end
 
@@ -434,11 +415,7 @@ end
 
 function farming.refill_plant(player, plantname, index)
 
-	if not player then return end
-
-	local inv = player:get_inventory()
-
-	if not inv then return end
+	local inv = player and player:get_inventory() ; if not inv then return end
 
 	local old_stack = inv:get_stack("main", index)
 
@@ -703,9 +680,7 @@ farming.rice = true
 
 local input = io.open(farming.path .. "/farming.conf", "r")
 
-if input then
-	dofile(farming.path .. "/farming.conf") ; input:close()
-end
+if input then dofile(farming.path .. "/farming.conf") ; input:close() end
 
 -- load new world-specific settings if found inside world folder
 
@@ -713,9 +688,7 @@ local worldpath = minetest.get_worldpath()
 
 input = io.open(worldpath .. "/farming.conf", "r")
 
-if input then
-	dofile(worldpath .. "/farming.conf") ; input:close()
-end
+if input then dofile(worldpath .. "/farming.conf") ; input:close() end
 
 -- helper function to add {eatable} group to food items, also {flammable}
 
@@ -737,7 +710,7 @@ end
 
 dofile(farming.path .. "/item_list.lua")
 
--- important items
+-- setup soil, register hoes, override grass
 
 if minetest.get_modpath("default") then
 	dofile(farming.path .. "/soil.lua")
@@ -745,14 +718,6 @@ if minetest.get_modpath("default") then
 end
 
 dofile(farming.path.."/grass.lua")
-
--- default crops
-
-if not farming.mcl then
-	dofile(farming.path.."/crops/wheat.lua")
-end
-
-dofile(farming.path.."/crops/cotton.lua")
 
 -- disable crops Mineclone already has
 
@@ -764,7 +729,11 @@ if farming.mcl then
 	farming.beetroot = nil
 	farming.sunflower = nil
 	farming.pumpkin = nil
+else
+	dofile(farming.path.."/crops/wheat.lua") -- default crop outwith mineclone
 end
+
+dofile(farming.path.."/crops/cotton.lua") -- default crop
 
 -- helper function
 
