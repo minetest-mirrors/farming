@@ -80,7 +80,7 @@ minetest.register_node("farming:bottle_ethanol", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
-	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
+	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, handy = 1},
 	sounds = farming.node_sound_glass_defaults()
 })
 
@@ -113,7 +113,7 @@ minetest.register_node("farming:hemp_oil", {
 	},
 	groups = {
 		food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1,
-		compostability = 45
+		compostability = 45, handy = 1
 	},
 	sounds = farming.node_sound_glass_defaults()
 })
