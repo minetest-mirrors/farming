@@ -10,20 +10,6 @@ minetest.register_craftitem("farming:flour", {
 	groups = {food_flour = 1, flammable = 1}
 })
 
--- Bread
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:bread", {
-		description = S("Bread"),
-		inventory_image = "farming_bread.png",
-		on_use = minetest.item_eat(5),
-		groups = {food_bread = 1}
-	})
-
-	farming.add_eatable("farming:bread", 5)
-end
-
 -- Garlic bulb
 
 minetest.register_craftitem("farming:garlic", {
@@ -53,7 +39,7 @@ minetest.register_node("farming:garlic_braid", {
 		"crops_garlic_braid.png",
 		"crops_garlic_braid.png"
 	},
-	groups = {vessel = 1, dig_immediate = 3, flammable = 3, compostability = 65},
+	groups = {vessel = 1, dig_immediate = 3, flammable = 3, compostability = 65, handy = 1},
 	is_ground_content = false,
 	sounds = farming.node_sound_leaves_defaults(),
 	node_box = {
@@ -105,7 +91,7 @@ minetest.register_node("farming:coffee_cup", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.25, 0.25}
 	},
-	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, drink = 1},
+	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, drink = 1, handy = 1},
 	is_ground_content = false,
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
 	sounds = farming.node_sound_glass_defaults()
@@ -116,31 +102,8 @@ farming.add_eatable("farming:coffee_cup", 2)
 minetest.register_alias("farming:coffee_cup_hot", "farming:coffee_cup")
 minetest.register_alias("farming:drinking_cup", "vessels:drinking_glass")
 
--- Cocoa beans
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:cocoa_beans", {
-		description = S("Cocoa Beans"),
-		inventory_image = "farming_cocoa_beans.png",
-		groups = {compostability = 65, food_cocoa = 1, flammable = 2}
-	})
-end
-
--- Chocolate cookie
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:cookie", {
-		description = S("Cookie"),
-		inventory_image = "farming_cookie.png",
-		on_use = minetest.item_eat(2)
-	})
-
-	farming.add_eatable("farming:cookie", 2)
-end
-
 -- Bar of of dark chocolate (thx to Ice Pandora for her deviantart.com chocolate tutorial)
+
 minetest.register_craftitem("farming:chocolate_dark", {
 	description = S("Bar of Dark Chocolate"),
 	inventory_image = "farming_chocolate_dark.png",
@@ -150,11 +113,12 @@ minetest.register_craftitem("farming:chocolate_dark", {
 farming.add_eatable("farming:chocolate_dark", 3)
 
 -- Chocolate block (not edible)
+
 minetest.register_node("farming:chocolate_block", {
 	description = S("Chocolate Block"),
 	tiles = {"farming_chocolate_block.png"},
 	is_ground_content = false,
-	groups = {cracky = 2, oddly_breakable_by_hand = 2},
+	groups = {cracky = 2, oddly_breakable_by_hand = 2, handy = 1},
 	sounds = farming.node_sound_stone_defaults()
 })
 
@@ -189,19 +153,6 @@ minetest.register_craftitem("farming:carrot_juice", {
 
 farming.add_eatable("farming:carrot_juice", 4)
 
--- Golden carrot
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:carrot_gold", {
-		description = S("Golden Carrot"),
-		inventory_image = "farming_carrot_gold.png",
-		on_use = minetest.item_eat(10)
-	})
-
-	farming.add_eatable("farming:carrot_gold", 10)
-end
-
 -- Blueberry Pie
 
 minetest.register_craftitem("farming:blueberry_pie", {
@@ -223,19 +174,6 @@ minetest.register_craftitem("farming:muffin_blueberry", {
 })
 
 farming.add_eatable("farming:muffin_blueberry", 2)
-
--- beetroot soup
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:beetroot_soup", {
-		description = S("Beetroot Soup"),
-		inventory_image = "farming_beetroot_soup.png",
-		on_use = minetest.item_eat(6, "farming:bowl")
-	})
-
-	farming.add_eatable("farming:beetroot_soup", 6)
-end
 
 -- Tomato soup
 
@@ -289,17 +227,6 @@ minetest.register_craftitem("farming:glass_water", {
 	groups = {food_glass_water = 1, flammable = 3, vessel = 1}
 })
 
--- Sugar
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:sugar", {
-		description = S("Sugar"),
-		inventory_image = "farming_sugar.png",
-		groups = {food_sugar = 1, flammable = 3}
-	})
-end
-
 -- Sugar cube
 
 minetest.register_node("farming:sugar_cube", {
@@ -331,7 +258,7 @@ minetest.register_node("farming:salt", {
 	visual_scale = 0.8,
 	paramtype = "light",
 	tiles = {"farming_salt.png"},
-	groups = {food_salt = 1, vessel = 1, dig_immediate = 3, attached_node = 1},
+	groups = {food_salt = 1, vessel = 1, dig_immediate = 3, attached_node = 1, handy = 1},
 	is_ground_content = false,
 	sounds = farming.node_sound_defaults(),
 	selection_box = {
@@ -390,12 +317,11 @@ minetest.register_node("farming:salt_crystal", {
 	paramtype = "light",
 	light_source = 1,
 	tiles = {"farming_salt_crystal.png"},
-	groups = {dig_immediate = 3, attached_node = 1},
+	groups = {dig_immediate = 3, attached_node = 1, handy = 1},
 	is_ground_content = false,
 	sounds = farming.node_sound_defaults(),
 	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
+		type = "fixed", fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
@@ -419,7 +345,7 @@ minetest.register_node("farming:mayonnaise", {
 	},
 	groups = {
 		compostability = 65, food_mayonnaise = 1, vessel = 1, dig_immediate = 3,
-		attached_node = 1
+		attached_node = 1, handy = 1
 	},
 	sounds = farming.node_sound_glass_defaults()
 })
@@ -437,13 +363,12 @@ minetest.register_node("farming:rose_water", {
 	paramtype = "light",
 	tiles = {"farming_rose_water.png"},
 	groups = {
-		food_rose_water = 1, vessel = 1, dig_immediate = 3, attached_node = 1
+		food_rose_water = 1, vessel = 1, dig_immediate = 3, attached_node = 1, handy = 1
 	},
 	is_ground_content = false,
 	sounds = farming.node_sound_defaults(),
 	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
+		type = "fixed", fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	}
 })
 
@@ -766,14 +691,13 @@ minetest.register_node("farming:pepper_ground", {
 	paramtype = "light",
 	tiles = {"crops_pepper_ground.png"},
 	groups = {
-		vessel = 1, food_pepper_ground = 1,
+		vessel = 1, food_pepper_ground = 1, handy = 1,
 		dig_immediate = 3, attached_node = 1, compostability = 30
 	},
 	is_ground_content = false,
 	sounds = farming.node_sound_defaults(),
 	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
+		type = "fixed", fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	}
 })
 
@@ -798,19 +722,6 @@ minetest.register_craftitem("farming:pineapple_juice", {
 })
 
 farming.add_eatable("farming:pineapple_juice", 4)
-
--- Baked potato
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:baked_potato", {
-		description = S("Baked Potato"),
-		inventory_image = "farming_baked_potato.png",
-		on_use = minetest.item_eat(6)
-	})
-
-	farming.add_eatable("farming:baked_potato", 6)
-end
 
 -- Potato & cucumber Salad
 
@@ -912,12 +823,11 @@ minetest.register_node("farming:soy_sauce", {
 	paramtype = "light",
 	walkable = false,
 	selection_box = {
-		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+		type = "fixed", fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	groups = {
 		vessel = 1, food_soy_sauce = 1, dig_immediate = 3, attached_node = 1,
-		compostability = 65
+		compostability = 65, handy = 1
 	},
 	is_ground_content = false,
 	sounds = farming.node_sound_glass_defaults()
@@ -934,12 +844,11 @@ minetest.register_node("farming:soy_milk", {
 	paramtype = "light",
 	walkable = false,
 	selection_box = {
-		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+		type = "fixed", fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
 	groups = {
-		vessel = 1, food_milk_glass = 1, dig_immediate = 3,
+		vessel = 1, food_milk_glass = 1, dig_immediate = 3, handy = 1,
 		attached_node = 1, drink = 1, compostability = 65
 	},
 	is_ground_content = false,
@@ -999,7 +908,7 @@ minetest.register_node("farming:sunflower_oil", {
 	},
 	groups = {
 		food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1,
-		flammable = 2, compostability = 65
+		flammable = 2, compostability = 65, handy = 1
 	},
 	sounds = farming.node_sound_glass_defaults()
 })
@@ -1029,6 +938,78 @@ minetest.register_node("farming:vanilla_extract", {
 	selection_box = {
 		type = "fixed", fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
-	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
+	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, handy = 1},
 	sounds = farming.node_sound_glass_defaults(),
 })
+
+--= Foods we shouldn't add when using Mineclonia/VoxeLibre
+
+if not farming.mcl then
+
+	-- Bread
+
+	minetest.register_craftitem("farming:bread", {
+		description = S("Bread"),
+		inventory_image = "farming_bread.png",
+		on_use = minetest.item_eat(5),
+		groups = {food_bread = 1}
+	})
+
+	farming.add_eatable("farming:bread", 5)
+
+	-- Cocoa beans
+
+	minetest.register_craftitem("farming:cocoa_beans", {
+		description = S("Cocoa Beans"),
+		inventory_image = "farming_cocoa_beans.png",
+		groups = {compostability = 65, food_cocoa = 1, flammable = 2}
+	})
+
+	-- Chocolate cookie
+
+	minetest.register_craftitem("farming:cookie", {
+		description = S("Cookie"),
+		inventory_image = "farming_cookie.png",
+		on_use = minetest.item_eat(2)
+	})
+
+	farming.add_eatable("farming:cookie", 2)
+
+	-- Golden carrot
+
+	minetest.register_craftitem("farming:carrot_gold", {
+		description = S("Golden Carrot"),
+		inventory_image = "farming_carrot_gold.png",
+		on_use = minetest.item_eat(10)
+	})
+
+	farming.add_eatable("farming:carrot_gold", 10)
+
+	-- Beetroot soup
+
+	minetest.register_craftitem("farming:beetroot_soup", {
+		description = S("Beetroot Soup"),
+		inventory_image = "farming_beetroot_soup.png",
+		on_use = minetest.item_eat(6, "farming:bowl")
+	})
+
+	farming.add_eatable("farming:beetroot_soup", 6)
+
+	-- Sugar
+
+	minetest.register_craftitem("farming:sugar", {
+		description = S("Sugar"),
+		inventory_image = "farming_sugar.png",
+		groups = {food_sugar = 1, flammable = 3}
+	})
+
+	-- Baked potato
+
+	minetest.register_craftitem("farming:baked_potato", {
+		description = S("Baked Potato"),
+		inventory_image = "farming_baked_potato.png",
+		on_use = minetest.item_eat(6)
+	})
+
+	farming.add_eatable("farming:baked_potato", 6)
+end

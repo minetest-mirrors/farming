@@ -1,17 +1,6 @@
 
 local S = minetest.get_translator("farming")
 
--- wooden bowl
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:bowl", {
-		description = S("Wooden Bowl"),
-		inventory_image = "farming_bowl.png",
-		groups = {food_bowl = 1, flammable = 2}
-	})
-end
-
 -- saucepan
 
 minetest.register_craftitem("farming:saucepan", {
@@ -94,17 +83,6 @@ minetest.register_node("farming:bottle_ethanol", {
 	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
 	sounds = farming.node_sound_glass_defaults()
 })
-
--- String
-
-if not farming.mcl then
-
-	minetest.register_craftitem("farming:string", {
-		description = S("String"),
-		inventory_image = "farming_string.png",
-		groups = {flammable = 2}
-	})
-end
 
 -- straw
 
@@ -190,9 +168,49 @@ minetest.register_node("farming:hemp_rope", {
 	_mcl_blast_resistance = 1
 })
 
--- Jack 'O Lantern
+--- Wooden scarecrow base
+
+minetest.register_node("farming:scarecrow_bottom", {
+	description = S("Scarecrow Bottom"),
+	paramtype = "light",
+	sunlight_propagates = true,
+	paramtype2 = "facedir",
+	tiles = {"default_wood.png"},
+	drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-1/16, -8/16, -1/16, 1/16, 8/16, 1/16},
+			{-12/16, 4/16, -1/16, 12/16, 2/16, 1/16},
+		}
+	},
+	groups = {axey = 1, handy = 1, snappy = 3, flammable = 2},
+	is_ground_content = false,
+	_mcl_hardness = 0.8,
+	_mcl_blast_resistance = 1
+})
+
+--= Items we shouldn't add when using Mineclonia/VoxeLibre
 
 if not farming.mcl then
+
+	-- Wooden bowl
+
+	minetest.register_craftitem("farming:bowl", {
+		description = S("Wooden Bowl"),
+		inventory_image = "farming_bowl.png",
+		groups = {food_bowl = 1, flammable = 2}
+	})
+
+	-- String
+
+	minetest.register_craftitem("farming:string", {
+		description = S("String"),
+		inventory_image = "farming_string.png",
+		groups = {flammable = 2}
+	})
+
+	-- Jack 'O Lantern
 
 	minetest.register_node("farming:jackolantern", {
 		description = S("Jack 'O Lantern (punch to turn on and off)"),
@@ -250,26 +268,3 @@ if not farming.mcl then
 		_mcl_blast_resistance = 1
 	})
 end
-
---- Wooden scarecrow base
-
-minetest.register_node("farming:scarecrow_bottom", {
-	description = S("Scarecrow Bottom"),
-	paramtype = "light",
-	sunlight_propagates = true,
-	paramtype2 = "facedir",
-	tiles = {"default_wood.png"},
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-1/16, -8/16, -1/16, 1/16, 8/16, 1/16},
-			{-12/16, 4/16, -1/16, 12/16, 2/16, 1/16},
-		}
-	},
-	groups = {axey = 1, handy = 1, snappy = 3, flammable = 2},
-	is_ground_content = false,
-	_mcl_hardness = 0.8,
-	_mcl_blast_resistance = 1
-})
-
