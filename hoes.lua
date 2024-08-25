@@ -28,7 +28,7 @@ farming.register_hoe = function(name, def)
 		inventory_image = def.inventory_image,
 		groups = def.groups,
 		sound = {breaks = "default_tool_breaks"},
-		damage_groups = def.damage_groups,
+		damage_groups = def.damage_groups or {fleshy = 1},
 
 		on_use = function(itemstack, user, pointed_thing)
 			return farming.hoe_on_use(itemstack, user, pointed_thing, def.max_uses)
@@ -151,8 +151,7 @@ farming.register_hoe(":farming:hoe_wood", {
 	description = S("Wooden Hoe"),
 	inventory_image = "farming_tool_woodhoe.png",
 	max_uses = 30,
-	material = "group:wood",
-	damage_groups = {fleshy = 2}
+	material = "group:wood"
 })
 
 minetest.register_craft({
@@ -165,15 +164,15 @@ farming.register_hoe(":farming:hoe_stone", {
 	description = S("Stone Hoe"),
 	inventory_image = "farming_tool_stonehoe.png",
 	max_uses = 90,
-	material = "group:stone",
-	damage_groups = {fleshy = 2}
+	material = "group:stone"
 })
 
 farming.register_hoe(":farming:hoe_steel", {
 	description = S("Steel Hoe"),
 	inventory_image = "farming_tool_steelhoe.png",
 	max_uses = 200,
-	material = "default:steel_ingot"
+	material = "default:steel_ingot",
+	damage_groups = {fleshy = 2}
 })
 
 farming.register_hoe(":farming:hoe_bronze", {
@@ -182,7 +181,7 @@ farming.register_hoe(":farming:hoe_bronze", {
 	max_uses = 250,
 	groups = {not_in_creative_inventory = 1},
 	material = "default:bronze_ingot",
-	damage_groups = {fleshy = 3}
+	damage_groups = {fleshy = 2}
 })
 
 farming.register_hoe(":farming:hoe_mese", {
@@ -190,7 +189,7 @@ farming.register_hoe(":farming:hoe_mese", {
 	inventory_image = "farming_tool_mesehoe.png",
 	max_uses = 350,
 	groups = {not_in_creative_inventory = 1},
-	damage_groups = {fleshy = 4}
+	damage_groups = {fleshy = 3}
 })
 
 farming.register_hoe(":farming:hoe_diamond", {
@@ -198,7 +197,7 @@ farming.register_hoe(":farming:hoe_diamond", {
 	inventory_image = "farming_tool_diamondhoe.png",
 	max_uses = 500,
 	groups = {not_in_creative_inventory = 1},
-	damage_groups = {fleshy = 4}
+	damage_groups = {fleshy = 3}
 })
 
 -- Toolranks support
