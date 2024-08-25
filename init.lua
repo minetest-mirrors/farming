@@ -5,13 +5,14 @@
 ]]
 
 -- Translation support
+
 local S = minetest.get_translator("farming")
 
 -- global
 
 farming = {
 	mod = "redo",
-	version = "20240812",
+	version = "20240825",
 	path = minetest.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
