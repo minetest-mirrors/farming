@@ -12,7 +12,7 @@ local S = minetest.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20240906",
+	version = "20240907",
 	path = minetest.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -606,8 +606,10 @@ farming.register_plant = function(name, def)
 			next_plant = mname .. ":" .. pname .. "_" .. (i + 1)
 		end
 
+		local desc = pname:gsub("^%l", string.upper)
+
 		minetest.register_node(node_name, {
-			description = pname:gsub("^%l", string.upper) .. " Crop",
+			description = S(desc) .. S(" Crop"),
 			drawtype = "plantlike",
 			waving = 1,
 			tiles = {mname .. "_" .. pname .. "_" .. i .. ".png"},
