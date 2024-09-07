@@ -607,6 +607,7 @@ farming.register_plant = function(name, def)
 		end
 
 		minetest.register_node(node_name, {
+			description = pname:gsub("^%l", string.upper) .. " Crop",
 			drawtype = "plantlike",
 			waving = 1,
 			tiles = {mname .. "_" .. pname .. "_" .. i .. ".png"},
