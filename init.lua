@@ -12,7 +12,7 @@ local S = minetest.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20240907",
+	version = "20240910",
 	path = minetest.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -482,9 +482,8 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 		minetest.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
 
-		minetest.log("action", string.format(
-			"%s planted %s at %s",
-			placer:is_player() and placer:get_player_name() or "A mod",
+		minetest.log("action", string.format("%s planted %s at %s",
+			(placer and placer:is_player() and placer:get_player_name() or "A mod"),
 			itemstack:get_name(), minetest.pos_to_string(pt.above)
 		))
 
