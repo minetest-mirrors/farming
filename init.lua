@@ -17,8 +17,7 @@ farming = {
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
 	registered_plants = {},
-	min_light = 12,
-	max_light = 15,
+	min_light = 12, max_light = 15,
 	mapgen = minetest.get_mapgen_setting("mg_name"),
 	use_utensils = minetest.settings:get_bool("farming_use_utensils") ~= false,
 	mtg = minetest.get_modpath("default"),
@@ -59,8 +58,7 @@ end
 -- stats, locals, settings, function helper
 
 local statistics = dofile(farming.path .. "/statistics.lua")
-local random = math.random
-local floor = math.floor
+local random, floor = math.random, math.floor
 local time_speed = tonumber(minetest.settings:get("time_speed")) or 72
 local SECS_PER_CYCLE = (time_speed > 0 and (24 * 60 * 60) / time_speed) or 0
 local function clamp(x, min, max) return (x < min and min) or (x > max and max) or x end
