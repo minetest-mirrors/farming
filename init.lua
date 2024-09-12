@@ -12,7 +12,7 @@ local S = minetest.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20240910",
+	version = "20240912",
 	path = minetest.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -63,9 +63,7 @@ local random = math.random
 local floor = math.floor
 local time_speed = tonumber(minetest.settings:get("time_speed")) or 72
 local SECS_PER_CYCLE = (time_speed > 0 and (24 * 60 * 60) / time_speed) or 0
-local function clamp(x, min, max)
-	return (x < min and min) or (x > max and max) or x
-end
+local function clamp(x, min, max) return (x < min and min) or (x > max and max) or x end
 
 -- return amount of day or night that has elapsed
 -- dt is time elapsed, count_day if true counts day, otherwise night
@@ -237,8 +235,9 @@ local function reg_plant_stages(plant_name, stage, force_last)
 	return stages
 end
 
+-- split name and stage and register crop
 
-local register_plant_node = function(node)
+local function register_plant_node(node)
 
 	local plant_name, stage = plant_name_stage(node)
 
@@ -250,6 +249,7 @@ local register_plant_node = function(node)
 	end
 end
 
+-- check for further growth and set or stop timer
 
 local function set_growing(pos, stages_left)
 
@@ -283,6 +283,15 @@ function farming.handle_growth(pos, node)
 
 	if stages_left then set_growing(pos, stages_left) end
 end
+
+-- register crops nodes and add timer functions
+
+minetest.after(0, function()
+
+	for _, node_def in pairs(minetest.registered_nodes) do
+		register_plant_node(node_def)
+	end
+end)
 
 -- Just in case a growing type or added node is missed (also catches existing
 -- nodes added to map before timers were incorporated).
