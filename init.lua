@@ -12,7 +12,7 @@ local S = minetest.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20240912",
+	version = "20240919",
 	path = minetest.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -21,6 +21,7 @@ farming = {
 	mapgen = minetest.get_mapgen_setting("mg_name"),
 	use_utensils = minetest.settings:get_bool("farming_use_utensils") ~= false,
 	mtg = minetest.get_modpath("default"),
+	eth = minetest.get_modpath("ethereal"),
 	mcl = minetest.get_modpath("mcl_core"),
 	mcl_hardness = 0.01,
 	translate = S
