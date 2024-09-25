@@ -123,7 +123,7 @@ minetest.register_decoration({
 		octaves = 3,
 		persist = 0.6
 	},
-	y_min = 1, y_max = 6,
+	y_min = 1, y_max = 3,
 	decoration = "farming:pumpkin_8",
 	spawn_by = {"group:water", "group:sand"}, num_spawn_by = 1
 })

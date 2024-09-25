@@ -82,15 +82,11 @@ farming.registered_plants["farming:artichoke"] = {
 
 -- mapgen
 
-local spawn_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"}
-
-if farming.eth then
-	spawn_on = {"ethereal:grove_dirt"}
-end
-
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = spawn_on,
+	place_on = {
+		"default:dirt_with_grass", "mcl_core:dirt_with_grass", "ethereal:grove_dirt"
+	},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,
