@@ -672,7 +672,7 @@ farming.add_eatable("farming:mint_tea", 2)
 minetest.register_craftitem("farming:onion_soup", {
 	description = S("Onion Soup"),
 	inventory_image = "farming_onion_soup.png",
-	groups = {compostability = 65},
+	groups = {compostability = 65, drink = 1},
 	on_use = minetest.item_eat(6, a.bowl)
 })
 
@@ -683,7 +683,7 @@ farming.add_eatable("farming:onion_soup", 6)
 minetest.register_craftitem("farming:pea_soup", {
 	description = S("Pea Soup"),
 	inventory_image = "farming_pea_soup.png",
-	groups = {compostability = 65},
+	groups = {compostability = 65, drink = 1},
 	on_use = minetest.item_eat(4, a.bowl)
 })
 
