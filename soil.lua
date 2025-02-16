@@ -201,7 +201,7 @@ minetest.register_abm({
 	nodenames = {"group:field"},
 	neighbors = {"air"},
 	interval = 50,
-	chance = 15,
+	chance = 35,
 	catch_up = false,
 
 	action = function(pos, node)
