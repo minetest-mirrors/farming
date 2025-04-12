@@ -69,7 +69,7 @@ minetest.register_node("farming:potato_2", table.copy(def))
 def.tiles = {"farming_potato_3.png"}
 def.drop = {
 	items = {
-		{items = {"farming:potato"}, rarity = 1},
+		{items = {"farming:potato"}, rarity = 2},
 		{items = {"farming:potato"}, rarity = 3}
 	}
 }
@@ -83,7 +83,8 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:potato 2"}, rarity = 1},
-		{items = {"farming:potato 3"}, rarity = 2}
+		{items = {"farming:potato"}, rarity = 2},
+		{items = {"farming:potato"}, rarity = 3}
 	}
 }
 minetest.register_node("farming:potato_4", table.copy(def))

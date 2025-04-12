@@ -123,10 +123,10 @@ def.groups.growing = nil
 def.selection_box = farming.select_final
 def.drop = {
 	items = {
-		{items = {"farming:wheat"}, rarity = 1},
-		{items = {"farming:wheat"}, rarity = 3},
-		{items = {"farming:seed_wheat"}, rarity = 1},
-		{items = {"farming:seed_wheat"}, rarity = 3}
+		{items = {"farming:wheat 2"}, rarity = 1},
+		{items = {"farming:wheat"}, rarity = 2},
+		{items = {"farming:seed_wheat 2"}, rarity = 1},
+		{items = {"farming:seed_wheat"}, rarity = 2}
 	}
 }
 minetest.register_node("farming:wheat_8", table.copy(def))

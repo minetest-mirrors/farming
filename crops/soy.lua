@@ -64,7 +64,7 @@ minetest.register_node("farming:soy_4", table.copy(def))
 
 def.tiles = {"farming_soy_5.png"}
 def.drop = {
-	max_items = 1, items = {
+	items = {
 		{items = {"farming:soy_pod"}, rarity = 1},
 	}
 }
@@ -74,7 +74,7 @@ minetest.register_node("farming:soy_5", table.copy(def))
 
 def.tiles = {"farming_soy_6.png"}
 def.drop = {
-	max_items = 3, items = {
+	items = {
 		{items = {"farming:soy_pod"}, rarity = 1},
 		{items = {"farming:soy_pod"}, rarity = 2},
 		{items = {"farming:soy_pod"}, rarity = 3}
@@ -88,12 +88,11 @@ def.tiles = {"farming_soy_7.png"}
 def.groups.growing = nil
 def.selection_box = farming.select_final
 def.drop = {
-	max_items = 5, items = {
-		{items = {"farming:soy_pod"}, rarity = 1},
+	items = {
+		{items = {"farming:soy_pod 2"}, rarity = 1},
 		{items = {"farming:soy_pod"}, rarity = 2},
 		{items = {"farming:soy_pod"}, rarity = 3},
-		{items = {"farming:soy_pod"}, rarity = 4},
-		{items = {"farming:soy_pod"}, rarity = 5}
+		{items = {"farming:soy_pod"}, rarity = 4}
 	}
 }
 minetest.register_node("farming:soy_7", table.copy(def))
