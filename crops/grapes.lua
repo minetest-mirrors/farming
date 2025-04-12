@@ -233,9 +233,9 @@ minetest.register_node("farming:grapebush", {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {"farming:grapes 1"}, rarity = 1},
-			{items = {"farming:grapes 1"}, rarity = 2},
-			{items = {"farming:grapes 1"}, rarity = 3}
+			{items = {"farming:grapes"}, rarity = 1},
+			{items = {"farming:grapes"}, rarity = 2},
+			{items = {"farming:grapes"}, rarity = 3}
 		}
 	},
 	selection_box = farming.select,

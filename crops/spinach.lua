@@ -98,6 +98,6 @@ minetest.register_decoration({
 		persist = 0.6
 	},
 	y_min = 1, y_max = 100,
-	decoration = "farming:spinach_4",
+	decoration = "farming:spinach_3",
 	param2 = 3
 })

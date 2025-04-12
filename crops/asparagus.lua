@@ -59,7 +59,7 @@ minetest.register_node("farming:asparagus_3", table.copy(def))
 def.tiles = {"farming_asparagus_4.png"}
 def.drop = {
 	items = {
-		{items = {"farming:asparagus"}, rarity = 2}
+		{items = {"farming:asparagus"}, rarity = 1}
 	}
 }
 minetest.register_node("farming:asparagus_4", table.copy(def))
@@ -103,6 +103,6 @@ minetest.register_decoration({
 		persist = 0.6
 	},
 	y_min = 8, y_max = 32,
-	decoration = "farming:asparagus_5",
+	decoration = "farming:asparagus_4",
 	param2 = 3
 })

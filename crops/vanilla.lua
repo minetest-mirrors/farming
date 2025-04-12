@@ -74,7 +74,6 @@ def.tiles = {"farming_vanilla_7.png"}
 def.drop = {
 	items = {
 		{items = {"farming:vanilla"}, rarity = 1},
-		{items = {"farming:vanilla"}, rarity = 2},
 		{items = {"farming:vanilla"}, rarity = 3}
 	}
 }

@@ -75,7 +75,7 @@ minetest.register_node(":ethereal:strawberry_6", table.copy(def))
 def.tiles = {"ethereal_strawberry_7.png"}
 def.drop = {
 	items = {
-		{items = {"ethereal:strawberry"}, rarity = 2},
+		{items = {"ethereal:strawberry"}, rarity = 1},
 		{items = {"ethereal:strawberry"}, rarity = 3}
 	}
 }

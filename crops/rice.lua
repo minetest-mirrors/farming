@@ -94,11 +94,6 @@ minetest.register_node("farming:rice_4", table.copy(def))
 -- stage 5
 
 def.tiles = {"farming_rice_5.png"}
-def.drop = {
-	items = {
-		{items = {"farming:rice"}, rarity = 2}
-	}
-}
 minetest.register_node("farming:rice_5", table.copy(def))
 
 -- stage 6
@@ -106,7 +101,7 @@ minetest.register_node("farming:rice_5", table.copy(def))
 def.tiles = {"farming_rice_6.png"}
 def.drop = {
 	items = {
-		{items = {"farming:rice"}, rarity = 2}
+		{items = {"farming:seed_rice"}, rarity = 2}
 	}
 }
 minetest.register_node("farming:rice_6", table.copy(def))
@@ -117,7 +112,6 @@ def.tiles = {"farming_rice_7.png"}
 def.drop = {
 	items = {
 		{items = {"farming:seed_rice"}, rarity = 1},
-		{items = {"farming:seed_rice"}, rarity = 2},
 		{items = {"farming:seed_rice"}, rarity = 3}
 	}
 }

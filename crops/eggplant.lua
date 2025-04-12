@@ -67,8 +67,7 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:eggplant 2"}, rarity = 1},
-		{items = {"farming:eggplant"}, rarity = 2},
-		{items = {"farming:eggplant"}, rarity = 3}
+		{items = {"farming:eggplant"}, rarity = 2}
 	}
 }
 minetest.register_node("farming:eggplant_4", table.copy(def))

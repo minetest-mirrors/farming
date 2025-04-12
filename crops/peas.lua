@@ -74,8 +74,7 @@ def.drop = {
 	items = {
 		{items = {"farming:pea_pod 2"}, rarity = 1},
 		{items = {"farming:pea_pod"}, rarity = 2},
-		{items = {"farming:pea_pod"}, rarity = 3},
-		{items = {"farming:pea_pod"}, rarity = 4}
+		{items = {"farming:pea_pod"}, rarity = 3}
 	}
 }
 minetest.register_node("farming:pea_5", table.copy(def))
