@@ -12,7 +12,7 @@ local S = minetest.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20250327",
+	version = "20250417",
 	path = minetest.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -295,6 +295,23 @@ end)
 -- Just in case a growing type or added node is missed (also catches existing
 -- nodes added to map before timers were incorporated).
 
+minetest.register_lbm({
+	label = "Start crop timer",
+	name = "farming:start_crop_timer",
+	nodenames = {"group:growing"},
+	run_at_every_load = false,
+
+	action = function(pos, node, dtime_s)
+
+		local timer = minetest.get_node_timer(pos)
+
+		if timer:is_started() then return end
+
+		farming.start_seed_timer(pos)
+	end
+})
+
+--[[
 minetest.register_abm({
 	label = "Start crop timer",
 	nodenames = {"group:growing"},
@@ -333,7 +350,7 @@ minetest.register_abm({
 			farming.handle_growth(pos, node) -- start normal crop timer
 		end
 	end
-})
+})]]
 
 -- default check crop is on wet soil
 
