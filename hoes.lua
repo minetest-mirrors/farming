@@ -37,11 +37,8 @@ farming.register_hoe = function(name, def)
 
 	-- Register its recipe
 	if def.recipe then
+		core.register_craft({ output = name:sub(2), recipe = def.recipe })
 
-		core.register_craft({
-			output = name:sub(2),
-			recipe = def.recipe
-		})
 	elseif def.material then
 
 		core.register_craft({
@@ -245,7 +242,7 @@ local function hoe_area(pos, player)
 	local res = core.find_nodes_in_area(
 			{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
 			{x = pos.x + r, y = pos.y + 2, z = pos.z + r},
-			{"group:flora", "default:dry_shrub"})
+			{"group:flora", "group:grass", "group:dry_grass", "default:dry_shrub"})
 
 	for n = 1, #res do
 		core.swap_node(res[n], {name = "air"})
