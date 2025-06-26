@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20250504",
+	version = "20250626",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
