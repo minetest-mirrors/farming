@@ -271,9 +271,6 @@ core.register_entity("farming:hoebomb_entity", {
 		collisionbox = {-0.2,-0.2,-0.2,0.2,0.2,0.2}
 	},
 
-	lastpos = {},
-	player = "",
-
 	on_step = function(self, dtime, moveresult)
 
 		if not self.player then
@@ -283,7 +280,6 @@ core.register_entity("farming:hoebomb_entity", {
 		if moveresult.collides then
 
 			local pos = vector.round(self.object:get_pos())
-			local def = moveresult.collisions and moveresult.collisions[1] or {}
 
 			pos.y = pos.y - 1 ; hoe_area(pos, self.player)
 
