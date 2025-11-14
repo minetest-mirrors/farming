@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20250717",
+	version = "20251114",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -262,7 +262,8 @@ local function set_growing(pos, stages_left)
 
 			local stage_length = statistics.normal(STAGE_LENGTH_AVG, STAGE_LENGTH_DEV)
 
-			stage_length = clamp(stage_length, 0.5 * STAGE_LENGTH_AVG, 3.0 * STAGE_LENGTH_AVG)
+			stage_length = clamp(
+					stage_length, 0.5 * STAGE_LENGTH_AVG, 3.0 * STAGE_LENGTH_AVG)
 
 			timer:set(stage_length, -0.5 * random() * STAGE_LENGTH_AVG)
 		end
@@ -502,8 +503,8 @@ function farming.register_plant(name, def)
 	-- Check def
 	def.description = def.description or S("Seed")
 	def.inventory_image = def.inventory_image or "unknown_item.png"
-	def.minlight = def.minlight or 12
-	def.maxlight = def.maxlight or 15
+	def.minlight = def.minlight or farming.min_light
+	def.maxlight = def.maxlight or farming.max_light
 
 	-- Register seed
 	core.register_node(":" .. mname .. ":seed_" .. pname, {
