@@ -322,15 +322,15 @@ core.register_craftitem("farming:hoe_bomb", {
 			hoe_area(pointed_thing.under, user)
 		else
 			throw_potion(itemstack, user)
-
-			if not farming.is_creative(user:get_player_name()) then
-
-				itemstack:take_item()
-
-				return itemstack
-			end
 		end
-	end,
+
+		if not farming.is_creative(user:get_player_name()) then
+
+			itemstack:take_item()
+
+			return itemstack
+		end
+	end
 })
 
 -- helper function
