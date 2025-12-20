@@ -364,6 +364,12 @@ core.register_tool("farming:scythe_mithril", {
 
 	on_use = function(itemstack, placer, pointed_thing)
 
+		-- if punching entity/object
+		if pointed_thing.type == "object" then
+			pointed_thing.ref:punch(placer, 1, {full_punch_interval = 1.0})
+			return itemstack
+		end
+
 		if pointed_thing.type ~= "node" then return end
 
 		local pos = pointed_thing.under
