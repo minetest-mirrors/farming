@@ -72,6 +72,13 @@ stage_length setting.  This is mostly used for special functions or 3rd party mo
 farming.start_seed_timer(pos)
 
 
+### Eatable
+
+A quick function to add {eatable='hp', flammable=2, food='type'} groups to a food item, food_type is generally 2 for food, 3 for drink and 1 for other/unsure to tie in with other games and mods.
+
+farming.add_eatable(item, hp, food_type)
+
+
 Node Sounds
 -----------
 
