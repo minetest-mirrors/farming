@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260122",
+	version = "20260104",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -444,7 +444,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	-- check if pointing at the top of the node
 	if pt.above.y ~= pt.under.y + 1 then return end
 
-	-- return if any of the nodes is not registered
+	-- return if any of the nodes arent registered
 	if not core.registered_nodes[under.name]
 	or not core.registered_nodes[above.name] then return end
 
@@ -465,7 +465,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 		farming.start_seed_timer(pt.above)
 
-		core.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
+		core.sound_play("default_place_node", {pos = pt.above}, true)
 
 		core.log("action", string.format("%s planted %s at %s",
 			(placer and placer:is_player() and placer:get_player_name() or "A mod"),
