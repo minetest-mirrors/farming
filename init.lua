@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260316",
+	version = "20260320",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -192,10 +192,22 @@ local function reg_plant_stages(plant_name, stage, force_last)
 
 		if #stages_left > 0 then
 
+			-- next_plant name
+			local next_name = plant_name .. "_" .. (stage + 1)
+			local next_add
+
+			-- if next_plant doesnt already exist, add to node
+			if core.registered_nodes[next_name]
+			and not core.registered_nodes[node_name].next_plant then
+				next_add = next_name
+			end
+
 			local old_constr = node_def.on_construct
 			local old_destr  = node_def.on_destruct
 
 			core.override_item(node_name, {
+
+				next_plant = next_add,
 
 				on_construct = function(pos)
 
@@ -414,6 +426,18 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 	end
 
 	return growth ~= max_growth
+end
+
+-- Compatibility function for default farming mod, forces a growth step
+
+function farming.grow_plant(pos, elapsed)
+
+	local node = core.get_node(pos)
+	local def = core.registered_nodes[node.name]
+
+	elapsed = elapsed or STAGE_LENGTH_AVG
+
+	farming.plant_growth_timer(pos, elapsed, node.name)
 end
 
 -- refill placed plant by crabman (26/08/2015) updated by TenPlus1
