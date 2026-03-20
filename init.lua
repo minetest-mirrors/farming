@@ -196,9 +196,7 @@ local function reg_plant_stages(plant_name, stage, force_last)
 			local next_name = plant_name .. "_" .. (stage + 1)
 			local next_add
 
-			-- if next_plant doesnt already exist, add to node
-			if core.registered_nodes[next_name]
-			and not core.registered_nodes[node_name].next_plant then
+			if core.registered_nodes[next_name] then
 				next_add = next_name
 			end
 
