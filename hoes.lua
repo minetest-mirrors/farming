@@ -12,11 +12,9 @@ farming.register_hoe = function(name, def)
 	if name:sub(1,1) ~= ":" then name = ":" .. name end
 
 	-- Check def table
-	if def.description == nil then def.description = S("Hoe") end
-
-	if def.inventory_image == nil then def.inventory_image = "unknown_item.png" end
-
-	if def.max_uses == nil then def.max_uses = 30 end
+	def.description = def.description or S("Hoe")
+	def.inventory_image = def.inventory_image or "unknown_item.png"
+	def.max_uses = def.max_uses or 30
 
 	-- add hoe group
 	def.groups = def.groups or {}
@@ -43,7 +41,7 @@ farming.register_hoe = function(name, def)
 	})
 
 	if recipe then
-		core.register_craft({ output = name:sub(2), recipe = recipe })
+		core.register_craft({output = name:sub(2), recipe = recipe})
 	end
 end
 
@@ -196,29 +194,23 @@ farming.register_hoe(":farming:hoe_diamond", {
 
 if mod_tr then
 
-	core.override_item("farming:hoe_wood", {
-		original_description = S("Wood Hoe"),
-		description = toolranks.create_description(S("Wood Hoe"))})
+	core.override_item("farming:hoe_wood", {original_description = S("Wood Hoe"),
+			description = toolranks.create_description(S("Wood Hoe"))})
 
-	core.override_item("farming:hoe_stone", {
-		original_description = S("Stone Hoe"),
-		description = toolranks.create_description(S("Stone Hoe"))})
+	core.override_item("farming:hoe_stone", {original_description = S("Stone Hoe"),
+			description = toolranks.create_description(S("Stone Hoe"))})
 
-	core.override_item("farming:hoe_steel", {
-		original_description = S("Steel Hoe"),
-		description = toolranks.create_description(S("Steel Hoe"))})
+	core.override_item("farming:hoe_steel", {original_description = S("Steel Hoe"),
+			description = toolranks.create_description(S("Steel Hoe"))})
 
-	core.override_item("farming:hoe_bronze", {
-		original_description = S("Bronze Hoe"),
-		description = toolranks.create_description(S("Bronze Hoe"))})
+	core.override_item("farming:hoe_bronze", {original_description = S("Bronze Hoe"),
+			description = toolranks.create_description(S("Bronze Hoe"))})
 
-	core.override_item("farming:hoe_mese", {
-		original_description = S("Mese Hoe"),
-		description = toolranks.create_description(S("Mese Hoe"))})
+	core.override_item("farming:hoe_mese", {original_description = S("Mese Hoe"),
+			description = toolranks.create_description(S("Mese Hoe"))})
 
-	core.override_item("farming:hoe_diamond", {
-		original_description = S("Diamond Hoe"),
-		description = toolranks.create_description(S("Diamond Hoe"))})
+	core.override_item("farming:hoe_diamond", {original_description = S("Diamond Hoe"),
+			description = toolranks.create_description(S("Diamond Hoe"))})
 end
 
 -- hoe bomb function
@@ -236,12 +228,12 @@ local function hoe_area(pos, player)
 	-- remove flora (grass, flowers etc.)
 	local res = core.find_nodes_in_area(
 			{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
-			{x = pos.x + r, y = pos.y + 1, z = pos.z + r}, {
-				"group:flora", "group:grass", "group:dry_grass",
-				"default:dry_shrub", "farming:weed"})
+			{x = pos.x + r, y = pos.y + 1, z = pos.z + r},
+			{"group:flora", "group:grass", "group:dry_grass", "default:dry_shrub",
+					"farming:weed"})
 
 	for n = 1, #res do
-		core.swap_node(res[n], {name = "air"})
+		core.remove_node(res[n])
 	end
 
 	-- replace dirt with tilled soil
@@ -289,7 +281,6 @@ core.register_entity("farming:hoebomb_entity", {
 local function throw_potion(itemstack, player)
 
 	local pos = player:get_pos()
-
 	local obj = core.add_entity({
 			x = pos.x, y = pos.y + 1.5, z = pos.z}, "farming:hoebomb_entity")
 
@@ -424,7 +415,7 @@ core.register_tool("farming:scythe_mithril", {
 		end
 
 		-- play sound
-		core.sound_play("default_grass_footstep", {pos = pos, gain = 1.0}, true)
+		core.sound_play("default_grass_footstep", {pos = pos}, true)
 
 		-- replace with seed or crop_1
 		local replace = mname .. ":" .. pname .. "1"
@@ -435,7 +426,7 @@ core.register_tool("farming:scythe_mithril", {
 
 			core.set_node(pos, {name = replace, param2 = p2})
 		else
-			core.set_node(pos, {name = "air"})
+			core.remove_node(pos)
 		end
 
 		if not farming.is_creative(name) then
