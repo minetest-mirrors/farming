@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260320",
+	version = "20260426",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -729,10 +729,10 @@ dofile(farming.path .. "/item_list.lua")
 
 if core.get_modpath("default") then
 	dofile(farming.path .. "/soil.lua")
-	dofile(farming.path .. "/hoes.lua")
 end
 
-dofile(farming.path.."/grass.lua")
+dofile(farming.path .. "/hoes.lua")
+dofile(farming.path .. "/grass.lua")
 
 -- disable crops Mineclone already has
 

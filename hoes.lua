@@ -3,10 +3,11 @@
 
 local S = core.get_translator("farming")
 local mod_tr = core.get_modpath("toolranks")
+local mod_mcl = core.get_modpath("mcl_core")
 
 -- Hoe registration function
 
-farming.register_hoe = function(name, def)
+function farming.register_hoe(name, def)
 
 	-- Check for : prefix (register new hoes in your mod's namespace)
 	if name:sub(1,1) ~= ":" then name = ":" .. name end
@@ -34,11 +35,8 @@ farming.register_hoe = function(name, def)
 	})
 
 	-- Register its recipe
-	local recipe = def.recipe or (def.material and {
-		{def.material, def.material},
-		{"", "group:stick"},
-		{"", "group:stick"}
-	})
+	local recipe = not mod_mcl and (def.recipe or def.material and {
+			{def.material, def.material}, {"", "group:stick"}, {"", "group:stick"} })
 
 	if recipe then
 		core.register_craft({output = name:sub(2), recipe = recipe})
@@ -66,11 +64,17 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 
 		-- do we have space above and tillable dirt below
 		if core.get_node({x = upos.x, y = upos.y + 1, z = upos.z}).name ~= "air"
-		or udef.groups.soil ~= 1 or not udef.soil
-		or not udef.soil.wet or not udef.soil.dry then return end
+		or udef.groups.soil ~= 1 then return end
+
+		-- mineclonia compatibility check before default soil check
+		if not mod_mcl and (not udef.soil or not udef.soil.wet or not udef.soil.dry) then
+			return
+		end
+
+		local new_dirt = mod_mcl and "mcl_farming:soil" or udef.soil.dry
 
 		-- turn the node into soil, mark hoe for wear and play sound
-		core.set_node(pt.under, {name = udef.soil.dry}) ; is_used = true
+		core.set_node(pt.under, {name = new_dirt}) ; is_used = true
 
 		core.sound_play("default_dig_crumbly", {pos = upos, gain = 0.5}, true)
 	end
