@@ -82,7 +82,7 @@ core.register_craft({
 -- kiwi vine schematic
 
 local _ = {name = "air", param1 = 0}
-local k = {name = "farming:kiwi", param1 = 195}
+local k = {name = "farming:kiwi", param1 = 215}
 local L = {name = "farming:kiwi_leaves", param1 = 255}
 local l = {name = "farming:kiwi_leaves", param1 = 127}
 local t = {name = "farming:kiwi_vine", param1 = 255, param2 = 20}
