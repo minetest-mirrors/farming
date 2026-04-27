@@ -122,4 +122,6 @@ lucky_block:add_blocks({
 	}},
 	{"dro", {"farming:chili_powder"}, 5},
 	{"dro", {"farming:weed"}, 9},
+	{"dro", {"farming:kiwi", "ethereal:orange", "farming:kiwi_sorbet",
+		"farming:turkish_delight"}, 5}
 })

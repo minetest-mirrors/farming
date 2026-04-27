@@ -963,7 +963,7 @@ core.register_craftitem("farming:jerusalem_artichokes", {
 
 farming.add_eatable("farming:jerusalem_artichokes", 11)
 
--- Kiwi Lime Sorbet
+-- Kiwi Sorbet
 
 core.register_craftitem("farming:kiwi_sorbet", {
 	description = S("Kiwi Sorbet"),

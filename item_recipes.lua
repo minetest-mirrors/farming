@@ -1035,7 +1035,7 @@ local lemon = "group:food_kiwi"
 if core.get_modpath("ethereal") then lemon = "group:food_lemon" end
 
 core.register_craft({
-	output = "farming:kiwi_sorbet", -- kiwi_sorbet(2kiwi,lime,sugar,snow)
+	output = "farming:kiwi_sorbet",
 	recipe = {
 		{"group:food_kiwi", lemon, "group:food_kiwi"},
 		{"group:food_sugar", a.bowl, "group:food_sugar"},
