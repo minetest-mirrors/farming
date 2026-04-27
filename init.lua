@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260426",
+	version = "20260427",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -688,6 +688,7 @@ farming.sunflower = 0.002
 farming.ginger = 0.002
 farming.strawberry = 0.002
 farming.cotton = 0.003
+farming.kiwi = 0.001
 farming.grains = true
 farming.rice = true
 
@@ -797,6 +798,7 @@ ddoo("asparagus.lua", farming.asparagus)
 ddoo("eggplant.lua", farming.eggplant)
 ddoo("spinach.lua", farming.eggplant)
 ddoo("ginger.lua", farming.ginger)
+ddoo("kiwi.lua", farming.kiwi)
 
 -- register food items, non-food items, recipes and stairs
 
