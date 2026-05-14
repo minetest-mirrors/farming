@@ -43,6 +43,7 @@ farming.parsley = 0.002
 farming.sunflower = 0.002
 farming.ginger = 0.002
 farming.cotton = 0.003
+farming.kiwi = 0.001
 farming.strawberry = 0.002
 farming.grains = true -- true or false only
 farming.rice = true
