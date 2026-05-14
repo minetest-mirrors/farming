@@ -218,7 +218,8 @@ def = {
 if mod_mcl then
 	def.place_on = "mcl_core:dirt_with_grass"
 elseif mod_def then
-	def.place_on = "default:dry_dirt_with_dry_grass"
+	def.place_on = {"default:dry_dirt_with_dry_grass",
+			"ebiomes:dirt_with_jungle_savanna_grass"}
 end
 
 def.spawn_by = def.place_on
