@@ -18,7 +18,7 @@ farming_carrot (Carrot spawn ratio, 0 to disable) float 0.002
 farming_chili (Chili spawn ratio, 0 to disable) float 0.003
 farming_coffee (Coffee spawn ratio, 0 to disable) float 0.002
 farming_corn (Corn spawn ratio, 0 to disable) float 0.002
-farming_cotton (Cotton spawn ratio, 0 to disable) float 0.003
+farming_cotton (Wild Cotton spawn ratio) float 0.003
 farming_cucumber (Cucumber spawn ratio, 0 to disable) float 0.002
 farming_eggplant (Eggplant spawn ratio, 0 to disable) float 0.002
 farming_garlic (Garlic spawn ratio, 0 to disable) float 0.002
