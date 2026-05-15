@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260427",
+	version = "20260515",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -315,9 +315,7 @@ core.register_lbm({
 
 	action = function(pos, node, dtime_s)
 
-		local timer = core.get_node_timer(pos)
-
-		if timer:is_started() then return end
+		if core.get_node_timer(pos):is_started() then return end
 
 		farming.start_seed_timer(pos)
 	end
@@ -650,47 +648,55 @@ end
 
 -- default settings
 
-farming.asparagus = 0.002
-farming.eggplant = 0.002
-farming.spinach = 0.002
-farming.carrot = 0.002
-farming.potato = 0.002
-farming.tomato = 0.002
-farming.cucumber = 0.002
-farming.corn = 0.002
-farming.coffee = 0.002
-farming.melon = 0.009
-farming.pumpkin = 0.009
-farming.cocoa = true
-farming.raspberry = 0.002
-farming.blueberry = 0.002
-farming.rhubarb = 0.002
-farming.beans = 0.002
-farming.grapes = 0.002
-farming.barley = true
-farming.chili = 0.003
-farming.hemp = 0.003
-farming.garlic = 0.002
-farming.onion = 0.002
-farming.pepper = 0.002
-farming.pineapple = 0.003
-farming.peas = 0.002
-farming.beetroot = 0.002
-farming.mint = 0.005
-farming.cabbage = 0.002
-farming.blackberry = 0.002
-farming.soy = 0.002
-farming.vanilla = 0.002
-farming.lettuce = 0.002
-farming.artichoke = 0.002
-farming.parsley = 0.002
-farming.sunflower = 0.002
-farming.ginger = 0.002
-farming.strawberry = 0.002
-farming.cotton = 0.003
-farming.kiwi = 0.001
-farming.grains = true
-farming.rice = true
+local function get_set(name, def_value)
+
+	local value = core.settings:get("farming_" .. name)
+
+	farming[name] = value and tonumber(value) or def_value
+end
+
+get_set("asparagus", 0.002)
+get_set("eggplant", 0.002)
+get_set("spinach", 0.002)
+get_set("carrot", 0.002)
+get_set("potato", 0.002)
+get_set("tomato", 0.002)
+get_set("cucumber", 0.002)
+get_set("corn", 0.002)
+get_set("coffee", 0.002)
+get_set("melon", 0.009)
+get_set("pumpkin", 0.009)
+get_set("raspberry", 0.002)
+get_set("blueberry", 0.002)
+get_set("rhubarb", 0.002)
+get_set("beans", 0.002)
+get_set("grapes", 0.002)
+get_set("chili", 0.003)
+get_set("hemp", 0.003)
+get_set("garlic", 0.002)
+get_set("onion", 0.002)
+get_set("pepper", 0.002)
+get_set("pineapple", 0.003)
+get_set("peas", 0.002)
+get_set("beetroot", 0.002)
+get_set("mint", 0.005)
+get_set("cabbage", 0.002)
+get_set("blackberry", 0.002)
+get_set("soy", 0.002)
+get_set("vanilla", 0.002)
+get_set("lettuce", 0.002)
+get_set("artichoke", 0.002)
+get_set("parsley", 0.002)
+get_set("sunflower", 0.002)
+get_set("ginger", 0.002)
+get_set("strawberry", 0.002)
+get_set("cotton", 0.003)
+get_set("kiwi", 0.001)
+
+farming.grains = core.settings:get_bool("farming_grains") ~= false
+farming.rice = core.settings:get_bool("farming_rice") ~= false
+farming.cocoa = core.settings:get_bool("farming_cocoa") ~= false
+farming.barley = core.settings:get_bool("farming_barley") ~= false
 
 -- Load new global settings if found inside mod folder
 
@@ -755,7 +761,7 @@ dofile(farming.path.."/crops/cotton.lua") -- default crop
 
 local function ddoo(file, check)
 
-	if check then dofile(farming.path .. "/crops/" .. file) end
+	if check and check ~= 0 then dofile(farming.path .. "/crops/" .. file) end
 end
 
 -- add additional crops and food (if enabled)
@@ -767,13 +773,11 @@ ddoo("corn.lua", farming.corn)
 ddoo("coffee.lua", farming.coffee)
 ddoo("melon.lua", farming.melon)
 ddoo("pumpkin.lua", farming.pumpkin)
-ddoo("cocoa.lua", farming.cocoa)
 ddoo("raspberry.lua", farming.raspberry)
 ddoo("blueberry.lua", farming.blueberry)
 ddoo("rhubarb.lua", farming.rhubarb)
 ddoo("beans.lua", farming.beans)
 ddoo("grapes.lua", farming.grapes)
-ddoo("barley.lua", farming.barley)
 ddoo("hemp.lua", farming.hemp)
 ddoo("garlic.lua", farming.garlic)
 ddoo("onion.lua", farming.onion)
@@ -782,8 +786,6 @@ ddoo("pineapple.lua", farming.pineapple)
 ddoo("peas.lua", farming.peas)
 ddoo("beetroot.lua", farming.beetroot)
 ddoo("chili.lua", farming.chili)
-ddoo("rye_oat.lua", farming.grains)
-ddoo("rice.lua", farming.rice)
 ddoo("mint.lua", farming.mint)
 ddoo("cabbage.lua", farming.cabbage)
 ddoo("blackberry.lua", farming.blackberry)
@@ -799,6 +801,10 @@ ddoo("eggplant.lua", farming.eggplant)
 ddoo("spinach.lua", farming.eggplant)
 ddoo("ginger.lua", farming.ginger)
 ddoo("kiwi.lua", farming.kiwi)
+ddoo("rye_oat.lua", farming.grains)
+ddoo("cocoa.lua", farming.cocoa)
+ddoo("barley.lua", farming.barley)
+ddoo("rice.lua", farming.rice)
 
 -- register food items, non-food items, recipes and stairs
 
