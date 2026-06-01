@@ -10,6 +10,72 @@ core.register_craftitem("farming:flour", {
 	groups = {food_flour = 1, flammable = 1}
 })
 
+-- Chapathi
+
+core.register_craftitem("farming:chapathi", {
+	description = S("Chapathi"),
+	inventory_image = "farming_chapathi.png",
+	on_use = core.item_eat(5),
+	groups = {food_chapathi = 1, compostability = 55}
+})
+
+farming.add_eatable("farming:chapathi", 5)
+
+-- Gulab Jamun
+
+core.register_craftitem("farming:gulab_jamun", {
+	description = S("Gulab Jamun"),
+	inventory_image = "farming_gulab_jamun.png",
+	on_use = core.item_eat(3),
+	groups = {compostability = 55}
+})
+
+farming.add_eatable("farming:gulab_jamun", 3)
+
+-- KitKat
+
+core.register_craftitem("farming:kitkat", {
+	description = S("KitKat"),
+	inventory_image = "farming_kitkat.png",
+	on_use = core.item_eat(5),
+	groups = {compostability = 55}
+})
+
+farming.add_eatable("farming:kitkat", 5)
+
+-- Laddu
+
+core.register_craftitem("farming:laddu", {
+	description = S("Laddu"),
+	inventory_image = "farming_laddu.png",
+	on_use = core.item_eat(5),
+	groups = {compostability = 55}
+})
+
+farming.add_eatable("farming:laddu", 5)
+
+-- Samosa
+
+core.register_craftitem("farming:samosa", {
+	description = S("Samosa"),
+	inventory_image = "farming_samosa.png",
+	on_use = core.item_eat(7),
+	groups = {compostability = 55}
+})
+
+farming.add_eatable("farming:samosa", 7)
+
+-- Croissant
+
+core.register_craftitem("farming:croissant", {
+	description = S("Croissant"),
+	inventory_image = "farming_croissant.png",
+	on_use = core.item_eat(3),
+	groups = {food_bread = 1, compostability = 55}
+})
+
+farming.add_eatable("farming:croissant", 3)
+
 -- Garlic bulb
 
 core.register_craftitem("farming:garlic", {
