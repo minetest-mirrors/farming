@@ -105,6 +105,8 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 			if mod_tr then wear = 1 else wear = 0 end
 		end
 
+		local under = ""
+
 		if mod_tr then
 			itemstack = toolranks.new_afteruse(itemstack, user, under, {wear = wear})
 		else
