@@ -49,13 +49,14 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 
 	local pt = pointed_thing or {}
 	local is_used = false
+	local under = ""
 
 	-- am I pointing at the top of a dirt node
 	if pt.type == "node" and pt.above.y == pt.under.y + 1 then
 
 		local pname = user:get_player_name() or ""
 		local upos = pointed_thing.under
-		local under = core.get_node(upos)
+		under = core.get_node(upos)
 		local udef = core.registered_nodes[under.name] ; if not udef then return end
 
 		if core.is_protected(upos, pname) then
@@ -104,8 +105,6 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 		if farming.is_creative(user:get_player_name()) then
 			if mod_tr then wear = 1 else wear = 0 end
 		end
-
-		local under = ""
 
 		if mod_tr then
 			itemstack = toolranks.new_afteruse(itemstack, user, under, {wear = wear})
