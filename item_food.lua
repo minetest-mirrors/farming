@@ -10,6 +10,18 @@ core.register_craftitem("farming:flour", {
 	groups = {food_flour = 1, flammable = 1}
 })
 
+-- Tortang Talong
+
+core.register_craftitem("farming:tortang_talong", {
+	description = S("Tortang Talong"),
+	inventory_image = "farming_tortang_talong.png",
+	on_use = core.item_eat(10),
+	groups = {compostability = 55}
+})
+
+farming.add_eatable("farming:tortang_talong", 10)
+
+
 -- Chapathi
 
 core.register_craftitem("farming:chapathi", {

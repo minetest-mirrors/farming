@@ -79,6 +79,20 @@ core.register_craft({
 	}
 })
 
+-- tortang talong
+
+core.register_craft({
+	output = "farming:tortang_talong",
+	recipe = {
+		{"farming:baking_tray", "group:food_eggplant", "group:food_egg"},
+		{a.skillet, "group:food_rice", "group:food_rice"}
+	},
+	replacements = {
+		{"farming:baking_tray", "farming:baking_tray"},
+		{a.skillet, a.skillet},
+	}
+})
+
 -- chapathi
 
 core.register_craft({
