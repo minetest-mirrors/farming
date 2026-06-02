@@ -15,11 +15,11 @@ core.register_craftitem("farming:flour", {
 core.register_craftitem("farming:chapathi", {
 	description = S("Chapathi"),
 	inventory_image = "farming_chapathi.png",
-	on_use = core.item_eat(5),
+	on_use = core.item_eat(3),
 	groups = {food_chapathi = 1, compostability = 55}
 })
 
-farming.add_eatable("farming:chapathi", 5)
+farming.add_eatable("farming:chapathi", 3)
 
 -- Gulab Jamun
 
@@ -59,11 +59,11 @@ farming.add_eatable("farming:laddu", 5)
 core.register_craftitem("farming:samosa", {
 	description = S("Samosa"),
 	inventory_image = "farming_samosa.png",
-	on_use = core.item_eat(7),
+	on_use = core.item_eat(6),
 	groups = {compostability = 55}
 })
 
-farming.add_eatable("farming:samosa", 7)
+farming.add_eatable("farming:samosa", 6)
 
 -- Croissant
 
@@ -205,7 +205,7 @@ core.register_craftitem("farming:chili_powder", {
 	description = S("Chili Powder"),
 	on_use = core.item_eat(-1),
 	inventory_image = "farming_chili_powder.png",
-	groups = {compostability = 45}
+	groups = {food_chili_powder = 1, compostability = 45}
 })
 
 -- Carrot juice

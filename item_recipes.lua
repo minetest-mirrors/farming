@@ -82,12 +82,12 @@ core.register_craft({
 -- chapathi
 
 core.register_craft({
-	output = "farming:chapathi",
+	output = "farming:chapathi 2",
 	recipe = {
 		{"farming:flour", "group:food_glass_water", "farming:rolling_pin"},
 		{"", a.skillet, ""}
 	},
-	replacements ={
+	replacements = {
 		{a.skillet, a.skillet}, {"farming:rolling_pin", "farming:rolling_pin"},
 		{"group:food_glass_water", a.drinking_glass}
 	}
@@ -111,7 +111,7 @@ core.register_craft({
 
 core.register_craft({
 	output = "farming:kitkat 2",
-	recipe ={
+	recipe = {
 		{"group:food_cocoa", "group:food_sugar", "group:food_cocoa"},
 		{"group:food_milk_glass", "group:food_flour", "group:food_milk_glass"}
 	},
@@ -124,7 +124,7 @@ core.register_craft({
 
 core.register_craft({
 	output = "farming:laddu 2",
-	recipe ={
+	recipe = {
 		{"group:food_flour", "group:food_butter", "group:food_flour"},
 		{"group:food_sugar", a.saucepan, "group:food_sugar"}
 	},
@@ -137,8 +137,8 @@ core.register_craft({
 
 core.register_craft({
 	output = "farming:samosa 2",
-	recipe ={
-		{"group:food_flour", "group:food_potato", "group:food_flour"},
+	recipe = {
+		{"group:food_flour", "group:food_potato", "group:food_chili_powder"},
 		{"", "group:food_oil", ""},
 		{"", a.pot, ""},
 	},
@@ -151,7 +151,7 @@ core.register_craft({
 
 core.register_craft({
 	output = "farming:croissant 2",
-	recipe ={
+	recipe = {
 		{"group:food_sugar", "group:food_bread", "group:food_butter"}
 	}
 })
