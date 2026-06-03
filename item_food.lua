@@ -13,7 +13,7 @@ core.register_craftitem("farming:flour", {
 -- Tortang Talong
 
 core.register_craftitem("farming:tortang_talong", {
-	description = S("Tortang Talong"),
+	description = S("Eggplant Omelette (Tortang Talong)"),
 	inventory_image = "farming_tortang_talong.png",
 	on_use = core.item_eat(10),
 	groups = {compostability = 55}
@@ -340,8 +340,7 @@ core.register_node("farming:salt", {
 	is_ground_content = false,
 	sounds = farming.node_sound_defaults(),
 	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
+		type = "fixed", fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
 	-- special function to make salt crystals form inside water
 	dropped_step = function(self, pos, dtime)

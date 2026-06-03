@@ -85,11 +85,12 @@ core.register_craft({
 	output = "farming:tortang_talong",
 	recipe = {
 		{"farming:baking_tray", "group:food_eggplant", "group:food_egg"},
-		{a.skillet, "group:food_rice", "group:food_rice"}
+		{a.skillet, "group:food_rice", "group:food_rice"},
+		{"group:food_oil", "group:food_salt", "group:food_pepper_ground"}
 	},
 	replacements = {
 		{"farming:baking_tray", "farming:baking_tray"},
-		{a.skillet, a.skillet},
+		{a.skillet, a.skillet}, {"group:food_oil", "vessels:glass_bottle"}
 	}
 })
 
@@ -902,7 +903,6 @@ core.register_craft( {
 	output = "farming:pepper_ground",
 	recipe = {
 		{"group:food_peppercorn"},
-		{a.glass_bottle},
 		{a.mortar_pestle}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
