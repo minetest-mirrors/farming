@@ -87,7 +87,7 @@ local L = {name = "farming:kiwi_leaves", param1 = 255}
 local l = {name = "farming:kiwi_leaves", param1 = 127}
 local t = {name = "farming:kiwi_vine", param1 = 255, param2 = 20}
 local T = {name = "farming:kiwi_vine", param1 = 255, param2 = 18, force_place = true}
-local h = {name = "farming:kiwi_vine", param1 = 255, param2 = 7, force_place = true}
+local h = {name = "farming:kiwi_vine", param1 = 255, param2 = 7}
 local H = {name = "farming:kiwi_vine", param1 = 255, param2 = 3}
 
 farming.kiwi_vine = {
