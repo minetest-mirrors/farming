@@ -694,6 +694,14 @@ core.register_craftitem("farming:butter_vegan", {
 	groups = {food_butter = 1}
 })
 
+-- Vegan Egg
+
+core.register_craftitem("farming:egg_vegan", {
+	description = S("Vegan Egg"),
+	inventory_image = "farming_vegan_egg.png",
+	groups = {food_egg = 1}
+})
+
 -- Onigiri
 
 core.register_craftitem("farming:onigiri", {

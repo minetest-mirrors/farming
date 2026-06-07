@@ -810,6 +810,18 @@ core.register_craft({
 	}
 })
 
+-- Vegan Egg
+
+core.register_craft({
+	output = "farming:egg_vegan",
+	recipe = {
+		{"group:food_cornstarch", "group:food_glass_water", "dye:orange"}
+	},
+	replacements = {
+		{"group:food_cornstarch", a.bowl}, {"group:food_glass_water", a.drinking_glass}
+	}
+})
+
 -- onigiri
 
 core.register_craft({
