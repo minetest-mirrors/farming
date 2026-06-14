@@ -1004,28 +1004,40 @@ core.register_craft({
 
 -- pumpkin slice / block
 
-core.register_craft({
-	output = "farming:pumpkin",
-	recipe = {
-		{"farming:pumpkin_slice", "farming:pumpkin_slice"},
-		{"farming:pumpkin_slice", "farming:pumpkin_slice"}
-	}
-})
+if core.get_modpath("mcl_core") then
 
-core.register_craft({
-	output = "farming:pumpkin_slice 4",
-	recipe = {{"farming:pumpkin", a.cutting_board}},
-	replacements = {{"farming:cutting_board", "farming:cutting_board"}}
-})
+	-- pumpkin dough
 
--- pumpkin dough
+	core.register_craft({
+		output = "farming:pumpkin_dough",
+		recipe = {
+			{"mcl_farming:pumpkin", "group:food_flour"}
+		}
+	})
+else
+	core.register_craft({
+		output = "farming:pumpkin",
+		recipe = {
+			{"farming:pumpkin_slice", "farming:pumpkin_slice"},
+			{"farming:pumpkin_slice", "farming:pumpkin_slice"}
+		}
+	})
 
-core.register_craft({
-	output = "farming:pumpkin_dough",
-	recipe = {
-		{"group:food_pumpkin_slice", "group:food_flour", "group:food_pumpkin_slice"}
-	}
-})
+	core.register_craft({
+		output = "farming:pumpkin_slice 4",
+		recipe = {{"farming:pumpkin", a.cutting_board}},
+		replacements = {{"farming:cutting_board", "farming:cutting_board"}}
+	})
+
+	-- pumpkin dough
+
+	core.register_craft({
+		output = "farming:pumpkin_dough",
+		recipe = {
+			{"group:food_pumpkin_slice", "group:food_flour", "group:food_pumpkin_slice"}
+		}
+	})
+end
 
 -- pumpkin bread
 
