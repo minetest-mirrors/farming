@@ -20,6 +20,24 @@ core.register_node("farming:acv", {
 	sounds = farming.node_sound_defaults(),
 })
 
+-- Cinnamon Powder
+
+minetest.register_craftitem("farming:cinnamon_ground", {
+	description = S("Ground Cinnamon"),
+	inventory_image = "farming_cinnamon_ground.png",
+	groups = {food_cinnamon = 1, compostability = 35}
+})
+
+-- Cinnamon Roll
+
+minetest.register_craftitem("farming:cinnamon_roll", {
+	description = S("Cinnamon Roll"),
+	inventory_image = "farming_cinnamon_roll.png",
+	on_use = minetest.item_eat(4)
+})
+
+farming.add_eatable("farming:cinnamon_roll", 4)
+
 -- Flour
 
 core.register_craftitem("farming:flour", {
