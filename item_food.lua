@@ -5,7 +5,7 @@ local a = farming.recipe_items
 -- Apple Cider Vinegar
 
 core.register_node("farming:acv", {
-	description = S("Apple Cicer Vinegar"),
+	description = S("Apple Cider Vinegar"),
 	drawtype = "plantlike",
 	visual_scale = 0.8,
 	tiles = {"farming_acv.png"},
