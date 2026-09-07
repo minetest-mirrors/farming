@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260515",
+	version = "20260907",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -293,7 +293,7 @@ core.after(0, function()
 			if core.get_item_group(node, "plant") >= 1
 			or core.get_item_group(node, "seed") >= 1 and not node_def.on_flood then
 
-				minetest.override_item(node, {
+				core.override_item(node, {
 					floodable = true,
 					on_flood = function(pos, oldnode, newnode)
 						core.dig_node(pos)
@@ -411,7 +411,7 @@ end
 function farming.grow_plant(pos, elapsed)
 
 	local node = core.get_node(pos)
-	local def = core.registered_nodes[node.name]
+	local def = core.registered_nodes[node.name] ; if not def then return end
 
 	elapsed = elapsed or STAGE_LENGTH_AVG
 
@@ -797,7 +797,7 @@ ddoo("sunflower", farming.sunflower)
 ddoo("strawberry", farming.strawberry)
 ddoo("asparagus", farming.asparagus)
 ddoo("eggplant", farming.eggplant)
-ddoo("spinach", farming.eggplant)
+ddoo("spinach", farming.spinach)
 ddoo("ginger", farming.ginger)
 ddoo("kiwi", farming.kiwi)
 ddoo("rye_oat", farming.grains)

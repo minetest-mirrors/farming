@@ -157,6 +157,8 @@ statistics.poisson = function(lambda, max)
 
 	if not lambda or not max or lambda <= 0 or max < 1 then return 0 end
 
+	max = floor(max)
+
 	return poisson(lambda, max)
 end
 
