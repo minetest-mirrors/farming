@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260907",
+	version = "20260930",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -288,7 +288,7 @@ core.after(0, function()
 
 		register_plant_node(node_def)
 
-		if floodable then
+		if floodable and not node:find("mcl_", 1, true) then
 
 			if core.get_item_group(node, "plant") >= 1
 			or core.get_item_group(node, "seed") >= 1 and not node_def.on_flood then
