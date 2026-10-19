@@ -183,7 +183,7 @@ core.register_abm({
 			return
 		end
 
-		-- dont change soil near unloaded areas
+		-- dont change soil near unloaded areas (possible chance of water)
 		if core.find_node_near(pos, 3, {"ignore"}) then return end
 
 		if node.name == soil.wet then
@@ -201,7 +201,7 @@ core.register_abm({
 
 if core.settings:get_bool("farming_disable_weeds") ~= true then
 
-	local chance = tonumber(core.settings:get("farming_weeds_chance") or 70)
+	local chance = tonumber(core.settings:get("farming_weeds_chance")) or 70
 
 	core.register_abm({
 		nodenames = {"group:field"},
