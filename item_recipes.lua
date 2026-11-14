@@ -859,7 +859,7 @@ core.register_craft({
 		{"group:food_cornstarch", "group:food_glass_water", "dye:orange"}
 	},
 	replacements = {
-		{"group:food_cornstarch", a.bowl}, {"group:food_glass_water", a.drinking_glass}
+		{"group:food_glass_water", a.drinking_glass}
 	}
 })
 
